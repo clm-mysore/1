@@ -1,0 +1,6 @@
+{
+  "name": "Christ's Love Ministries - Mysuru",
+  "description": "Official website for Christ's Love Ministries, founded by Ruben Ranjith in Mysore. Spreading love, faith, education, and community outreach since 2016.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
