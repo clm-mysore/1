@@ -141,10 +141,22 @@
             transform: scale(1.07);
         }
 
-        /* DRIVE GALLERY MODAL & SECTION */
+        /* DRIVE GALLERY EMBED & WRAPPER */
+        .drive-gallery-wrapper {
+            position: relative;
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 1.25rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            transition: border-color 0.3s ease;
+        }
+        .drive-gallery-wrapper:hover {
+            border-color: rgba(234, 179, 8, 0.4);
+        }
         .drive-gallery-iframe {
             width: 100%;
-            height: 600px;
+            height: 500px;
             border: 0;
             background-color: #0b132b;
             border-radius: 1rem;
@@ -337,12 +349,12 @@
     </section>
 
     <!-- ====================================================================== -->
-    <!-- 4. GALLERY PREVIEW SECTION                                             -->
-    <!-- 4 preview images only + "View Full Gallery" button                     -->
+    <!-- 4. GALLERY SECTION ("SEVEYA KSHANAGALU" / MINISTRY MOMENTS)              -->
+    <!-- Directly embedded Google Drive gallery iframe (width=100%, height=500)   -->
     <!-- ====================================================================== -->
     <section id="gallery" class="py-24 bg-royal-950 relative border-t border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-14">
+            <div class="text-center max-w-3xl mx-auto mb-12">
                 <span class="inline-block bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold px-3.5 py-1 rounded-full uppercase tracking-wider mb-3">
                     Visual Archive
                 </span>
@@ -353,92 +365,23 @@
                 </p>
             </div>
 
-            <!-- Exactly 4 Preview Images Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="gallery-preview-card cursor-pointer group" onclick="openDriveGalleryModal()">
-                    <img src="photo1.jpg" onerror="if (this.src.endsWith('.jpg')) { this.src='photo1.jpeg'; } else if (this.src.endsWith('.jpeg')) { this.src='photo1.png'; } else { this.onerror=null; }" alt="Ministry Moment 1" loading="lazy">
-                    <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span class="bg-gold-500/90 text-slate-950 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5">
-                            <i class="fa-solid fa-expand"></i> View
-                        </span>
-                    </div>
+            <!-- Direct Google Drive Gallery Embed Container -->
+            <div class="max-w-6xl mx-auto">
+                <div class="drive-gallery-wrapper p-2 bg-slate-900/95 shadow-2xl">
+                    <iframe src="https://drive.google.com/embeddedfolderview?id=1Hkq7P2m8uk2CtZAh9l-vHlvdd_oONTmA#grid" width="100%" height="500" frameborder="0" class="drive-gallery-iframe" title="Christ's Love Ministries Google Drive Photo Gallery" loading="lazy" allowfullscreen></iframe>
                 </div>
 
-                <div class="gallery-preview-card cursor-pointer group" onclick="openDriveGalleryModal()">
-                    <img src="photo2.jpg" onerror="if (this.src.endsWith('.jpg')) { this.src='photo2.jpeg'; } else if (this.src.endsWith('.jpeg')) { this.src='photo2.png'; } else { this.onerror=null; }" alt="Ministry Moment 2" loading="lazy">
-                    <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span class="bg-gold-500/90 text-slate-950 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5">
-                            <i class="fa-solid fa-expand"></i> View
-                        </span>
-                    </div>
+                <!-- Direct Drive Album Access & Open Link Button -->
+                <div class="mt-8 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="https://drive.google.com/drive/folders/1Hkq7P2m8uk2CtZAh9l-vHlvdd_oONTmA?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-slate-950 font-bold px-7 py-3.5 rounded-xl shadow-lg shadow-gold-500/20 hover:shadow-gold-500/35 transition duration-300 transform hover:-translate-y-0.5 text-sm sm:text-base">
+                        <i class="fa-brands fa-google-drive text-lg text-slate-950"></i>
+                        <span data-i18n="btn_view_full_gallery">Open Full Album in Google Drive</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1"></i>
+                    </a>
                 </div>
-
-                <div class="gallery-preview-card cursor-pointer group" onclick="openDriveGalleryModal()">
-                    <img src="photo3.jpg" onerror="if (this.src.endsWith('.jpg')) { this.src='photo3.jpeg'; } else if (this.src.endsWith('.jpeg')) { this.src='photo3.png'; } else { this.onerror=null; }" alt="Ministry Moment 3" loading="lazy">
-                    <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span class="bg-gold-500/90 text-slate-950 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5">
-                            <i class="fa-solid fa-expand"></i> View
-                        </span>
-                    </div>
-                </div>
-
-                <div class="gallery-preview-card cursor-pointer group" onclick="openDriveGalleryModal()">
-                    <img src="photo4.jpg" onerror="if (this.src.endsWith('.jpg')) { this.src='photo4.jpeg'; } else if (this.src.endsWith('.jpeg')) { this.src='photo4.png'; } else { this.onerror=null; }" alt="Ministry Moment 4" loading="lazy">
-                    <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span class="bg-gold-500/90 text-slate-950 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5">
-                            <i class="fa-solid fa-expand"></i> View
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- "View Full Gallery" Button -->
-            <div class="text-center mt-12">
-                <button type="button" onclick="openDriveGalleryModal()" class="inline-flex items-center gap-3 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-slate-950 font-bold px-8 py-4 rounded-2xl shadow-xl shadow-gold-500/20 hover:shadow-gold-500/40 transition duration-300 transform hover:-translate-y-0.5 text-sm sm:text-base">
-                    <i class="fa-solid fa-images text-lg"></i>
-                    <span data-i18n="btn_view_full_gallery">View Full Gallery</span>
-                    <i class="fa-solid fa-arrow-right text-xs"></i>
-                </button>
             </div>
         </div>
     </section>
-
-    <!-- ====================================================================== -->
-    <!-- FULL GALLERY MODAL / SEPARATE EMBED SECTION (GOOGLE DRIVE)             -->
-    <!-- Uses exact user iframe code:                                            -->
-    <!-- <iframe src="https://drive.google.com/embeddedfolderview?id=1Hkq7P2m8uk2CtZAh9l-vHlvdd_oONTmA#grid" width="100%" height="600" frameborder="0"></iframe> -->
-    <!-- ====================================================================== -->
-    <div id="driveGalleryModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <div class="bg-slate-900 border border-gold-500/30 rounded-3xl max-w-5xl w-full p-4 sm:p-6 shadow-2xl relative overflow-hidden flex flex-col max-h-[92vh]">
-            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400">
-                        <i class="fa-brands fa-google-drive text-lg"></i>
-                    </div>
-                    <div>
-                        <h3 id="modalTitle" class="text-lg font-serif font-bold text-white" data-i18n="modal_gallery_title">Official Ministry Photo Album</h3>
-                        <p class="text-xs text-slate-400">Christ's Love Ministries Google Drive Gallery</p>
-                    </div>
-                </div>
-                <button type="button" onclick="closeDriveGalleryModal()" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition" aria-label="Close modal">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-
-            <!-- Exact User Iframe Embed -->
-            <div class="py-4 flex-1 overflow-hidden">
-                <iframe src="https://drive.google.com/embeddedfolderview?id=1Hkq7P2m8uk2CtZAh9l-vHlvdd_oONTmA#grid" width="100%" height="600" frameborder="0" class="drive-gallery-iframe"></iframe>
-            </div>
-
-            <div class="pt-3 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400">
-                <span>If the viewer does not load, you can view the folder directly:</span>
-                <a href="https://drive.google.com/drive/folders/1Hkq7P2m8uk2CtZAh9l-vHlvdd_oONTmA?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-gold-400 hover:underline inline-flex items-center gap-1 font-semibold">
-                    <span>Open in Google Drive</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                </a>
-            </div>
-        </div>
-    </div>
 
     <!-- ====================================================================== -->
     <!-- 5. VIDEOS SECTION                                                      -->
@@ -483,6 +426,25 @@
                         <span data-i18n="btn_watch_more_videos">Watch More Videos</span>
                         <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-0.5"></i>
                     </a>
+                </div>
+
+                <!-- Auto-updating channel playlist feed cards -->
+                <div class="mt-6 pt-5 border-t border-slate-800">
+                    <div class="flex items-center justify-between mb-3 px-1">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-play-circle text-gold-400 text-sm"></i>
+                            <h4 class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-200" data-i18n="playlist_feed_title">Recent Channel Messages</h4>
+                        </div>
+                        <span class="text-[11px] text-slate-400 flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span>Auto-Updating Feed</span>
+                        </span>
+                    </div>
+
+                    <!-- Horizontal Grid of Latest Channel Videos -->
+                    <div id="channelPlaylistContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                        <!-- Populated by JavaScript fetchDailyChannelFeed -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -791,9 +753,66 @@
             }
         });
 
-        // 4. Automated Daily YouTube Video Feed & Player Logic
+        // 4. Automated Daily YouTube Video Feed & Playlist Logic
         const YT_CHANNEL_ID = "UCRgt--dPj42CRgbdfYf-jVw";
         const YT_FALLBACK_ID = "-WMNkmehk_g";
+
+        const FALLBACK_PLAYLIST = [
+            { id: "-WMNkmehk_g", title: "Daily Devotion & Worship - Christ's Love Ministries" },
+            { id: "TeeUL-ixqg0", title: "Special Prayer & Worship Session" },
+            { id: "u100oAwDlnQ", title: "Gospel Message & Divine Hope" }
+        ];
+
+        function playChannelVideo(videoId, title, element) {
+            const player = document.getElementById('mainYoutubePlayer');
+            const titleElem = document.getElementById('currentVideoTitle');
+            const ytBtn = document.getElementById('watchOnYtBtn');
+
+            if (player) {
+                player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+            }
+            if (titleElem && title) {
+                titleElem.textContent = title;
+            }
+
+            const cards = document.querySelectorAll('.channel-video-card');
+            cards.forEach(c => {
+                c.classList.remove('border-gold-500', 'bg-slate-900', 'shadow-gold-500/20');
+                c.classList.add('border-slate-800', 'bg-slate-900/60');
+            });
+            if (element) {
+                element.classList.remove('border-slate-800', 'bg-slate-900/60');
+                element.classList.add('border-gold-500', 'bg-slate-900', 'shadow-gold-500/20');
+            }
+        }
+
+        function renderChannelPlaylist(items) {
+            const container = document.getElementById('channelPlaylistContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            items.forEach((item, index) => {
+                const isFirst = index === 0;
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = `channel-video-card text-left p-2.5 rounded-2xl border transition duration-300 flex items-center gap-3 group shadow-md ${isFirst ? 'border-gold-500 bg-slate-900 shadow-gold-500/20' : 'border-slate-800 bg-slate-900/60 hover:bg-slate-800 hover:border-slate-700'}`;
+                card.onclick = function() { playChannelVideo(item.id, item.title, this); };
+
+                card.innerHTML = `
+                    <div class="relative w-20 h-14 flex-shrink-0 rounded-xl overflow-hidden bg-slate-950">
+                        <img src="https://img.youtube.com/vi/${item.id}/hqdefault.jpg" alt="Video preview" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition-colors">
+                            <i class="fa-solid fa-play text-white text-[10px]"></i>
+                        </div>
+                    </div>
+                    <div class="overflow-hidden flex-1">
+                        <p class="text-xs font-bold text-slate-100 line-clamp-2 group-hover:text-gold-400 transition-colors">${item.title}</p>
+                        <span class="text-[10px] text-gold-400/90 font-medium mt-0.5 inline-block">Daily Devotion</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
 
         async function fetchDailyChannelFeed() {
             try {
@@ -804,25 +823,36 @@
                 const data = await response.json();
 
                 if (data && data.items && data.items.length > 0) {
-                    const latest = data.items[0];
-                    let vId = "";
-                    if (latest.guid && latest.guid.includes("yt:video:")) {
-                        vId = latest.guid.replace("yt:video:", "");
-                    } else if (latest.link) {
-                        const match = latest.link.match(/[?&]v=([^&]+)/);
-                        if (match) vId = match[1];
-                    }
+                    const parsedVideos = data.items.map(item => {
+                        let vId = "";
+                        if (item.guid && item.guid.includes("yt:video:")) {
+                            vId = item.guid.replace("yt:video:", "");
+                        } else if (item.link) {
+                            const match = item.link.match(/[?&]v=([^&]+)/);
+                            if (match) vId = match[1];
+                        }
+                        return {
+                            id: vId || YT_FALLBACK_ID,
+                            title: item.title || "Daily Devotion & Worship - Christ's Love Ministries"
+                        };
+                    }).filter(v => Boolean(v.id));
 
-                    if (vId) {
+                    if (parsedVideos.length > 0) {
+                        const latest = parsedVideos[0];
                         const player = document.getElementById('mainYoutubePlayer');
                         const titleElem = document.getElementById('currentVideoTitle');
-                        if (player) player.src = `https://www.youtube.com/embed/${vId}?rel=0`;
+                        if (player) player.src = `https://www.youtube.com/embed/${latest.id}?rel=0`;
                         if (titleElem && latest.title) titleElem.textContent = latest.title;
+
+                        renderChannelPlaylist(parsedVideos.slice(0, 6));
+                        return;
                     }
                 }
             } catch (err) {
-                console.log("Using primary channel fallback featured video:", err);
+                console.log("Using primary channel fallback featured video & playlist:", err);
             }
+
+            renderChannelPlaylist(FALLBACK_PLAYLIST);
         }
 
         // 5. Direct WhatsApp Prayer Request Submission
@@ -870,6 +900,7 @@
                 video_section_title: "Daily Worship & Message",
                 video_section_subtitle: "Watch the latest devotion and spiritual worship from our official channel.",
                 btn_watch_more_videos: "Watch More Videos",
+                playlist_feed_title: "Recent Channel Messages",
                 prayer_title: "Prayer Request",
                 prayer_subtitle: "Our prayer team led by Ruben Ranjith will intercede for your request. Send your prayer need directly via WhatsApp.",
                 form_name: "Your Full Name *",
@@ -913,6 +944,7 @@
                 video_section_title: "ದೈನಂದಿನ ಆರಾಧನೆ ಮತ್ತು ಸಂದೇಶ",
                 video_section_subtitle: "ನಮ್ಮ ಅಧಿಕೃತ ಯೂಟ್ಯೂಬ್ ಚಾನೆಲ್‌ನಿಂದ ಇತ್ತೀಚಿನ ವೀಡಿಯೊ ವೀಕ್ಷಿಸಿ.",
                 btn_watch_more_videos: "ಇನ್ನಷ್ಟು ವೀಡಿಯೊಗಳನ್ನು ವೀಕ್ಷಿಸಿ",
+                playlist_feed_title: "ಇತ್ತೀಚಿನ ಚಾನೆಲ್ ಸಂದೇಶಗಳು",
                 prayer_title: "ಪ್ರಾರ್ಥನೆ ವಿನಂತಿ",
                 prayer_subtitle: "ರೂಬೆನ್ ರಂಜಿತ್ ಮತ್ತು ಪ್ರಾರ್ಥನಾ ತಂಡವು ನಿಮಗಾಗಿ ಪ್ರಾರ್ಥಿಸುತ್ತದೆ. ವಾಟ್ಸಾಪ್ ಮೂಲಕ ನೇರವಾಗಿ ಕಳುಹಿಸಿ.",
                 form_name: "ನಿಮ್ಮ ಪೂರ್ಣ ಹೆಸರು *",
@@ -956,6 +988,7 @@
                 video_section_title: "दैनिक आराधना और प्रवचन",
                 video_section_subtitle: "हमारे आधिकारिक चैनल से नवीनतम भक्ति और आराधना संदेश देखें।",
                 btn_watch_more_videos: "अधिक वीडियो देखें",
+                playlist_feed_title: "हाल के चैनल संदेश",
                 prayer_title: "प्रार्थना अनुरोध",
                 prayer_subtitle: "रूबेन रणजीत और हमारी प्रार्थना टीम आपके लिए प्रार्थना करेगी। सीधे व्हाट्सएप के माध्यम से भेजें।",
                 form_name: "आपका पूरा नाम *",
