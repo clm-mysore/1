@@ -7,8 +7,9 @@
     <meta name="description" content="Official website of Christ's Love Ministries, Mysuru. Founded by Ruben Ranjith.">
     <link rel="icon" type="image/png" href="logo.png">
 
-    <!-- Tailwind CSS & FontAwesome Icons -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 Icons CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
     
     <!-- Optimized Google Fonts -->
@@ -58,33 +59,35 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <a href="index.html" class="flex items-center space-x-3">
-                    <img src="logo.png" alt="CLM Logo" class="h-12 w-auto object-contain">
+                    <img src="logo.png" onerror="if (this.src.endsWith('.png')) { this.src='logo.jpeg'; }" alt="CLM Logo" class="h-12 w-auto object-contain">
                     <div>
                         <h1 class="font-serif text-lg font-bold text-white">Christ's Love Ministries</h1>
                         <p class="text-[10px] text-gold-400 uppercase tracking-widest">Mysuru, Karnataka</p>
                     </div>
                 </a>
 
-                <!-- Desktop Menu -->
+                <!-- Desktop Navigation Menu -->
                 <nav class="hidden md:flex items-center space-x-6 text-sm font-semibold">
                     <a href="index.html" class="text-gold-400">Home</a>
                     <a href="about.html" class="hover:text-gold-400 transition">About</a>
+                    <a href="gallery.html" class="hover:text-gold-400 transition">Gallery</a>
                     <a href="videos.html" class="hover:text-gold-400 transition">Videos</a>
                     <a href="prayer.html" class="hover:text-gold-400 transition">Prayer Request</a>
                     <a href="contact.html" class="hover:text-gold-400 transition">Contact & Support</a>
                 </nav>
 
                 <!-- Mobile Hamburger Button -->
-                <button type="button" onclick="toggleMenu()" class="md:hidden p-2.5 rounded-lg text-slate-300 hover:text-white" aria-label="Toggle Menu">
-                    <i class="fa-solid fa-bars text-2xl"></i>
+                <button type="button" onclick="toggleMenu()" class="md:hidden p-2.5 rounded-lg text-slate-300 hover:text-white" aria-label="Toggle Navigation Menu">
+                    <i id="menuIcon" class="fa-solid fa-bars text-2xl"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Navigation Menu -->
+        <!-- Mobile Navigation Menu Dropdown -->
         <div id="mobileMenu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-6 pt-3 pb-6 space-y-3 text-base font-medium">
             <a href="index.html" class="block text-gold-400 py-2 border-b border-slate-800">Home</a>
             <a href="about.html" class="block text-slate-200 hover:text-gold-400 py-2 border-b border-slate-800">About Us</a>
+            <a href="gallery.html" class="block text-slate-200 hover:text-gold-400 py-2 border-b border-slate-800">Photo Gallery</a>
             <a href="videos.html" class="block text-slate-200 hover:text-gold-400 py-2 border-b border-slate-800">Videos</a>
             <a href="prayer.html" class="block text-slate-200 hover:text-gold-400 py-2 border-b border-slate-800">Prayer Request</a>
             <a href="contact.html" class="block text-slate-200 hover:text-gold-400 py-2">Contact & Support</a>
@@ -94,7 +97,7 @@
     <!-- Clean Focused Hero Section -->
     <section class="hero-bg min-h-[85vh] flex items-center justify-center text-center px-4 py-16">
         <div class="max-w-4xl mx-auto space-y-6">
-            <img src="logo.png" alt="CLM Logo" class="w-24 h-24 mx-auto object-contain filter drop-shadow-lg">
+            <img src="logo.png" onerror="if (this.src.endsWith('.png')) { this.src='logo.jpeg'; }" alt="CLM Logo" class="w-24 h-24 mx-auto object-contain filter drop-shadow-lg">
             
             <span class="inline-block bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest">
                 Welcome to Christ's Love Ministries
@@ -117,6 +120,7 @@
                 Dedicated to serving communities in Mysuru and beyond through divine worship, prayer intercession, spiritual education, and compassionate outreach.
             </p>
 
+            <!-- Quick Action Buttons -->
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                 <a href="prayer.html" class="w-full sm:w-auto inline-flex items-center justify-center bg-gold-500 hover:bg-gold-400 text-slate-950 font-bold px-8 py-4 rounded-xl shadow-lg transition text-base">
                     <i class="fa-solid fa-hands-praying text-lg mr-2.5"></i> Send Prayer Request
@@ -156,7 +160,14 @@
 
     <script>
         function toggleMenu() {
-            document.getElementById('mobileMenu').classList.toggle('hidden');
+            const menu = document.getElementById('mobileMenu');
+            const icon = document.getElementById('menuIcon');
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.className = "fa-solid fa-bars text-2xl";
+            } else {
+                icon.className = "fa-solid fa-xmark text-2xl";
+            }
         }
     </script>
 </body>
