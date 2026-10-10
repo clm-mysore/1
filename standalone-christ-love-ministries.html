@@ -133,26 +133,31 @@
             transform: scale(1.05);
         }
 
-        /* DRIVE GALLERY EMBED & WRAPPER */
-        .drive-gallery-wrapper {
+        /* DRIVE GALLERY & FEATURED CARDS STYLING */
+        .featured-photo-card {
             position: relative;
-            background: #0f172a;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 1.25rem;
+            border-radius: 1.5rem;
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-            transition: border-color 0.3s ease;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .drive-gallery-wrapper:hover {
-            border-color: rgba(234, 179, 8, 0.4);
+        .featured-photo-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(234, 179, 8, 0.5);
+            box-shadow: 0 20px 35px -10px rgba(234, 179, 8, 0.18);
         }
-        .drive-gallery-iframe {
-            width: 100%;
-            height: 500px;
-            border: 0;
+
+        /* SUPPORT SECTION PARALLAX BACKGROUND */
+        .support-bg {
             background-color: #0b132b;
-            border-radius: 1rem;
-            display: block;
+            background-image: linear-gradient(rgba(11, 19, 43, 0.90), rgba(15, 23, 42, 0.95)), url('photo3.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         /* Custom Scrollbar */
@@ -166,6 +171,153 @@
         ::-webkit-scrollbar-thumb {
             background: #ca8a04;
             border-radius: 4px;
+        }
+
+        /* Check-mark animation for prayer form submit button */
+        @keyframes checkmarkPop {
+            0% {
+                transform: scale(0.3) rotate(-20deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.25) rotate(8deg);
+                opacity: 1;
+            }
+            75% {
+                transform: scale(0.95) rotate(-3deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+        .animate-check {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            animation: checkmarkPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* ========================================================== */
+        /* ANIMATED HOVER EFFECTS FOR SOCIAL ICONS (FOLLOW US)        */
+        /* ========================================================== */
+        
+        /* YouTube Card Animated Hover */
+        .social-hover-youtube {
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .social-hover-youtube:hover {
+            background: linear-gradient(135deg, #ff0000 0%, #b30000 100%) !important;
+            border-color: #ff3333 !important;
+            box-shadow: 0 14px 28px -4px rgba(255, 0, 0, 0.45), 0 0 18px rgba(255, 0, 0, 0.3) !important;
+            transform: translateY(-6px) scale(1.04);
+        }
+        .social-hover-youtube:hover .icon-yt {
+            animation: ytPulse 0.6s ease-in-out infinite alternate;
+        }
+
+        /* Instagram Card Animated Hover */
+        .social-hover-instagram {
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .social-hover-instagram:hover {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+            border-color: #f09433 !important;
+            box-shadow: 0 14px 28px -4px rgba(220, 39, 67, 0.45), 0 0 18px rgba(204, 35, 102, 0.35) !important;
+            transform: translateY(-6px) scale(1.04);
+        }
+        .social-hover-instagram:hover .icon-insta {
+            animation: instaWiggle 0.6s ease-in-out infinite alternate;
+        }
+
+        /* Facebook Card Animated Hover */
+        .social-hover-facebook {
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .social-hover-facebook:hover {
+            background: linear-gradient(135deg, #1877F2 0%, #0d5cbf 100%) !important;
+            border-color: #1877F2 !important;
+            box-shadow: 0 14px 28px -4px rgba(24, 119, 242, 0.45), 0 0 18px rgba(24, 119, 242, 0.35) !important;
+            transform: translateY(-6px) scale(1.04);
+        }
+        .social-hover-facebook:hover .icon-fb {
+            animation: fbPop 0.6s ease-in-out infinite alternate;
+        }
+
+        /* Individual Social Icon Buttons Hover Animation */
+        .social-btn-youtube {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .social-btn-youtube:hover {
+            background: linear-gradient(135deg, #ff0000 0%, #b30000 100%) !important;
+            color: #ffffff !important;
+            border-color: #ff3333 !important;
+            box-shadow: 0 10px 22px -3px rgba(255, 0, 0, 0.5) !important;
+            transform: translateY(-5px) scale(1.15) !important;
+        }
+        .social-btn-youtube:hover i {
+            animation: ytPulse 0.55s ease-in-out infinite alternate;
+        }
+
+        .social-btn-instagram {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .social-btn-instagram:hover {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+            color: #ffffff !important;
+            border-color: #f09433 !important;
+            box-shadow: 0 10px 22px -3px rgba(220, 39, 67, 0.5) !important;
+            transform: translateY(-5px) scale(1.15) !important;
+        }
+        .social-btn-instagram:hover i {
+            animation: instaWiggle 0.55s ease-in-out infinite alternate;
+        }
+
+        .social-btn-facebook {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .social-btn-facebook:hover {
+            background: linear-gradient(135deg, #1877F2 0%, #0d5cbf 100%) !important;
+            color: #ffffff !important;
+            border-color: #1877F2 !important;
+            box-shadow: 0 10px 22px -3px rgba(24, 119, 242, 0.5) !important;
+            transform: translateY(-5px) scale(1.15) !important;
+        }
+        .social-btn-facebook:hover i {
+            animation: fbPop 0.55s ease-in-out infinite alternate;
+        }
+
+        .social-btn-whatsapp {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .social-btn-whatsapp:hover {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%) !important;
+            color: #ffffff !important;
+            border-color: #25D366 !important;
+            box-shadow: 0 10px 22px -3px rgba(37, 211, 102, 0.5) !important;
+            transform: translateY(-5px) scale(1.15) !important;
+        }
+        .social-btn-whatsapp:hover i {
+            animation: ytPulse 0.55s ease-in-out infinite alternate;
+        }
+
+        /* Keyframes for vibrant icon hover animations */
+        @keyframes ytPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.22) rotate(-4deg); }
+            100% { transform: scale(1.1) rotate(4deg); }
+        }
+
+        @keyframes instaWiggle {
+            0% { transform: rotate(-8deg) scale(1.05); }
+            50% { transform: rotate(10deg) scale(1.22); }
+            100% { transform: rotate(-5deg) scale(1.12); }
+        }
+
+        @keyframes fbPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.24); }
+            100% { transform: scale(1.12); }
         }
     </style>
 </head>
@@ -386,33 +538,12 @@
                 </p>
             </div>
 
-            <!-- Direct Google Drive Gallery Embed Container -->
-            <div class="max-w-6xl mx-auto">
-                <div class="drive-gallery-wrapper p-2 bg-slate-900/95 shadow-2xl">
-                    <iframe 
-                        src="https://drive.google.com/embeddedfolderview?id=1Hkq7P2m8uk2CtZAh9l-vHlvdd_oONTmA#grid" 
-                        width="100%" 
-                        height="500" 
-                        class="drive-gallery-iframe" 
-                        title="Christ's Love Ministries Google Drive Photo Gallery" 
-                        loading="lazy" 
-                        allowfullscreen
-                    ></iframe>
-                </div>
-
-                <!-- Direct Drive Album Access & Open Link Button -->
-                <div class="mt-6 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a 
-                        href="https://drive.google.com/drive/folders/1Hkq7P2m8uk2CtZAh9l-vHlvdd_oONTmA?usp=sharing" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        class="inline-flex items-center gap-2.5 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-slate-950 font-bold px-7 py-3.5 rounded-xl shadow-lg shadow-gold-500/20 hover:shadow-gold-500/35 transition duration-300 transform hover:-translate-y-0.5 text-sm sm:text-base"
-                    >
-                        <i class="fa-brands fa-google-drive text-lg text-slate-950"></i>
-                        <span data-i18n="btn_view_full_gallery">Open Photo Album in Google Drive</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1"></i>
-                    </a>
-                </div>
+            <!-- Google Drive Gallery Embed -->
+            <div style="width: 100%; max-width: 900px; margin: 20px auto; text-align: center;">
+              <iframe src="https://drive.google.com/embeddedfolderview?id=1Hkq7P2m8uk2CtZAh9l-vHlvdd_oONTmA#grid" width="100%" height="500" style="border: 0; border-radius: 12px; overflow: hidden;" frameborder="0"></iframe>
+              <div style="margin-top: 15px;">
+                <a href="https://drive.google.com/drive/folders/1Hkq7P2m8uk2CtZAh9l-vHlvdd_oONTmA" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #d4af37; color: #000; font-weight: bold; border-radius: 6px; text-decoration: none;" data-i18n="btn_view_full_gallery">View Full Google Drive Gallery</a>
+              </div>
             </div>
         </div>
     </section>
@@ -546,10 +677,13 @@
                     <div class="text-center pt-2">
                         <button 
                             type="submit" 
-                            class="w-full sm:w-auto inline-flex items-center justify-center bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-slate-950 font-bold px-10 py-4 rounded-xl text-base shadow-xl transition transform hover:-translate-y-0.5 cursor-pointer"
+                            id="prayerSubmitBtn"
+                            class="w-full sm:w-auto inline-flex items-center justify-center bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-slate-950 font-bold px-10 py-4 rounded-xl text-base shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
                         >
-                            <i class="fa-brands fa-whatsapp text-xl mr-2"></i>
-                            <span data-i18n="form_btn">Send Prayer Request via WhatsApp</span>
+                            <span id="prayerBtnIcon" class="inline-flex items-center">
+                                <i class="fa-brands fa-whatsapp text-xl mr-2"></i>
+                            </span>
+                            <span id="prayerBtnText" data-i18n="form_btn">Send Prayer Request via WhatsApp</span>
                         </button>
                     </div>
                 </form>
@@ -650,7 +784,7 @@
     <!-- 8. SEPARATE SUPPORT MINISTRY SECTION                                   -->
     <!-- No bank/payment details on the homepage; dedicated separate section    -->
     <!-- ====================================================================== -->
-    <section id="support" class="py-20 sm:py-24 bg-royal-950 relative border-t border-slate-800/80">
+    <section id="support" class="py-20 sm:py-24 support-bg relative border-t border-slate-800/80">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="glass-card rounded-3xl p-6 sm:p-12 border border-gold-500/30 shadow-2xl space-y-6">
                 <div class="w-16 h-16 rounded-full bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-2xl mx-auto">
@@ -697,10 +831,95 @@
     </section>
 
     <!-- ====================================================================== -->
-    <!-- 9. FOOTER WITH COPYRIGHT, QUICK LINKS, ELEGANT SOCIAL ICONS & CONTACT  -->
+    <!-- 9. FOOTER WITH FOLLOW US SECTION, QUICK LINKS & ANIMATED SOCIAL ICONS  -->
     <!-- ====================================================================== -->
     <footer class="bg-royal-950 border-t border-slate-800 text-slate-400 text-xs py-14">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- NEW: Dedicated "Follow Us" Section with Animated Hover Effects -->
+            <div id="follow-us" class="mb-14 pb-12 border-b border-slate-800/80">
+                <div class="glass-card rounded-3xl p-6 sm:p-10 border border-slate-800/80 bg-gradient-to-r from-royal-950 via-slate-900 to-royal-950 shadow-2xl relative overflow-hidden">
+                    <!-- Subtle ambient lighting -->
+                    <div class="absolute -right-16 -top-16 w-56 h-56 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="absolute -left-16 -bottom-16 w-56 h-56 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left">
+                        <div class="max-w-xl">
+                            <span class="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold px-3.5 py-1 rounded-full uppercase tracking-wider mb-3" data-i18n="follow_tag">
+                                <i class="fa-solid fa-heart text-gold-400"></i>
+                                <span>Stay Connected</span>
+                            </span>
+                            <h3 class="text-2xl sm:text-3xl font-serif font-bold text-white mb-2" data-i18n="follow_title">
+                                Follow Us
+                            </h3>
+                            <p class="text-slate-300 text-sm leading-relaxed" data-i18n="follow_desc">
+                                Join our official digital fellowship. Watch daily devotions, worship moments, and stay connected with Ruben Ranjith and Christ's Love Ministries across all our official channels.
+                            </p>
+                        </div>
+
+                        <!-- Follow Us Interactive Cards with Animated Hover Effects -->
+                        <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-5">
+                            <!-- YouTube Animated Card -->
+                            <a 
+                                href="https://www.youtube.com/@treasureforthedayclmmysuru2720" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                class="social-hover-youtube group flex items-center gap-3.5 px-5 py-4 rounded-2xl bg-slate-900/95 border border-slate-800 text-slate-200 shadow-xl cursor-pointer"
+                                aria-label="Subscribe to Christ's Love Ministries on YouTube"
+                                title="Subscribe on YouTube"
+                            >
+                                <span class="w-12 h-12 rounded-xl bg-red-600/15 border border-red-500/30 flex items-center justify-center text-red-500 group-hover:bg-white group-hover:text-red-600 transition-all duration-300 shadow-inner">
+                                    <i class="fa-brands fa-youtube text-2xl icon-yt"></i>
+                                </span>
+                                <div class="text-left">
+                                    <p class="text-xs font-bold text-white group-hover:text-white transition-colors">YouTube</p>
+                                    <p class="text-[11px] text-slate-400 group-hover:text-white/90 transition-colors">@treasureforthedayclm</p>
+                                </div>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-white/80 transition-colors ml-1"></i>
+                            </a>
+
+                            <!-- Instagram Animated Card -->
+                            <a 
+                                href="https://www.instagram.com/rubenranjith/" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                class="social-hover-instagram group flex items-center gap-3.5 px-5 py-4 rounded-2xl bg-slate-900/95 border border-slate-800 text-slate-200 shadow-xl cursor-pointer"
+                                aria-label="Follow Ruben Ranjith on Instagram"
+                                title="Follow on Instagram"
+                            >
+                                <span class="w-12 h-12 rounded-xl bg-pink-500/15 border border-pink-500/30 flex items-center justify-center text-pink-400 group-hover:bg-white group-hover:text-pink-600 transition-all duration-300 shadow-inner">
+                                    <i class="fa-brands fa-instagram text-2xl icon-insta"></i>
+                                </span>
+                                <div class="text-left">
+                                    <p class="text-xs font-bold text-white group-hover:text-white transition-colors">Instagram</p>
+                                    <p class="text-[11px] text-slate-400 group-hover:text-white/90 transition-colors">@rubenranjith</p>
+                                </div>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-white/80 transition-colors ml-1"></i>
+                            </a>
+
+                            <!-- Facebook Animated Card -->
+                            <a 
+                                href="https://www.facebook.com/share/1BfGqXS3wA/" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                class="social-hover-facebook group flex items-center gap-3.5 px-5 py-4 rounded-2xl bg-slate-900/95 border border-slate-800 text-slate-200 shadow-xl cursor-pointer"
+                                aria-label="Follow Christ's Love Ministries on Facebook"
+                                title="Follow on Facebook"
+                            >
+                                <span class="w-12 h-12 rounded-xl bg-blue-600/15 border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:bg-white group-hover:text-blue-600 transition-all duration-300 shadow-inner">
+                                    <i class="fa-brands fa-facebook text-2xl icon-fb"></i>
+                                </span>
+                                <div class="text-left">
+                                    <p class="text-xs font-bold text-white group-hover:text-white transition-colors">Facebook</p>
+                                    <p class="text-[11px] text-slate-400 group-hover:text-white/90 transition-colors">Official Ministry Page</p>
+                                </div>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-white/80 transition-colors ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
                 <!-- Column 1: Ministry Info -->
                 <div class="space-y-4 md:col-span-1">
@@ -733,6 +952,7 @@
                         <li><a href="#videos" class="hover:text-gold-400 transition">Videos</a></li>
                         <li><a href="#prayer" class="hover:text-gold-400 transition">Prayer Request</a></li>
                         <li><a href="#support" class="hover:text-gold-400 transition">Support Ministry</a></li>
+                        <li><a href="#follow-us" class="hover:text-gold-400 transition">Follow Us</a></li>
                     </ul>
                 </div>
 
@@ -755,7 +975,7 @@
                     </ul>
                 </div>
 
-                <!-- Column 4: Elegant Social Media Icons -->
+                <!-- Column 4: Elegant Animated Social Media Icons -->
                 <div>
                     <h4 class="text-slate-200 font-bold uppercase tracking-wider text-xs mb-4">Social Media</h4>
                     <p class="text-xs text-slate-400 mb-4">Connect with our official channels:</p>
@@ -765,7 +985,7 @@
                             href="https://www.youtube.com/@treasureforthedayclmmysuru2720" 
                             target="_blank" 
                             rel="noopener noreferrer" 
-                            class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-red-400 hover:border-red-500/50 hover:bg-red-500/10 transition" 
+                            class="social-btn-youtube w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 transition" 
                             aria-label="YouTube Channel" 
                             title="YouTube Channel"
                         >
@@ -776,7 +996,7 @@
                             href="https://www.instagram.com/rubenranjith/" 
                             target="_blank" 
                             rel="noopener noreferrer" 
-                            class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-pink-400 hover:border-pink-500/50 hover:bg-pink-500/10 transition" 
+                            class="social-btn-instagram w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 transition" 
                             aria-label="Instagram Profile" 
                             title="Instagram Profile"
                         >
@@ -787,7 +1007,7 @@
                             href="https://www.facebook.com/share/1BfGqXS3wA/" 
                             target="_blank" 
                             rel="noopener noreferrer" 
-                            class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-blue-400 hover:border-blue-500/50 hover:bg-blue-500/10 transition" 
+                            class="social-btn-facebook w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 transition" 
                             aria-label="Facebook Page" 
                             title="Facebook Page"
                         >
@@ -798,7 +1018,7 @@
                             href="https://wa.me/919980027875" 
                             target="_blank" 
                             rel="noopener noreferrer" 
-                            class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-green-400 hover:border-green-500/50 hover:bg-green-500/10 transition" 
+                            class="social-btn-whatsapp w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 transition" 
                             aria-label="WhatsApp Hotline" 
                             title="WhatsApp Hotline"
                         >
@@ -836,6 +1056,19 @@
                 img.src = 'logo.jpeg';
             } else if (currentSrc.endsWith('.jpeg')) {
                 img.src = 'logo.svg';
+            } else {
+                img.onerror = null;
+            }
+        }
+
+        // Photo Fallback Handler (JPG -> JPEG -> PNG)
+        function handlePhotoError(img, baseName) {
+            if (!img) return;
+            const currentSrc = img.src || '';
+            if (currentSrc.endsWith('.jpg')) {
+                img.src = `${baseName}.jpeg`;
+            } else if (currentSrc.endsWith('.jpeg')) {
+                img.src = `${baseName}.png`;
             } else {
                 img.onerror = null;
             }
@@ -1000,6 +1233,29 @@
             const text = `*Prayer Request - Christ's Love Ministries*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Prayer Message:* ${encodeURIComponent(message)}`;
             const whatsappUrl = `https://wa.me/919980027875?text=${text}`;
             
+            // Immediate visual feedback with subtle check-mark animation on submit button
+            const submitBtn = document.getElementById('prayerSubmitBtn');
+            const iconSpan = document.getElementById('prayerBtnIcon');
+            const textSpan = document.getElementById('prayerBtnText');
+            
+            if (submitBtn && iconSpan && textSpan) {
+                const currentLang = document.getElementById('langSwitcher')?.value || 'en';
+                const successMsg = i18n[currentLang]?.form_btn_success || i18n['en'].form_btn_success;
+                
+                // Show subtle checkmark animation and feedback state
+                iconSpan.innerHTML = `<i class="fa-solid fa-circle-check text-xl mr-2 text-white animate-check"></i>`;
+                textSpan.textContent = successMsg;
+                submitBtn.classList.add('ring-4', 'ring-emerald-400/40', 'scale-[1.02]');
+                
+                // Smoothly restore after 3.5 seconds
+                setTimeout(() => {
+                    iconSpan.innerHTML = `<i class="fa-brands fa-whatsapp text-xl mr-2"></i>`;
+                    const originalMsg = i18n[currentLang]?.form_btn || i18n['en'].form_btn;
+                    textSpan.textContent = originalMsg;
+                    submitBtn.classList.remove('ring-4', 'ring-emerald-400/40', 'scale-[1.02]');
+                }, 3500);
+            }
+
             const link = document.createElement('a');
             link.href = whatsappUrl;
             link.target = '_blank';
@@ -1035,8 +1291,14 @@
                 mission_title: "Our Mission",
                 mission_desc: "Empowering youth and children with educational assistance, supporting families with prayer intercession, and serving the community through worship gatherings, daily devotionals, and selfless outreach.",
                 gallery_title: "Ministry Moments",
-                gallery_subtitle: "A glimpse of divine worship, youth guidance, and community gatherings in Mysuru.",
-                btn_view_full_gallery: "Open Photo Album in Google Drive",
+                gallery_subtitle: "Highlights of outreach, divine worship, and community fellowship in Mysuru.",
+                btn_view_full_gallery: "Open Full Photo Album in Google Drive",
+                gallery_card1_title: "Outreach & Community Care",
+                gallery_card1_desc: "Spreading Christ's love through compassionate acts, family assistance, and fellowship across Mysuru.",
+                gallery_card2_title: "Divine Worship & Fellowship",
+                gallery_card2_desc: "Uniting believers in heartfelt praise, biblical devotions, and intercessory prayer sessions.",
+                gallery_card3_title: "Youth & Biblical Education",
+                gallery_card3_desc: "Empowering youth and children with educational care, biblical guidance, and inspiring mentoring.",
                 video_section_title: "Daily Worship & Message",
                 video_section_subtitle: "Watch the latest devotion and spiritual worship from our official channel.",
                 btn_watch_more_videos: "Watch More Videos",
@@ -1047,12 +1309,17 @@
                 form_phone: "Phone / WhatsApp Number *",
                 form_message: "Prayer Intention / Message *",
                 form_btn: "Send Prayer Request via WhatsApp",
+                form_btn_success: "Opening WhatsApp ✓",
                 location_tag: "Get in Touch",
                 location_title: "Contact & Location",
                 location_desc: "Connect with Christ's Love Ministries in Mysuru for prayer, fellowship, and ministry inquiries.",
                 donate_tag: "Ministry Support",
                 donate_title: "Support Christ's Love Ministries",
-                donate_desc: "Your voluntary support enables us to maintain gospel outreach, assist needy families, and support youth education initiatives in Mysuru."
+                donate_desc: "Your voluntary support enables us to maintain gospel outreach, assist needy families, and support youth education initiatives in Mysuru.",
+                goal_title: "Community Welfare & Youth Education Goal",
+                follow_tag: "Stay Connected",
+                follow_title: "Follow Us",
+                follow_desc: "Join our official digital fellowship. Watch daily devotions, worship moments, and stay connected with Ruben Ranjith and Christ's Love Ministries across all our official channels."
             },
             kn: {
                 title: "ಕ್ರೈಸ್ಟ್ಸ್ ಲವ್ ಮಿನಿಸ್ಟ್ರಿಸ್",
@@ -1078,8 +1345,14 @@
                 mission_title: "ನಮ್ಮ ಧ್ಯೇಯ",
                 mission_desc: "ಮಕ್ಕಳಿಗೆ ಮತ್ತು ಯುವಜನರಿಗೆ ಶಿಕ್ಷಣದ ನೆರವು ನೀಡುವುದು, ಪ್ರಾರ್ಥನೆ ನೆರವು ನೀಡುವುದು ಮತ್ತು ಸಮಾಜ ಸೇವೆಯನ್ನು ಸಮರ್ಪಿಸುವುದು.",
                 gallery_title: "ಸೇವೆಯ ಕ್ಷಣಗಳು",
-                gallery_subtitle: "ನಮ್ಮ ಆರಾಧನೆ ಮತ್ತು ಸಮಾಜ ಸೇವೆಯ ಸುಂದರ ಕ್ಷಣಗಳ ಒಂದು ನೋಟ.",
-                btn_view_full_gallery: "ಗೂಗಲ್ ಡ್ರೈವ್‌ನಲ್ಲಿ ಫೋಟೋ ಆಲ್ಬಮ್ ತೆರೆಯಿರಿ",
+                gallery_subtitle: "ಮೈಸೂರಿನಲ್ಲಿ ಸುವಾರ್ತೆ ಸೇವೆ, ಆರಾಧನೆ ಮತ್ತು ಸಮಾಜ ಸೇವೆಯ ಪ್ರಮುಖ ಕ್ಷಣಗಳು.",
+                btn_view_full_gallery: "ಗೂಗಲ್ ಡ್ರೈವ್‌ನಲ್ಲಿ ಸಂಪೂರ್ಣ ಫೋಟೋ ಆಲ್ಬಮ್ ತೆರೆಯಿರಿ",
+                gallery_card1_title: "ಸುವಾರ್ತೆ ಮತ್ತು ಸಮಾಜ ಸೇವೆ",
+                gallery_card1_desc: "ಕರುಣೆ ಮತ್ತು ಪ್ರೀತಿಯ ಮೂಲಕ ಸಮುದಾಯಕ್ಕೆ ನಿರಂತರ ನೆರವು ಮತ್ತು ಆಪ್ತ ಸೇವೆ.",
+                gallery_card2_title: "ದೈವಿಕ ಆರಾಧನೆ ಮತ್ತು ಒಡನಾಟ",
+                gallery_card2_desc: "ಸ್ತುತಿ, ಪ್ರಾರ್ಥನೆ ಮತ್ತು ದೇವವಾಕ್ಯದ ಮೂಲಕ ಆತ್ಮಿಕ ಒಡನಾಟ ಮತ್ತು ಸಹಭಾಗಿತ್ವ.",
+                gallery_card3_title: "ಯುವಜನ ಮತ್ತು ಶಿಕ್ಷಣ ಮಾರ್ಗದರ್ಶನ",
+                gallery_card3_desc: "ಮಕ್ಕಳಿಗೆ ಮತ್ತು ಯುವಜನರಿಗೆ ಶಿಕ್ಷಣದ ನೆರವು ಹಾಗೂ ಬೈಬಲ್ ಆಧಾರಿತ ಮಾರ್ಗದರ್ಶನ.",
                 video_section_title: "ದೈನಂದಿನ ಆರಾಧನೆ ಮತ್ತು ಸಂದೇಶ",
                 video_section_subtitle: "ನಮ್ಮ ಅಧಿಕೃತ ಯೂಟ್ಯೂಬ್ ಚಾನೆಲ್‌ನಿಂದ ಇತ್ತೀಚಿನ ವೀಡಿಯೊ ವೀಕ್ಷಿಸಿ.",
                 btn_watch_more_videos: "ಇನ್ನಷ್ಟು ವೀಡಿಯೊಗಳನ್ನು ವೀಕ್ಷಿಸಿ",
@@ -1090,12 +1363,17 @@
                 form_phone: "ಫೋನ್ / ವಾಟ್ಸಾಪ್ ಸಂಖ್ಯೆ *",
                 form_message: "ಪ್ರಾರ್ಥನೆ ವಿನಂತಿ ವಿವರ *",
                 form_btn: "ವಾಟ್ಸಾಪ್ ಮೂಲಕ ಕಳುಹಿಸಿ",
+                form_btn_success: "ವಾಟ್ಸಾಪ್ ತೆರೆಯಲಾಗುತ್ತಿದೆ ✓",
                 location_tag: "ಸಂಪರ್ಕಿಸಿ",
                 location_title: "ಸಂಪರ್ಕ ಮತ್ತು ವಿಳಾಸ",
                 location_desc: "ಮೈಸೂರಿನಲ್ಲಿ ನಮ್ಮೊಂದಿಗೆ ಸಂಪರ್ಕದಲ್ಲಿರಿ.",
                 donate_tag: "ಸೇವೆಯ ಬೆಂಬಲ",
                 donate_title: "ಕ್ರೈಸ್ಟ್ಸ್ ಲವ್ ಮಿನಿಸ್ಟ್ರಿಸ್‌ಗೆ ಕಾಣಿಕೆ ನೀಡಿ",
-                donate_desc: "ನಿಮ್ಮ ಸ್ವಯಂಪ್ರೇರಿತ ಕಾಣಿಕೆಗಳು ಸುವಾರ್ತೆ ಪ್ರಸಾರ ಮತ್ತು ಬಡ ಕುಟುಂಬಗಳ ಸಹಾಯಕ್ಕೆ ನೆರವಾಗುತ್ತವೆ."
+                donate_desc: "ನಿಮ್ಮ ಸ್ವಯಂಪ್ರೇರಿತ ಕಾಣಿಕೆಗಳು ಸುವಾರ್ತೆ ಪ್ರಸಾರ ಮತ್ತು ಬಡ ಕುಟುಂಬಗಳ ಸಹಾಯಕ್ಕೆ ನೆರವಾಗುತ್ತವೆ.",
+                goal_title: "ಸಮುದಾಯ ಕಲ್ಯಾಣ ಮತ್ತು ಶಿಕ್ಷಣ ಗುರಿ",
+                follow_tag: "ನಮ್ಮೊಂದಿಗೆ ಸಂಪರ್ಕದಲ್ಲಿರಿ",
+                follow_title: "ನಮ್ಮನ್ನು ಫಾಲೋ ಮಾಡಿ (Follow Us)",
+                follow_desc: "ನಮ್ಮ ಅಧಿಕೃತ ಡಿಜಿಟಲ್ ಒಡನಾಟದಲ್ಲಿ ಜೊತೆಯಾಗಿರಿ. ರೂಬೆನ್ ರಂಜಿತ್ ಮತ್ತು ಕ್ರೈಸ್ಟ್ಸ್ ಲವ್ ಮಿನಿಸ್ಟ್ರಿಸ್‌ನ ದೈನಂದಿನ ಪ್ರಾರ್ಥನೆ, ಆರಾಧನೆ ಮತ್ತು ವೀಡಿಯೊ ಸಂದೇಶಗಳನ್ನು ವೀಕ್ಷಿಸಿ."
             },
             hi: {
                 title: "क्राइस्ट्स लव मिनिस्ट्रीज",
@@ -1121,8 +1399,14 @@
                 mission_title: "हमारा मिशन",
                 mission_desc: "बच्चों और युवाओं को शैक्षणिक सहायता प्रदान करना, प्रार्थना में मध्यस्थता करना और निःस्वार्थ सेवा भाव से समाज की सेवा करना।",
                 gallery_title: "मंत्रालय के क्षण",
-                gallery_subtitle: "मैसूरु में हमारी आराधना सभाओं और सामाजिक पहलों की झलकियां।",
-                btn_view_full_gallery: "गूगल ड्राइव में फोटो एल्बम खोलें",
+                gallery_subtitle: "मैसूरु में सुसमाचार प्रचार, आराधना और सामाजिक सेवा के मुख्य क्षण।",
+                btn_view_full_gallery: "गूगल ड्राइव में पूरा फोटो एल्बम खोलें",
+                gallery_card1_title: "आउटरीच और समाज सेवा",
+                gallery_card1_desc: "करुणा और प्रेम के माध्यम से जरूरतमंदों की सहायता और सामुदायिक सेवा।",
+                gallery_card2_title: "ईश्वरीय आराधना और संगति",
+                gallery_card2_desc: "प्रशंसा, प्रार्थना और बाइबिल वचनों में आत्मिक संगति और प्रार्थना।",
+                gallery_card3_title: "युवा और शिक्षा मार्गदर्शन",
+                gallery_card3_desc: "बच्चों और युवाओं को आध्यात्मिक ज्ञान और शैक्षणिक सहयोग।",
                 video_section_title: "दैनिक आराधना और प्रवचन",
                 video_section_subtitle: "हमारे आधिकारिक चैनल से नवीनतम भक्ति और आराधना संदेश देखें।",
                 btn_watch_more_videos: "अधिक वीडियो देखें",
@@ -1133,12 +1417,17 @@
                 form_phone: "फोन / व्हाट्सएप नंबर *",
                 form_message: "प्रार्थना संदेश *",
                 form_btn: "व्हाट्सएप द्वारा भेजें",
+                form_btn_success: "व्हाट्सएप खोला जा रहा है ✓",
                 location_tag: "संपर्क",
                 location_title: "संपर्क और स्थान",
                 location_desc: "प्रार्थना और मंत्रालय संबंधी पूछताछ के लिए हमसे संपर्क करें।",
                 donate_tag: "मंत्रालय सहायता",
                 donate_title: "क्राइस्ट्स लव मिनिस्ट्रीज का सहयोग करें",
-                donate_desc: "आपका स्वैच्छिक योगदान सुसमाचार प्रसार और जरूरतमंदों की मदद में सहायक है।"
+                donate_desc: "आपका स्वैच्छिक योगदान सुसमाचार प्रसार और जरूरतमंदों की मदद में सहायक है।",
+                goal_title: "सामुदायिक कल्याण एवं शिक्षा लक्ष्य",
+                follow_tag: "हमसे जुड़े रहें",
+                follow_title: "हमें फॉलो करें (Follow Us)",
+                follow_desc: "हमारे आधिकारिक डिजिटल समुदाय से जुड़ें। रूबेन रणजीत और क्राइस्ट्स लव मिनिस्ट्रीज के दैनिक भक्ति संदेश और आराधना वीडियो देखें।"
             }
         };
 
