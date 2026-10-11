@@ -87,7 +87,7 @@
         }
 
         .glass-nav {
-            background: rgba(7, 14, 34, 0.92);
+            background: rgba(7, 14, 34, 0.94);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(234, 179, 8, 0.18);
@@ -100,16 +100,31 @@
             background: radial-gradient(circle at 50% 25%, #172c63 0%, #0d1738 55%, #070e22 100%);
         }
 
-        /* OFFICIAL EMBLEM & WATERMARK */
+        /* ====================================================================== */
+        /* 1. PERFECT CIRCULAR LOGO & WATERMARK MASKING                           */
+        /* Completely removes outer square/white backgrounds, leaving clean seal  */
+        /* ====================================================================== */
+        .church-logo-circle {
+            border-radius: 50% !important;
+            object-fit: cover !important;
+            overflow: hidden !important;
+            aspect-ratio: 1 / 1 !important;
+        }
+
         .header-logo {
             height: 48px;
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 0 10px rgba(234, 179, 8, 0.35));
-            transition: transform 0.3s ease;
+            width: 48px;
+            border-radius: 50% !important;
+            object-fit: cover !important;
+            overflow: hidden !important;
+            aspect-ratio: 1 / 1 !important;
+            border: 2px solid rgba(234, 179, 8, 0.45);
+            box-shadow: 0 0 14px rgba(234, 179, 8, 0.35);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
         .header-logo:hover {
-            transform: scale(1.05);
+            transform: scale(1.08);
+            border-color: rgba(234, 179, 8, 0.8);
         }
 
         .section-watermark-wrap {
@@ -123,29 +138,44 @@
             justify-content: center;
         }
 
+        /* Subtle smooth watermark overlay with low opacity (0.08 - 0.10) and radial feathering */
         .section-watermark-img {
-            width: 480px;
-            max-width: 80%;
-            height: auto;
-            object-fit: contain;
-            opacity: 0.045;
-            filter: grayscale(80%) drop-shadow(0 0 30px rgba(234, 179, 8, 0.2));
-            transform: rotate(-5deg);
+            width: 520px;
+            height: 520px;
+            max-width: 80vw;
+            max-height: 80vw;
+            border-radius: 50% !important;
+            object-fit: cover !important;
+            overflow: hidden !important;
+            aspect-ratio: 1 / 1 !important;
+            opacity: 0.09 !important;
+            filter: drop-shadow(0 0 32px rgba(234, 179, 8, 0.25));
+            mask-image: radial-gradient(circle, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 80%);
+            -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 80%);
+            pointer-events: none;
+            transform: rotate(-3deg);
         }
 
         .hero-watermark-img {
-            width: 580px;
-            max-width: 85%;
-            height: auto;
-            object-fit: contain;
-            opacity: 0.055;
-            filter: drop-shadow(0 0 40px rgba(234, 179, 8, 0.3));
+            width: 640px;
+            height: 640px;
+            max-width: 85vw;
+            max-height: 85vw;
+            border-radius: 50% !important;
+            object-fit: cover !important;
+            overflow: hidden !important;
+            aspect-ratio: 1 / 1 !important;
+            opacity: 0.095 !important;
+            filter: drop-shadow(0 0 45px rgba(234, 179, 8, 0.35));
+            mask-image: radial-gradient(circle, rgba(0,0,0,1) 52%, rgba(0,0,0,0) 82%);
+            -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 52%, rgba(0,0,0,0) 82%);
+            pointer-events: none;
             animation: pulseWatermark 8s ease-in-out infinite alternate;
         }
 
         @keyframes pulseWatermark {
-            0% { transform: scale(1) rotate(-3deg); opacity: 0.045; }
-            100% { transform: scale(1.04) rotate(-3deg); opacity: 0.065; }
+            0% { transform: scale(1) rotate(-3deg); opacity: 0.085; }
+            100% { transform: scale(1.05) rotate(-3deg); opacity: 0.10; }
         }
 
         /* GALLERY CARD IMAGES (Strict 220px Height & Object Cover) */
@@ -198,6 +228,20 @@
             border-color: rgba(234, 179, 8, 0.6);
             transform: translateY(-3px);
             box-shadow: 0 18px 36px -10px rgba(234, 179, 8, 0.2);
+        }
+
+        /* LEADERSHIP CARD STYLING */
+        .leadership-card {
+            background: linear-gradient(145deg, rgba(15, 27, 62, 0.85) 0%, rgba(8, 15, 36, 0.95) 100%);
+            border: 1px solid rgba(234, 179, 8, 0.32);
+            border-radius: 1.75rem;
+            box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.7);
+            transition: all 0.35s ease;
+        }
+        .leadership-card:hover {
+            border-color: rgba(234, 179, 8, 0.65);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 42px -10px rgba(234, 179, 8, 0.2);
         }
 
         /* ANIMATED HOVER EFFECTS FOR SOCIAL CHANNELS */
@@ -263,19 +307,19 @@
 
     <!-- ====================================================================== -->
     <!-- 1. HEADER & STICKY NAVIGATION BAR                                      -->
-    <!-- Official Logo, Trust Name in English & Kannada, Navigation & Contacts  -->
+    <!-- Official Circular Logo, Trust Name in English & Kannada, Navigation    -->
     <!-- ====================================================================== -->
     <header class="sticky top-0 z-50 glass-nav transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 
-                <!-- Brand: Official Logo + Church & Trust Title -->
+                <!-- Brand: Official Circular Logo + Church & Trust Title -->
                 <a href="#hero" class="flex items-center gap-3 sm:gap-3.5 group focus:outline-none" aria-label="Christ's Love Ministries Charitable Trust Home">
                     <img 
                         src="logo.png" 
                         onerror="this.onerror=null; this.src='logo.svg';" 
                         alt="Christ's Love Ministries Charitable Trust Official Logo" 
-                        class="header-logo"
+                        class="header-logo church-logo-circle"
                         loading="eager"
                     >
                     <div class="flex flex-col">
@@ -289,7 +333,7 @@
                     </div>
                 </a>
 
-                <!-- Desktop Navigation Menu (Official Order - Pure Ministry Focus) -->
+                <!-- Desktop Navigation Menu (Pure Spiritual & Charitable Outreach Focus) -->
                 <nav class="hidden lg:flex items-center gap-5 xl:gap-6 text-xs xl:text-sm font-medium text-slate-300" aria-label="Main Navigation">
                     <a href="#hero" class="hover:text-gold-400 transition py-2" data-i18n="nav_home">Home</a>
                     <a href="#services" class="hover:text-gold-400 transition py-2 text-gold-400 font-semibold flex items-center gap-1.5" data-i18n="nav_services">
@@ -361,9 +405,12 @@
 
         <!-- Mobile Drawer Navigation -->
         <div id="mobile-menu" class="hidden lg:hidden bg-royal-950/98 border-b border-slate-800 px-4 pt-3 pb-6 space-y-2 backdrop-blur-2xl">
-            <div class="pb-2 mb-2 border-b border-slate-800">
-                <span class="text-xs text-gold-400 font-semibold block">ಕ್ರೈಸ್ಟ್ಸ್‌ ಲವ್ ಮಿನಿಸ್ಟ್ರೀಸ್ ಚಾರಿಟಬಲ್ ಟ್ರಸ್ಟ್ (ರಿ)</span>
-                <span class="text-[11px] text-slate-400 block">804, Sangam Circle, Vijayanagar 3rd Stage, Mysore</span>
+            <div class="pb-2 mb-2 border-b border-slate-800 flex items-center gap-3">
+                <img src="logo.png" onerror="this.onerror=null; this.src='logo.svg';" alt="" class="h-10 w-10 church-logo-circle border border-gold-500/40">
+                <div>
+                    <span class="text-xs text-gold-400 font-semibold block">ಕ್ರೈಸ್ಟ್ಸ್‌ ಲವ್ ಮಿನಿಸ್ಟ್ರೀಸ್ ಚಾರಿಟಬಲ್ ಟ್ರಸ್ಟ್ (ರಿ)</span>
+                    <span class="text-[11px] text-slate-400 block">804, Sangam Circle, Vijayanagar 3rd Stage, Mysore</span>
+                </div>
             </div>
             <a href="#hero" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-sm font-medium text-slate-200 hover:bg-slate-800 hover:text-gold-400 transition" data-i18n="nav_home">Home</a>
             <a href="#services" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-xl text-sm font-medium text-gold-400 bg-gold-500/10 border border-gold-500/30 transition" data-i18n="nav_services">Sunday Service & Activities</a>
@@ -395,30 +442,32 @@
     <!-- ====================================================================== -->
     <!-- 2. HERO SECTION                                                        -->
     <!-- Official Trust Title, Kannada Name, Bible Verse, Action Buttons        -->
-    <!-- Clean Royal Blue Gradient + ONLY Official Church Logo Watermark        -->
+    <!-- Clean Royal Blue Gradient + ONLY Official Circular Logo Watermark      -->
     <!-- ====================================================================== -->
     <section id="hero" class="hero-fullscreen flex items-center justify-center text-center px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative overflow-hidden">
         
-        <!-- Clean Low-Opacity Official Church Logo Watermark ONLY -->
+        <!-- Clean Low-Opacity Circular Official Church Logo Watermark ONLY -->
         <div class="section-watermark-wrap" aria-hidden="true">
             <img 
                 src="logo.png" 
                 onerror="this.onerror=null; this.src='logo.svg';" 
                 alt="" 
-                class="hero-watermark-img"
+                class="hero-watermark-img church-logo-circle"
             >
         </div>
 
         <div class="max-w-4xl mx-auto relative z-10 space-y-5 sm:space-y-7">
             
-            <!-- Official Emblem Card -->
+            <!-- Official Circular Emblem Badge -->
             <div class="inline-flex flex-col items-center justify-center">
-                <img 
-                    src="logo.png" 
-                    onerror="this.onerror=null; this.src='logo.svg';" 
-                    alt="Christ's Love Ministries Charitable Trust Emblem" 
-                    class="h-20 sm:h-24 w-auto object-contain mx-auto mb-3 drop-shadow-[0_10px_25px_rgba(234,179,8,0.25)]"
-                >
+                <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 border-gold-500/60 p-1 bg-royal-950/90 shadow-2xl mb-3 flex items-center justify-center overflow-hidden">
+                    <img 
+                        src="logo.png" 
+                        onerror="this.onerror=null; this.src='logo.svg';" 
+                        alt="Christ's Love Ministries Charitable Trust Emblem" 
+                        class="w-full h-full church-logo-circle object-cover"
+                    >
+                </div>
                 <span class="inline-block bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm" data-i18n="hero_badge">
                     Christ's Love Ministries Charitable Trust (R)
                 </span>
@@ -504,13 +553,13 @@
     <!-- ====================================================================== -->
     <section id="services" class="py-16 sm:py-24 bg-royal-section-deep relative border-t border-slate-800/80 overflow-hidden">
         
-        <!-- Clean Official Logo Watermark ONLY -->
+        <!-- Clean Official Circular Logo Watermark ONLY -->
         <div class="section-watermark-wrap" aria-hidden="true">
             <img 
                 src="logo.png" 
                 onerror="this.onerror=null; this.src='logo.svg';" 
                 alt="" 
-                class="section-watermark-img"
+                class="section-watermark-img church-logo-circle"
             >
         </div>
 
@@ -519,7 +568,7 @@
                 <span class="inline-block bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold px-4 py-1 rounded-full uppercase tracking-wider mb-3" data-i18n="services_tag">
                     Worship & Weekly Activities
                 </span>
-                <h2 class="text-2xl sm:text-4xl font-serif font-bold text-white mb-3" data-i18n="services_title">
+                <h2 class="text-2xl sm:text-4xl font-serif font-bold text-white mb-2" data-i18n="services_title">
                     Service Timings & Community Programs
                 </h2>
                 <p class="text-base sm:text-lg font-serif text-gold-400 mb-4" data-i18n="services_kannada_title">
@@ -531,10 +580,10 @@
                 </p>
             </div>
 
-            <!-- Flyer Feature Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch mb-12">
+            <!-- Two High-Impact Cards: Sunday Worship + Additional Empowerment Activities -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-12">
                 
-                <!-- Card 1: Sunday Service & Healing Prayers -->
+                <!-- Card 1: Sunday Worship & Special Healing Prayers -->
                 <div class="service-highlight-card p-6 sm:p-8 flex flex-col justify-between relative group">
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
@@ -638,95 +687,55 @@
 
                     <div class="mt-6 pt-4 border-t border-slate-700/60 flex items-center justify-between text-xs">
                         <span class="text-blue-400 font-semibold"><i class="fa-solid fa-shield-heart mr-1"></i> Charitable Trust Initiative</span>
-                        <a href="tel:+919980027875" class="text-gold-400 hover:text-gold-300 font-bold inline-flex items-center gap-1">
-                            <span>Inquire Details</span> <i class="fa-solid fa-phone text-[10px]"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Card 3: Official Venue & Helplines Card -->
-                <div class="service-highlight-card p-6 sm:p-8 flex flex-col justify-between relative group">
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span class="bg-emerald-600 text-white text-xs font-extrabold px-3 py-1 rounded-lg uppercase tracking-wider shadow">
-                                Official Location
-                            </span>
-                            <span class="text-xs text-emerald-400 font-semibold flex items-center gap-1">
-                                <i class="fa-solid fa-map-pin"></i> Mysuru
-                            </span>
-                        </div>
-
-                        <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl group-hover:scale-105 transition-transform">
-                            <i class="fa-solid fa-location-dot"></i>
-                        </div>
-
-                        <h3 class="text-xl sm:text-2xl font-serif font-bold text-white">
-                            Official Trust Address
-                        </h3>
-                        <p class="text-xs font-semibold text-gold-400">
-                            Christ's Love Ministries Charitable Trust (R)
-                        </p>
-
-                        <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-700 text-xs sm:text-sm leading-relaxed space-y-2">
-                            <p class="text-white font-medium">
-                                <i class="fa-solid fa-building text-gold-400 mr-1.5"></i>
-                                <strong>804, 772/A 'B' Block, Sangam Circle,</strong>
-                            </p>
-                            <p class="text-slate-300">
-                                (below More market), 3rd Stage, Vijayanagar,
-                            </p>
-                            <p class="text-gold-300 font-semibold">
-                                Mysore - 570017, Karnataka, India.
-                            </p>
-                        </div>
-
-                        <div class="space-y-2 pt-1 text-xs">
-                            <div class="flex items-center justify-between p-2 rounded-xl bg-slate-900/60 border border-slate-800">
-                                <span class="text-slate-300"><i class="fa-solid fa-phone text-gold-400 mr-1.5"></i> Helpline 01:</span>
-                                <a href="tel:+919980027875" class="text-gold-400 hover:text-white font-bold text-sm">+91 9980027875</a>
-                            </div>
-                            <div class="flex items-center justify-between p-2 rounded-xl bg-slate-900/60 border border-slate-800">
-                                <span class="text-slate-300"><i class="fa-solid fa-phone text-gold-400 mr-1.5"></i> Helpline 02:</span>
-                                <a href="tel:+917259357517" class="text-gold-400 hover:text-white font-bold text-sm">+91 7259357517</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-6 pt-4 border-t border-slate-700/60 flex items-center justify-between gap-3 text-xs">
-                        <a 
-                            href="https://wa.me/919980027875?text=Hello%20Pastor,%20I%20would%20like%20to%20attend%20Sunday%20Service" 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            class="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition shadow"
-                        >
-                            <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                        </a>
-                        <a 
-                            href="#contact" 
-                            class="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold transition border border-slate-700"
-                        >
-                            <i class="fa-solid fa-map-location-dot"></i> View Map
+                        <a href="tel:+919980027875" class="text-blue-400 hover:text-blue-300 font-bold inline-flex items-center gap-1">
+                            <span>Inquire Now</span> <i class="fa-solid fa-phone text-[10px]"></i>
                         </a>
                     </div>
                 </div>
 
             </div>
+
+            <!-- Venue Details Bar with Both Official Contact Numbers -->
+            <div class="glass-card rounded-2xl p-4 sm:p-6 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center text-lg flex-shrink-0">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div>
+                        <span class="text-white font-bold text-sm block">Location: 804, 772/A 'B' Block, Sangam Circle (below More market), 3rd Stage, Vijayanagar, Mysore - 570017</span>
+                        <span class="text-slate-400 text-xs">Special prayers for healing and deliverance • Lunch provided</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 flex-wrap justify-center">
+                    <a href="tel:+919980027875" class="bg-royal-900 hover:bg-gold-500/20 text-gold-400 border border-gold-500/30 px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-phone"></i> 9980027875
+                    </a>
+                    <a href="tel:+917259357517" class="bg-royal-900 hover:bg-gold-500/20 text-gold-400 border border-gold-500/30 px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-phone"></i> 7259357517
+                    </a>
+                    <a href="https://wa.me/919980027875" target="_blank" rel="noopener noreferrer" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <!-- ====================================================================== -->
-    <!-- 4. FEATURED DAILY YOUTUBE MESSAGE (TOP HIGHLIGHT)                       -->
-    <!-- Single latest featured video + "Watch More Videos" button             -->
+    <!-- 4. DAILY VIDEO MESSAGE SECTION (YouTube Feed & "Watch More Videos")    -->
+    <!-- Embeds single featured daily video with responsive aspect ratio        -->
     <!-- ====================================================================== -->
     <section id="videos" class="py-16 sm:py-24 bg-royal-section-dark relative overflow-hidden border-t border-slate-800/80">
         
-        <!-- Clean Official Logo Watermark ONLY -->
+        <!-- Clean Official Circular Logo Watermark ONLY -->
         <div class="section-watermark-wrap" aria-hidden="true">
             <img 
                 src="logo.png" 
                 onerror="this.onerror=null; this.src='logo.svg';" 
                 alt="" 
-                class="section-watermark-img"
+                class="section-watermark-img church-logo-circle"
             >
         </div>
 
@@ -793,13 +802,13 @@
     <!-- ====================================================================== -->
     <section id="about" class="py-16 sm:py-24 bg-royal-section-deep relative border-t border-slate-800/80 overflow-hidden">
         
-        <!-- Clean Official Logo Watermark ONLY -->
+        <!-- Clean Official Circular Logo Watermark ONLY -->
         <div class="section-watermark-wrap" aria-hidden="true">
             <img 
                 src="logo.png" 
                 onerror="this.onerror=null; this.src='logo.svg';" 
                 alt="" 
-                class="section-watermark-img"
+                class="section-watermark-img church-logo-circle"
             >
         </div>
 
@@ -861,28 +870,31 @@
     </section>
 
     <!-- ====================================================================== -->
-    <!-- 6. LEADERSHIP / FOUNDERS SECTION                                       -->
-    <!-- Founder Ruben Ranjith & Nandini Ruben (Founder & Co-Leader)            -->
+    <!-- 6. FOUNDERS & LEADERSHIP SECTION                                       -->
+    <!-- Dedicated Individual Profiles:                                         -->
+    <!-- 1. Founder Ruben Ranjith (Founder & Senior Pastor)                     -->
+    <!-- 2. Nandini Ruben (Co-Leader & Wife)                                    -->
+    <!-- Perfectly reserved photo structures, Zero external names, Zero money   -->
     <!-- ====================================================================== -->
     <section id="leadership" class="py-16 sm:py-24 bg-royal-section-dark relative border-t border-slate-800/80 overflow-hidden">
         
-        <!-- Clean Official Logo Watermark ONLY -->
+        <!-- Clean Official Circular Logo Watermark ONLY -->
         <div class="section-watermark-wrap" aria-hidden="true">
             <img 
                 src="logo.png" 
                 onerror="this.onerror=null; this.src='logo.svg';" 
                 alt="" 
-                class="section-watermark-img"
+                class="section-watermark-img church-logo-circle"
             >
         </div>
 
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
                 <span class="inline-block bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold px-4 py-1 rounded-full uppercase tracking-wider mb-3" data-i18n="leadership_tag">
                     Spiritual Leadership & Vision
                 </span>
                 <h2 class="text-2xl sm:text-4xl font-serif font-bold text-white mb-2" data-i18n="leadership_title">
-                    Ministry Founders & Leadership
+                    Founders & Leadership
                 </h2>
                 <p class="text-base sm:text-lg font-serif text-gold-400 mb-4" data-i18n="leadership_kannada_title">
                     ಸಂಸ್ಥಾಪಕರು ಮತ್ತು ನಾಯಕತ್ವ
@@ -893,95 +905,218 @@
                 </p>
             </div>
 
-            <!-- Leadership Feature Card -->
-            <div class="glass-card rounded-3xl p-8 sm:p-12 border border-gold-500/30 shadow-2xl relative">
-                <div class="flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
-                    
-                    <!-- Emblem / Official Leadership Badge -->
-                    <div class="w-28 h-28 sm:w-36 sm:h-36 rounded-3xl bg-royal-900 border-2 border-gold-500/40 p-4 flex items-center justify-center flex-shrink-0 shadow-xl shadow-gold-500/10 relative">
-                        <img 
-                            src="logo.png" 
-                            onerror="this.onerror=null; this.src='logo.svg';" 
-                            alt="Christ's Love Ministries Emblem" 
-                            class="w-full h-full object-contain drop-shadow"
-                        >
-                        <span class="absolute -bottom-2.5 bg-gold-500 text-slate-950 text-[10px] font-extrabold px-3 py-0.5 rounded-full uppercase tracking-wider shadow whitespace-nowrap">
-                            Leadership
-                        </span>
-                    </div>
-
-                    <!-- Leadership Details -->
-                    <div class="space-y-4 flex-1">
-                        <div>
-                            <span class="text-xs uppercase tracking-widest text-gold-400 font-bold block mb-1">
-                                Founders & Spiritual Directors
+            <!-- Two Dedicated Profile Cards: Founder Ruben Ranjith & Nandini Ruben -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch mb-10">
+                
+                <!-- LEADERSHIP CARD 1: Founder Ruben Ranjith -->
+                <div class="leadership-card p-6 sm:p-10 flex flex-col justify-between relative group">
+                    <div>
+                        <!-- Reserved Circular Photo Structure (Clean Gold Ring Frame) -->
+                        <div class="relative w-36 h-36 sm:w-44 sm:h-44 mx-auto mb-6">
+                            <div class="w-full h-full rounded-full border-4 border-gold-500/70 p-1 bg-gradient-to-br from-royal-800 via-royal-950 to-slate-900 shadow-xl overflow-hidden flex items-center justify-center relative">
+                                <!-- Photo Slot with Graceful Fallback Placeholder -->
+                                <div class="w-full h-full rounded-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center text-center p-2 relative">
+                                    <img 
+                                        src="ruben_ranjith.jpg" 
+                                        onerror="this.style.display='none'; document.getElementById('rubenPhotoPlaceholder').style.display='flex';" 
+                                        alt="Founder Ruben Ranjith" 
+                                        class="w-full h-full object-cover church-logo-circle"
+                                        style="display:none;"
+                                    >
+                                    <div id="rubenPhotoPlaceholder" class="flex flex-col items-center justify-center text-gold-400">
+                                        <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-gold-500/15 border border-gold-500/30 flex items-center justify-center mb-1 text-2xl sm:text-3xl text-gold-400">
+                                            <i class="fa-solid fa-user-tie"></i>
+                                        </div>
+                                        <span class="text-[11px] font-bold text-gold-300 uppercase tracking-widest mt-0.5">Ruben Ranjith</span>
+                                        <span class="text-[9px] text-slate-400 font-medium">Founder &amp; Senior Pastor</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Role Badge -->
+                            <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-gold-500 to-gold-600 text-slate-950 text-[10px] font-extrabold px-3.5 py-0.5 rounded-full uppercase tracking-wider shadow-lg whitespace-nowrap">
+                                Founder
                             </span>
-                            <h3 class="text-2xl sm:text-3xl font-serif font-bold text-white leading-tight">
-                                Founder Ruben Ranjith &amp; Nandini Ruben
-                            </h3>
-                            <p class="text-sm sm:text-base font-semibold text-gold-300 mt-1">
-                                Founder &amp; Co-Leader • ಸಂಸ್ಥಾಪಕರು ಮತ್ತು ಸಹ-ನಾಯಕರು
+                        </div>
+
+                        <!-- Leader Details -->
+                        <div class="text-center md:text-left space-y-3">
+                            <div class="border-b border-slate-800 pb-3 text-center">
+                                <span class="text-xs uppercase tracking-widest text-gold-400 font-bold block mb-1">
+                                    Ministry Founder &amp; Spiritual Director
+                                </span>
+                                <h3 class="text-2xl sm:text-3xl font-serif font-bold text-white">
+                                    Founder Ruben Ranjith
+                                </h3>
+                                <p class="text-sm font-semibold text-gold-300 mt-1">
+                                    ಸಂಸ್ಥಾಪಕ ರೂಬೆನ್ ರಂಜಿತ್
+                                </p>
+                            </div>
+
+                            <p class="text-slate-300 text-sm leading-relaxed pt-1">
+                                Founder and spiritual shepherd of Christ's Love Ministries Charitable Trust (R), Mysuru. Ruben Ranjith is devoted to proclaiming God's unconditional love, conducting Sunday worship, and leading powerful intercessory prayers for healing and deliverance. His pastoral mission focuses on uplifting families in crisis, restoring hope, and anchoring believers in biblical faith.
                             </p>
-                        </div>
 
-                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                            Under the prayerful leadership of Founder Ruben Ranjith and co-leader Nandini Ruben, Christ's Love Ministries Charitable Trust (R) was established to bring hope, restoration, and spiritual guidance to families across Mysuru. Together, they lead Sunday worship gatherings, intercessory healing prayers, youth educational guidance, and compassionate community outreach.
-                        </p>
-
-                        <!-- Leadership Pillars -->
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs">
-                            <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-700/60 flex items-center justify-center sm:justify-start gap-2.5">
-                                <i class="fa-solid fa-hands-praying text-gold-400 text-sm"></i>
-                                <span class="text-slate-200 font-medium">Intercessory Prayer</span>
+                            <!-- Key Pillars for Ruben -->
+                            <div class="space-y-2 pt-2 text-xs text-slate-300">
+                                <div class="flex items-center gap-2 p-2 rounded-xl bg-slate-900/80 border border-slate-800">
+                                    <i class="fa-solid fa-hands-praying text-gold-400 text-sm w-5 text-center"></i>
+                                    <span>Healing &amp; Deliverance Prayer Intercession</span>
+                                </div>
+                                <div class="flex items-center gap-2 p-2 rounded-xl bg-slate-900/80 border border-slate-800">
+                                    <i class="fa-solid fa-book-bible text-gold-400 text-sm w-5 text-center"></i>
+                                    <span>Sunday Worship Preaching &amp; Spiritual Care</span>
+                                </div>
+                                <div class="flex items-center gap-2 p-2 rounded-xl bg-slate-900/80 border border-slate-800">
+                                    <i class="fa-solid fa-church text-gold-400 text-sm w-5 text-center"></i>
+                                    <span>Trust Leadership &amp; Community Outreach</span>
+                                </div>
                             </div>
-                            <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-700/60 flex items-center justify-center sm:justify-start gap-2.5">
-                                <i class="fa-solid fa-heart-pulse text-pink-400 text-sm"></i>
-                                <span class="text-slate-200 font-medium">Family &amp; Counselling</span>
-                            </div>
-                            <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-700/60 flex items-center justify-center sm:justify-start gap-2.5">
-                                <i class="fa-solid fa-graduation-cap text-blue-400 text-sm"></i>
-                                <span class="text-slate-200 font-medium">Youth Empowerment</span>
-                            </div>
-                        </div>
-
-                        <div class="pt-3 flex flex-wrap items-center justify-center md:justify-start gap-4">
-                            <a 
-                                href="https://wa.me/919980027875?text=Hello%20Pastor%20Ruben%20Ranjith%20%26%20Nandini%20Ruben,%20I%20would%20like%20to%20connect" 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-2.5 rounded-xl transition text-xs sm:text-sm shadow"
-                            >
-                                <i class="fa-brands fa-whatsapp text-base"></i>
-                                <span>Connect with Leaders via WhatsApp</span>
-                            </a>
-                            <a 
-                                href="tel:+919980027875" 
-                                class="inline-flex items-center gap-2 bg-slate-900 border border-slate-700 hover:border-gold-500/50 text-gold-400 hover:text-white font-semibold px-5 py-2.5 rounded-xl transition text-xs sm:text-sm"
-                            >
-                                <i class="fa-solid fa-phone text-xs"></i>
-                                <span>Direct Helpline: +91 9980027875</span>
-                            </a>
                         </div>
                     </div>
 
+                    <!-- Direct Connect Action for Ruben -->
+                    <div class="pt-6 mt-6 border-t border-slate-800/80 flex flex-wrap items-center justify-center gap-3">
+                        <a 
+                            href="tel:+919980027875" 
+                            class="inline-flex items-center gap-2 bg-royal-900 hover:bg-gold-500/20 text-gold-400 border border-gold-500/40 px-4 py-2.5 rounded-xl text-xs font-bold transition"
+                        >
+                            <i class="fa-solid fa-phone text-xs"></i>
+                            <span>Call: +91 9980027875</span>
+                        </a>
+                        <a 
+                            href="https://wa.me/919980027875?text=Hello%20Founder%20Ruben%20Ranjith,%20I%20would%20like%20to%20connect%20for%20prayer" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition shadow"
+                        >
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                            <span>WhatsApp Ruben</span>
+                        </a>
+                    </div>
                 </div>
+
+                <!-- LEADERSHIP CARD 2: Nandini Ruben -->
+                <div class="leadership-card p-6 sm:p-10 flex flex-col justify-between relative group">
+                    <div>
+                        <!-- Reserved Circular Photo Structure (Clean Gold Ring Frame) -->
+                        <div class="relative w-36 h-36 sm:w-44 sm:h-44 mx-auto mb-6">
+                            <div class="w-full h-full rounded-full border-4 border-gold-500/70 p-1 bg-gradient-to-br from-royal-800 via-royal-950 to-slate-900 shadow-xl overflow-hidden flex items-center justify-center relative">
+                                <!-- Photo Slot with Graceful Fallback Placeholder -->
+                                <div class="w-full h-full rounded-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center text-center p-2 relative">
+                                    <img 
+                                        src="nandini_ruben.jpg" 
+                                        onerror="this.style.display='none'; document.getElementById('nandiniPhotoPlaceholder').style.display='flex';" 
+                                        alt="Nandini Ruben" 
+                                        class="w-full h-full object-cover church-logo-circle"
+                                        style="display:none;"
+                                    >
+                                    <div id="nandiniPhotoPlaceholder" class="flex flex-col items-center justify-center text-gold-400">
+                                        <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-gold-500/15 border border-gold-500/30 flex items-center justify-center mb-1 text-2xl sm:text-3xl text-gold-400">
+                                            <i class="fa-solid fa-user"></i>
+                                        </div>
+                                        <span class="text-[11px] font-bold text-gold-300 uppercase tracking-widest mt-0.5">Nandini Ruben</span>
+                                        <span class="text-[9px] text-slate-400 font-medium">Co-Leader &amp; Trustee (Wife)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Role Badge -->
+                            <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-gold-500 to-gold-600 text-slate-950 text-[10px] font-extrabold px-3.5 py-0.5 rounded-full uppercase tracking-wider shadow-lg whitespace-nowrap">
+                                Co-Leader &amp; Wife
+                            </span>
+                        </div>
+
+                        <!-- Leader Details -->
+                        <div class="text-center md:text-left space-y-3">
+                            <div class="border-b border-slate-800 pb-3 text-center">
+                                <span class="text-xs uppercase tracking-widest text-gold-400 font-bold block mb-1">
+                                    Co-Leader &amp; Trustee
+                                </span>
+                                <h3 class="text-2xl sm:text-3xl font-serif font-bold text-white">
+                                    Nandini Ruben
+                                </h3>
+                                <p class="text-sm font-semibold text-gold-300 mt-1">
+                                    ಸಹ-ನಾಯಕರು ನಂದಿನಿ ರೂಬೆನ್
+                                </p>
+                            </div>
+
+                            <p class="text-slate-300 text-sm leading-relaxed pt-1">
+                                Serving faithfully as Co-Leader alongside her husband Ruben Ranjith, Nandini Ruben plays a cornerstone role in pastoral care, women's fellowship, and youth empowerment. She actively spearheads career guidance mentorship, spoken English initiatives, and compassionate personal and family counselling for the Mysuru community.
+                            </p>
+
+                            <!-- Key Pillars for Nandini -->
+                            <div class="space-y-2 pt-2 text-xs text-slate-300">
+                                <div class="flex items-center gap-2 p-2 rounded-xl bg-slate-900/80 border border-slate-800">
+                                    <i class="fa-solid fa-heart-pulse text-pink-400 text-sm w-5 text-center"></i>
+                                    <span>Family Care &amp; Compassionate Counselling</span>
+                                </div>
+                                <div class="flex items-center gap-2 p-2 rounded-xl bg-slate-900/80 border border-slate-800">
+                                    <i class="fa-solid fa-graduation-cap text-blue-400 text-sm w-5 text-center"></i>
+                                    <span>Youth Spoken English &amp; Career Mentorship</span>
+                                </div>
+                                <div class="flex items-center gap-2 p-2 rounded-xl bg-slate-900/80 border border-slate-800">
+                                    <i class="fa-solid fa-people-roof text-emerald-400 text-sm w-5 text-center"></i>
+                                    <span>Women's Fellowship &amp; Community Welfare</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Direct Connect Action for Nandini -->
+                    <div class="pt-6 mt-6 border-t border-slate-800/80 flex flex-wrap items-center justify-center gap-3">
+                        <a 
+                            href="tel:+917259357517" 
+                            class="inline-flex items-center gap-2 bg-royal-900 hover:bg-gold-500/20 text-gold-400 border border-gold-500/40 px-4 py-2.5 rounded-xl text-xs font-bold transition"
+                        >
+                            <i class="fa-solid fa-phone text-xs"></i>
+                            <span>Call: +91 7259357517</span>
+                        </a>
+                        <a 
+                            href="https://wa.me/917259357517?text=Hello%20Nandini%20Ruben,%20I%20would%20like%20to%20connect%20for%20guidance" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition shadow"
+                        >
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                            <span>WhatsApp Nandini</span>
+                        </a>
+                    </div>
+                </div>
+
             </div>
+
+            <!-- Joint Pastoral Dedication Box -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 border border-gold-500/30 text-center max-w-4xl mx-auto shadow-2xl relative">
+                <div class="w-12 h-12 rounded-full bg-gold-500/20 border border-gold-500/40 text-gold-400 flex items-center justify-center mx-auto mb-3 text-lg">
+                    <i class="fa-solid fa-cross"></i>
+                </div>
+                <h4 class="text-lg sm:text-xl font-serif font-bold text-white mb-2">
+                    Founder Ruben Ranjith &amp; Nandini Ruben
+                </h4>
+                <p class="text-gold-300 font-semibold text-xs sm:text-sm mb-2">
+                    Founder &amp; Co-Leader • Christ's Love Ministries Charitable Trust (R), Mysuru
+                </p>
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
+                    "Our life and ministry belong to God's calling — to share the restorative love of Jesus Christ, heal the broken-hearted through prayer, and uplift every generation with education, guidance, and unwavering faith."
+                </p>
+            </div>
+
         </div>
     </section>
 
     <!-- ====================================================================== -->
     <!-- 7. MINISTRY MOMENTS (GALLERY PREVIEW)                                   -->
     <!-- 4 Clean Preview Photo Cards + Prominent "View Full Photo Gallery" Button-->
+    <!-- Strict 220px Height and Object Cover on all cards                       -->
     <!-- ====================================================================== -->
     <section id="gallery" class="py-16 sm:py-24 bg-royal-section-deep relative overflow-hidden border-t border-slate-800/80">
         
-        <!-- Clean Official Logo Watermark ONLY -->
+        <!-- Clean Official Circular Logo Watermark ONLY -->
         <div class="section-watermark-wrap" aria-hidden="true">
             <img 
                 src="logo.png" 
                 onerror="this.onerror=null; this.src='logo.svg';" 
                 alt="" 
-                class="section-watermark-img"
+                class="section-watermark-img church-logo-circle"
             >
         </div>
 
@@ -990,11 +1125,11 @@
                 <span class="inline-block bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold px-3.5 py-1 rounded-full uppercase tracking-wider mb-3">
                     Visual Archive
                 </span>
-                <h2 class="text-2xl sm:text-4xl font-serif font-bold text-white mb-4" data-i18n="gallery_title">
+                <h2 class="text-2xl sm:text-4xl font-serif font-bold text-white mb-3" data-i18n="gallery_title">
                     Ministry Moments
                 </h2>
                 <div class="w-20 h-1 bg-gold-500 mx-auto rounded-full mb-4"></div>
-                <p class="text-slate-300 text-sm sm:text-base" data-i18n="gallery_subtitle">
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed" data-i18n="gallery_subtitle">
                     Highlights of outreach, divine worship, youth education, and community gatherings in Mysuru.
                 </p>
             </div>
@@ -1086,7 +1221,7 @@
                     </div>
                 </div>
 
-                <!-- Card 4: Community Prayer & Leadership -->
+                <!-- Card 4: Community Prayer & Leadership (photo13.jpg.jpeg with fallback) -->
                 <div class="featured-photo-card flex flex-col group">
                     <div class="gallery-card-img-wrap">
                         <img 
@@ -1140,13 +1275,13 @@
     <!-- ====================================================================== -->
     <section id="prayer" class="py-16 sm:py-24 bg-royal-gradient relative overflow-hidden border-t border-slate-800/80">
         
-        <!-- Clean Official Logo Watermark ONLY -->
+        <!-- Clean Official Circular Logo Watermark ONLY -->
         <div class="section-watermark-wrap" aria-hidden="true">
             <img 
                 src="logo.png" 
                 onerror="this.onerror=null; this.src='logo.svg';" 
                 alt="" 
-                class="section-watermark-img"
+                class="section-watermark-img church-logo-circle"
             >
         </div>
 
@@ -1231,13 +1366,13 @@
     <!-- ====================================================================== -->
     <section id="contact" class="py-16 sm:py-24 bg-royal-section-dark relative overflow-hidden border-t border-slate-800/80">
         
-        <!-- Clean Official Logo Watermark ONLY -->
+        <!-- Clean Official Circular Logo Watermark ONLY -->
         <div class="section-watermark-wrap" aria-hidden="true">
             <img 
                 src="logo.png" 
                 onerror="this.onerror=null; this.src='logo.svg';" 
                 alt="" 
-                class="section-watermark-img"
+                class="section-watermark-img church-logo-circle"
             >
         </div>
 
@@ -1392,13 +1527,13 @@
     <!-- ====================================================================== -->
     <footer class="bg-[#060c1d] border-t border-slate-800/80 text-slate-400 text-xs py-14 relative overflow-hidden">
         
-        <!-- Clean Official Logo Watermark ONLY -->
+        <!-- Clean Official Circular Logo Watermark ONLY -->
         <div class="section-watermark-wrap" aria-hidden="true">
             <img 
                 src="logo.png" 
                 onerror="this.onerror=null; this.src='logo.svg';" 
                 alt="" 
-                class="section-watermark-img"
+                class="section-watermark-img church-logo-circle"
             >
         </div>
 
@@ -1497,7 +1632,7 @@
                             src="logo.png" 
                             onerror="this.onerror=null; this.src='logo.svg';" 
                             alt="Logo" 
-                            class="h-10 w-auto object-contain"
+                            class="h-11 w-11 church-logo-circle border border-gold-500/40"
                         >
                         <div>
                             <span class="text-xs sm:text-sm font-serif font-bold text-white block">Christ's Love Ministries</span>
@@ -1630,7 +1765,7 @@
             <!-- Modal Header -->
             <div class="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-royal-950">
                 <div class="flex items-center gap-3">
-                    <img src="logo.png" onerror="this.onerror=null; this.src='logo.svg';" alt="" class="h-8 w-auto">
+                    <img src="logo.png" onerror="this.onerror=null; this.src='logo.svg';" alt="" class="h-8 w-8 church-logo-circle border border-gold-500/40">
                     <div>
                         <h3 id="modalGalleryTitle" class="text-base sm:text-lg font-serif font-bold text-white" data-i18n="modal_gallery_title">
                             Christ's Love Ministries - Photo Gallery Archive
@@ -1875,7 +2010,7 @@
                 mission_title: "Our Mission",
                 mission_desc: "Empowering youth with spoken English and career mentoring, supporting families with prayer intercession, and serving the community through Sunday worship gatherings, free fellowship meals, and dedicated spiritual guidance.",
                 leadership_tag: "Spiritual Leadership & Vision",
-                leadership_title: "Ministry Founders & Leadership",
+                leadership_title: "Founders & Leadership",
                 leadership_kannada_title: "ಸಂಸ್ಥಾಪಕರು ಮತ್ತು ನಾಯಕತ್ವ",
                 leadership_subtitle: "Dedicated to pastoral care, spiritual mentorship, and selfless community transformation in Mysuru.",
                 gallery_title: "Ministry Moments",
