@@ -252,6 +252,48 @@
             box-shadow: 0 20px 42px -10px rgba(212, 175, 55, 0.2);
         }
 
+        /* FOUNDERS CIRCULAR PHOTO & ROYAL GOLD FRAMING RING */
+        .founder-photo-frame {
+            width: 150px;
+            height: 150px;
+            border-radius: 50% !important;
+            padding: 4px;
+            background: linear-gradient(135deg, #d4af37 0%, #fef08a 45%, #b38728 70%, #fbf5b7 100%);
+            box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.7), 0 0 20px rgba(212, 175, 55, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+        .leadership-card:hover .founder-photo-frame {
+            transform: scale(1.04);
+            box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.8), 0 0 28px rgba(212, 175, 55, 0.55);
+        }
+        .founder-photo-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50% !important;
+            overflow: hidden !important;
+            background-color: #0b132b;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .founder-photo {
+            width: 150px !important;
+            height: 150px !important;
+            max-width: 150px !important;
+            max-height: 150px !important;
+            border-radius: 50% !important;
+            object-fit: cover !important;
+            display: block;
+            aspect-ratio: 1 / 1 !important;
+        }
+
         /* MODAL ANIMATION */
         .modal-active {
             opacity: 1 !important;
@@ -606,15 +648,22 @@
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-2xl mx-auto mb-10">
                 <span class="inline-block bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold px-4 py-1 rounded-full uppercase tracking-wider mb-3" data-i18n="video_section_badge">
-                    In-Website Video Player
+                    Official Channel Feed &amp; Devotions
                 </span>
                 <h2 class="text-2xl sm:text-4xl font-serif font-bold text-white mb-2" data-i18n="video_section_title">
-                    Daily Worship &amp; Spiritual Message
+                    Daily Worship &amp; Spiritual Messages
                 </h2>
                 <div class="w-20 h-1 bg-gold-500 mx-auto rounded-full mb-3"></div>
-                <p class="text-slate-300 text-sm sm:text-base" data-i18n="video_section_desc">
-                    Watch our daily devotional messages and worship sermons directly inside the website without leaving the page.
+                <p class="text-slate-300 text-sm sm:text-base mb-4" data-i18n="video_section_desc">
+                    Watch recent daily devotional messages and worship sermons directly from our official YouTube channel (@treasureforthedayclmmysuru2720).
                 </p>
+
+                <!-- Channel Identifier Badge -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-900 border border-gold-500/40 text-xs text-slate-300 shadow">
+                    <i class="fa-brands fa-youtube text-red-500 text-sm"></i>
+                    <span class="font-medium">Official Channel:</span>
+                    <span class="text-gold-400 font-bold">@treasureforthedayclmmysuru2720</span>
+                </div>
             </div>
 
             <!-- In-Website Player Frame Container -->
@@ -625,15 +674,15 @@
                     <iframe 
                         id="embeddedIframePlayer" 
                         class="w-full h-full border-0" 
-                        src="https://www.youtube.com/embed/-WMNkmehk_g?rel=0&modestbranding=1&enablejsapi=1" 
-                        title="Christ's Love Ministries In-Website Video Message" 
+                        src="https://www.youtube-nocookie.com/embed?listType=user_uploads&list=treasureforthedayclmmysuru2720&rel=0&modestbranding=1" 
+                        title="Treasure for the Day - Christ's Love Ministries Official Channel Videos" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         loading="lazy" 
                         allowfullscreen
                     ></iframe>
                 </div>
 
-                <!-- Active Video Title & Status -->
+                <!-- Active Video Title & Status Bar -->
                 <div class="pt-5 pb-3 px-2 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800">
                     <div>
                         <div class="flex items-center gap-2 mb-1">
@@ -641,90 +690,129 @@
                             <span class="text-xs uppercase tracking-wider text-emerald-400 font-bold" data-i18n="video_now_playing">Now Playing Inside Website</span>
                         </div>
                         <h3 id="activeVideoTitle" class="text-lg sm:text-xl font-serif font-bold text-gold-400" data-i18n="video_default_title">
-                            Daily Devotion &amp; Worship Message - Christ's Love Ministries
+                            Treasure for the Day - Daily Devotion &amp; Scripture Word
                         </h3>
                     </div>
 
-                    <!-- Open Fullscreen In-Website Theater Modal Button -->
-                    <button 
-                        type="button" 
-                        onclick="openTheaterModal()" 
-                        class="px-4 py-2 rounded-xl bg-navy-900 border border-gold-500/40 text-gold-400 hover:text-white hover:bg-navy-800 text-xs font-semibold flex items-center gap-2 transition"
-                    >
-                        <i class="fa-solid fa-expand"></i>
-                        <span data-i18n="video_theater_mode">Theater View</span>
-                    </button>
-                </div>
-
-                <!-- In-Website Video Playlist Selector (Switch Video Seamlessly inside the Page) -->
-                <div class="pt-4">
-                    <span class="text-xs uppercase tracking-wider text-slate-400 font-bold block mb-3" data-i18n="video_playlist_title">
-                        Select a Spiritual Message to Play:
-                    </span>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                        
-                        <!-- Video Item 1 -->
+                    <div class="flex items-center gap-2 w-full sm:w-auto">
+                        <!-- Open Fullscreen In-Website Theater Modal Button -->
                         <button 
                             type="button" 
-                            onclick="switchEmbeddedVideo('-WMNkmehk_g', 'Daily Devotion & Morning Prayer - Christ\'s Love Ministries')" 
-                            class="video-playlist-btn text-left p-3 rounded-xl bg-navy-900/90 border border-gold-500/40 hover:border-gold-400 transition flex items-center gap-3 group"
+                            onclick="openTheaterModal()" 
+                            class="px-3.5 py-2 rounded-xl bg-navy-900 border border-gold-500/40 text-gold-400 hover:text-white hover:bg-navy-800 text-xs font-semibold flex items-center gap-2 transition"
                         >
-                            <div class="w-10 h-10 rounded-lg bg-gold-500/20 text-gold-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition">
+                            <i class="fa-solid fa-expand"></i>
+                            <span data-i18n="video_theater_mode">Theater View</span>
+                        </button>
+
+                        <!-- Watch More on YouTube Channel Official Button -->
+                        <a 
+                            href="https://www.youtube.com/@treasureforthedayclmmysuru2720" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-bold flex items-center gap-2 transition shadow-md whitespace-nowrap"
+                            data-i18n="btn_watch_more_yt"
+                        >
+                            <i class="fa-brands fa-youtube text-sm"></i>
+                            <span>Watch More on YouTube</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- In-Website Official Channel Feed & Message Selector -->
+                <div class="pt-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                        <span class="text-xs uppercase tracking-wider text-slate-300 font-bold" data-i18n="video_playlist_title">
+                            Official Messages &amp; Devotion Playlist:
+                        </span>
+                        <span class="text-[11px] text-gold-400 font-medium">
+                            <i class="fa-solid fa-rotate mr-1"></i> Auto-synced with @treasureforthedayclmmysuru2720
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                        
+                        <!-- Video Item 1: Latest Uploads Stream -->
+                        <button 
+                            type="button" 
+                            onclick="switchChannelStream('latest', 'Latest Devotion & Spiritual Word - Treasure for the Day', this)" 
+                            class="video-playlist-btn active-video-btn text-left p-3 rounded-xl bg-navy-900/90 border border-gold-500/60 hover:border-gold-400 transition flex items-center gap-3 group"
+                        >
+                            <div class="w-10 h-10 rounded-lg bg-red-600/20 text-red-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition">
                                 <i class="fa-solid fa-play text-sm"></i>
                             </div>
                             <div class="overflow-hidden">
-                                <h4 class="text-xs font-bold text-white truncate" data-i18n="video_item1_title">Daily Devotion</h4>
-                                <p class="text-[11px] text-slate-400 truncate" data-i18n="video_item1_desc">Morning Spiritual Blessing</p>
+                                <h4 class="text-xs font-bold text-white truncate" data-i18n="video_item1_title">Latest Devotion Feed</h4>
+                                <p class="text-[11px] text-slate-400 truncate" data-i18n="video_item1_desc">Auto-playing Newest Uploads</p>
                             </div>
                         </button>
 
-                        <!-- Video Item 2 -->
+                        <!-- Video Item 2: Word of Light Daily Message -->
                         <button 
                             type="button" 
-                            onclick="switchEmbeddedVideo('6G_j5i3wT6w', 'Sunday Divine Worship Service Sermon - Mysuru')" 
+                            onclick="switchChannelStream('word_of_light', 'Word of Light & Daily Wisdom - Christ\'s Love Ministries', this)" 
                             class="video-playlist-btn text-left p-3 rounded-xl bg-navy-900/90 border border-slate-700 hover:border-gold-400 transition flex items-center gap-3 group"
                         >
-                            <div class="w-10 h-10 rounded-lg bg-red-600/20 text-red-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition">
-                                <i class="fa-solid fa-church text-sm"></i>
+                            <div class="w-10 h-10 rounded-lg bg-gold-500/20 text-gold-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition">
+                                <i class="fa-solid fa-sun text-sm"></i>
                             </div>
                             <div class="overflow-hidden">
-                                <h4 class="text-xs font-bold text-white truncate" data-i18n="video_item2_title">Sunday Sermon</h4>
-                                <p class="text-[11px] text-slate-400 truncate" data-i18n="video_item2_desc">Worship & Word of God</p>
+                                <h4 class="text-xs font-bold text-white truncate" data-i18n="video_item2_title">Word of Light</h4>
+                                <p class="text-[11px] text-slate-400 truncate" data-i18n="video_item2_desc">Wisdom &amp; Blessing Series</p>
                             </div>
                         </button>
 
-                        <!-- Video Item 3 -->
+                        <!-- Video Item 3: Healing & Peace Message -->
                         <button 
                             type="button" 
-                            onclick="switchEmbeddedVideo('H3_lD8PwqyA', 'Special Healing & Deliverance Intercession Prayer')" 
+                            onclick="switchChannelStream('peace', 'Our Healer & True Peace - Spiritual Message', this)" 
                             class="video-playlist-btn text-left p-3 rounded-xl bg-navy-900/90 border border-slate-700 hover:border-gold-400 transition flex items-center gap-3 group"
                         >
                             <div class="w-10 h-10 rounded-lg bg-emerald-600/20 text-emerald-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition">
-                                <i class="fa-solid fa-hand-holding-heart text-sm"></i>
+                                <i class="fa-solid fa-dove text-sm"></i>
                             </div>
                             <div class="overflow-hidden">
-                                <h4 class="text-xs font-bold text-white truncate" data-i18n="video_item3_title">Healing Prayer</h4>
-                                <p class="text-[11px] text-slate-400 truncate" data-i18n="video_item3_desc">Deliverance Intercession</p>
+                                <h4 class="text-xs font-bold text-white truncate" data-i18n="video_item3_title">Peace &amp; Healing Word</h4>
+                                <p class="text-[11px] text-slate-400 truncate" data-i18n="video_item3_desc">God Is Our Strength</p>
                             </div>
                         </button>
 
-                        <!-- Video Item 4 -->
+                        <!-- Video Item 4: Sunday Worship & Sermon Broadcast -->
                         <button 
                             type="button" 
-                            onclick="switchEmbeddedVideo('kL9X2qW2FzA', 'Youth Life Motivation & Career Guidance Mentoring')" 
+                            onclick="switchChannelStream('sunday_worship', 'Sunday Worship & Word Broadcast - Mysuru', this)" 
                             class="video-playlist-btn text-left p-3 rounded-xl bg-navy-900/90 border border-slate-700 hover:border-gold-400 transition flex items-center gap-3 group"
                         >
                             <div class="w-10 h-10 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition">
-                                <i class="fa-solid fa-compass text-sm"></i>
+                                <i class="fa-solid fa-church text-sm"></i>
                             </div>
                             <div class="overflow-hidden">
-                                <h4 class="text-xs font-bold text-white truncate" data-i18n="video_item4_title">Youth Guidance</h4>
-                                <p class="text-[11px] text-slate-400 truncate" data-i18n="video_item4_desc">Spoken English & Career</p>
+                                <h4 class="text-xs font-bold text-white truncate" data-i18n="video_item4_title">Sunday Service Message</h4>
+                                <p class="text-[11px] text-slate-400 truncate" data-i18n="video_item4_desc">CLM Mysuru Gatherings</p>
                             </div>
                         </button>
 
                     </div>
                 </div>
+
+                <!-- Channel Subscription & Direct Connect Ribbon -->
+                <div class="mt-6 pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-300">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-gold-400"></span>
+                        <span data-i18n="video_channel_sync_note">Daily 1-minute biblical meditations, spiritual words, and Sunday sermon highlights.</span>
+                    </div>
+                    <a 
+                        href="https://www.youtube.com/@treasureforthedayclmmysuru2720?sub_confirmation=1" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        class="inline-flex items-center gap-1.5 text-gold-400 hover:text-white font-bold transition"
+                    >
+                        <span>Subscribe on YouTube</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+
+            </div>
 
             </div>
 
@@ -841,28 +929,28 @@
                 <!-- CARD 1: Founder Ruben Ranjith -->
                 <div class="leadership-card p-6 sm:p-10 flex flex-col justify-between relative group">
                     <div>
-                        <!-- Gold-framed Circular Photo Placeholder Structure -->
-                        <div class="relative w-36 h-36 sm:w-44 sm:h-44 mx-auto mb-6">
-                            <div class="w-full h-full rounded-full border-4 border-gold-500/70 p-1 bg-gradient-to-br from-navy-800 via-navy-950 to-slate-900 shadow-xl overflow-hidden flex items-center justify-center relative">
-                                <div class="w-full h-full rounded-full overflow-hidden bg-navy-900 flex flex-col items-center justify-center text-center p-2 relative">
+                        <!-- Gold-framed Circular Photo Structure (150px x 150px) -->
+                        <div class="relative mx-auto mb-6 flex flex-col items-center">
+                            <div class="founder-photo-frame">
+                                <div class="founder-photo-inner">
                                     <img 
-                                        src="ruben_ranjith.jpg" 
+                                        src="ruben-ranjith.jpg" 
                                         onerror="this.style.display='none'; document.getElementById('rubenPhotoPlaceholder').style.display='flex';" 
+                                        onload="this.style.display='block'; document.getElementById('rubenPhotoPlaceholder').style.display='none';"
                                         alt="Founder Ruben Ranjith" 
-                                        class="w-full h-full object-cover church-logo-circle"
-                                        style="display:none;"
+                                        class="founder-photo church-logo-circle"
                                     >
-                                    <div id="rubenPhotoPlaceholder" class="flex flex-col items-center justify-center text-gold-400">
-                                        <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-gold-500/15 border border-gold-500/30 flex items-center justify-center mb-1 text-2xl sm:text-3xl text-gold-400">
+                                    <div id="rubenPhotoPlaceholder" class="flex flex-col items-center justify-center text-gold-400 p-2 text-center" style="display:none;">
+                                        <div class="w-16 h-16 rounded-full bg-gold-500/15 border border-gold-500/30 flex items-center justify-center mb-1 text-2xl text-gold-400">
                                             <i class="fa-solid fa-user-tie"></i>
                                         </div>
-                                        <span class="text-[11px] font-bold text-gold-300 uppercase tracking-widest mt-0.5">Ruben Ranjith</span>
+                                        <span class="text-[11px] font-bold text-gold-300 uppercase tracking-widest">Ruben Ranjith</span>
                                         <span class="text-[9px] text-slate-400 font-medium" data-i18n="ruben_role_badge">Founder &amp; Senior Pastor</span>
                                     </div>
                                 </div>
                             </div>
                             <!-- Role Badge -->
-                            <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 text-[10px] font-extrabold px-3.5 py-0.5 rounded-full uppercase tracking-wider shadow-lg whitespace-nowrap" data-i18n="ruben_badge_tag">
+                            <span class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 text-[10px] font-extrabold px-3.5 py-0.5 rounded-full uppercase tracking-wider shadow-lg whitespace-nowrap z-10" data-i18n="ruben_badge_tag">
                                 Founder
                             </span>
                         </div>
@@ -920,28 +1008,28 @@
                 <!-- CARD 2: Nandini Ruben -->
                 <div class="leadership-card p-6 sm:p-10 flex flex-col justify-between relative group">
                     <div>
-                        <!-- Gold-framed Circular Photo Placeholder Structure -->
-                        <div class="relative w-36 h-36 sm:w-44 sm:h-44 mx-auto mb-6">
-                            <div class="w-full h-full rounded-full border-4 border-gold-500/70 p-1 bg-gradient-to-br from-navy-800 via-navy-950 to-slate-900 shadow-xl overflow-hidden flex items-center justify-center relative">
-                                <div class="w-full h-full rounded-full overflow-hidden bg-navy-900 flex flex-col items-center justify-center text-center p-2 relative">
+                        <!-- Gold-framed Circular Photo Structure (150px x 150px) -->
+                        <div class="relative mx-auto mb-6 flex flex-col items-center">
+                            <div class="founder-photo-frame">
+                                <div class="founder-photo-inner">
                                     <img 
-                                        src="nandini_ruben.jpg" 
+                                        src="nandini-ruben.jpg" 
                                         onerror="this.style.display='none'; document.getElementById('nandiniPhotoPlaceholder').style.display='flex';" 
+                                        onload="this.style.display='block'; document.getElementById('nandiniPhotoPlaceholder').style.display='none';"
                                         alt="Nandini Ruben" 
-                                        class="w-full h-full object-cover church-logo-circle"
-                                        style="display:none;"
+                                        class="founder-photo church-logo-circle"
                                     >
-                                    <div id="nandiniPhotoPlaceholder" class="flex flex-col items-center justify-center text-gold-400">
-                                        <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-gold-500/15 border border-gold-500/30 flex items-center justify-center mb-1 text-2xl sm:text-3xl text-gold-400">
+                                    <div id="nandiniPhotoPlaceholder" class="flex flex-col items-center justify-center text-gold-400 p-2 text-center" style="display:none;">
+                                        <div class="w-16 h-16 rounded-full bg-gold-500/15 border border-gold-500/30 flex items-center justify-center mb-1 text-2xl text-gold-400">
                                             <i class="fa-solid fa-user"></i>
                                         </div>
-                                        <span class="text-[11px] font-bold text-gold-300 uppercase tracking-widest mt-0.5">Nandini Ruben</span>
+                                        <span class="text-[11px] font-bold text-gold-300 uppercase tracking-widest">Nandini Ruben</span>
                                         <span class="text-[9px] text-slate-400 font-medium" data-i18n="nandini_role_badge">Co-Leader &amp; Trustee (Wife)</span>
                                     </div>
                                 </div>
                             </div>
                             <!-- Role Badge -->
-                            <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 text-[10px] font-extrabold px-3.5 py-0.5 rounded-full uppercase tracking-wider shadow-lg whitespace-nowrap" data-i18n="nandini_badge_tag">
+                            <span class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 text-[10px] font-extrabold px-3.5 py-0.5 rounded-full uppercase tracking-wider shadow-lg whitespace-nowrap z-10" data-i18n="nandini_badge_tag">
                                 Co-Leader &amp; Wife
                             </span>
                         </div>
@@ -1787,21 +1875,23 @@
                 countdown_venue_title: "Sunday Service @ 10:30 AM",
                 countdown_venue_desc: "804, 772/A 'B' Block, Sangam Circle, Vijayanagar 3rd Stage, Mysore • Fellowship Lunch Provided",
                 countdown_btn_directions: "Get Directions",
-                video_section_badge: "In-Website Video Player",
-                video_section_title: "Daily Worship & Spiritual Message",
-                video_section_desc: "Watch our daily devotional messages and worship sermons directly inside the website without leaving the page.",
+                video_section_badge: "Official Channel Feed & Devotions",
+                video_section_title: "Daily Worship & Spiritual Messages",
+                video_section_desc: "Watch recent daily devotional messages and worship sermons directly from our official YouTube channel (@treasureforthedayclmmysuru2720).",
                 video_now_playing: "Now Playing Inside Website",
-                video_default_title: "Daily Devotion & Worship Message - Christ's Love Ministries",
+                video_default_title: "Treasure for the Day - Daily Devotion & Scripture Word",
                 video_theater_mode: "Theater View",
-                video_playlist_title: "Select a Spiritual Message to Play:",
-                video_item1_title: "Daily Devotion",
-                video_item1_desc: "Morning Spiritual Blessing",
-                video_item2_title: "Sunday Sermon",
-                video_item2_desc: "Worship & Word of God",
-                video_item3_title: "Healing Prayer",
-                video_item3_desc: "Deliverance Intercession",
-                video_item4_title: "Youth Guidance",
-                video_item4_desc: "Spoken English & Career",
+                btn_watch_more_yt: "Watch More on YouTube",
+                video_playlist_title: "Official Messages & Devotion Playlist:",
+                video_item1_title: "Latest Devotion Feed",
+                video_item1_desc: "Auto-playing Newest Uploads",
+                video_item2_title: "Word of Light",
+                video_item2_desc: "Wisdom & Blessing Series",
+                video_item3_title: "Peace & Healing Word",
+                video_item3_desc: "God Is Our Strength",
+                video_item4_title: "Sunday Service Message",
+                video_item4_desc: "CLM Mysuru Gatherings",
+                video_channel_sync_note: "Daily 1-minute biblical meditations, spiritual words, and Sunday sermon highlights.",
                 about_tag: "About Our Ministry",
                 about_heading: "Guided by Divine Grace, Dedicated to Community Transformation",
                 about_desc: "Christ's Love Ministries Charitable Trust (R) in Mysuru stands as a registered beacon of faith, dedicated to spreading the message of love, hope, and restoration. Established by Founder Ruben Ranjith & Nandini Ruben, our ministry encompasses spiritual guidance, community uplifting, youth education, career guidance, and pastoral care across Karnataka.",
@@ -1926,21 +2016,23 @@
                 countdown_venue_title: "ಭಾನುವಾರ ಆರಾಧನೆ ಬೆಳಿಗ್ಗೆ 10:30 ರಿಂದ",
                 countdown_venue_desc: "804, 772/A 'ಬಿ' ಬ್ಲಾಕ್, ಸಂಗಮ್ ಸರ್ಕಲ್, ವಿಜಯನಗರ 3ನೇ ಹಂತ, ಮೈಸೂರು • ಮಧ್ಯಾಹ್ನ ಊಟ ಒದಗಿಸಲಾಗುವುದು",
                 countdown_btn_directions: "ವಿಳಾಸ ಮತ್ತು ಮಾರ್ಗ",
-                video_section_badge: "ನೇರ ವೀಡಿಯೊ ಪ್ಲೇಯರ್",
-                video_section_title: "ದೈನಂದಿನ ಆರಾಧನೆ ಮತ್ತು ಆಧ್ಯಾತ್ಮಿಕ ಸಂದೇಶ",
-                video_section_desc: "ಯಾವುದೇ ಹೊರಗಿನ ಅಪ್ಲಿಕೇಶನ್‌ಗೆ ಹೋಗದೆ, ನಮ್ಮ ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲೇ ನೇರವಾಗಿ ಆಧ್ಯಾತ್ಮಿಕ ಭಕ್ತಿ ಸಂದೇಶಗಳನ್ನು ವೀಕ್ಷಿಸಿ.",
+                video_section_badge: "ಅಧಿಕೃತ ಚಾನೆಲ್ ವೀಡಿಯೊಗಳು",
+                video_section_title: "ದೈನಂದಿನ ಆರಾಧನೆ ಮತ್ತು ಆಧ್ಯಾತ್ಮಿಕ ಸಂದೇಶಗಳು",
+                video_section_desc: "ನಮ್ಮ ಅಧಿಕೃತ ಯೂಟ್ಯೂಬ್ ಚಾನೆಲ್ (@treasureforthedayclmmysuru2720) ಇಂದ ನೇರವಾಗಿ ದೈನಂದಿನ ಭಕ್ತಿ ಸಂದೇಶಗಳನ್ನು ವೀಕ್ಷಿಸಿ.",
                 video_now_playing: "ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ನೇರವಾಗಿ ಪ್ಲೇ ಆಗುತ್ತಿದೆ",
-                video_default_title: "ದೈನಂದಿನ ಪ್ರಾರ್ಥನೆ ಮತ್ತು ಆರಾಧನಾ ಸಂದೇಶ - ಕ್ರೈಸ್ಟ್ಸ್ ಲವ್ ಮಿನಿಸ್ಟ್ರೀಸ್",
+                video_default_title: "ಟ್ರ್ರೆಷರ್ ಫಾರ್ ದಿ ಡೇ - ದೈನಂದಿನ ಭಕ್ತಿ ಮತ್ತು ದೇವವಾಕ್ಯ",
                 video_theater_mode: "ದೊಡ್ಡ ಪರದೆ",
-                video_playlist_title: "ವೀಕ್ಷಿಸಲು ಸಂದೇಶವನ್ನು ಆಯ್ಕೆಮಾಡಿ:",
-                video_item1_title: "ದೈನಂದಿನ ಭಕ್ತಿ",
-                video_item1_desc: "ಮುಂಜಾನೆಯ ಆತ್ಮಿಕ ಆಶೀರ್ವಾದ",
-                video_item2_title: "ಭಾನುವಾರ ಸಂದೇಶ",
-                video_item2_desc: "ಆರಾಧನೆ ಮತ್ತು ದೇವವಾಕ್ಯ",
-                video_item3_title: "ಸ್ವಸ್ಥತೆ ಪ್ರಾರ್ಥನೆ",
-                video_item3_desc: "ಬಿಡುಗಡೆಯ ವಿಶೇಷ ಪ್ರಾರ್ಥನೆ",
-                video_item4_title: "ಯುವ ಮಾರ್ಗದರ್ಶನ",
-                video_item4_desc: "ಸ್ಪೋಕನ್ ಇಂಗ್ಲಿಷ್ & ಉದ್ಯೋಗ",
+                btn_watch_more_yt: "ಯೂಟ್ಯೂಬ್‌ನಲ್ಲಿ ಇನ್ನಷ್ಟು ವೀಕ್ಷಿಸಿ",
+                video_playlist_title: "ಅಧಿಕೃತ ಸಂದೇಶಗಳು & ಭಕ್ತಿ ಪ್ಲೇಲಿಸ್ಟ್:",
+                video_item1_title: "ಇತ್ತೀಚಿನ ಸಂದೇಶಗಳು",
+                video_item1_desc: "ಹೊಸ ವೀಡಿಯೊಗಳು ನೇರ ಪ್ರಸಾರ",
+                video_item2_title: "ವರ್ಡ್ ಆಫ್ ಲೈಟ್",
+                video_item2_desc: "ಜ್ಞಾನ ಮತ್ತು ಆಶೀರ್ವಾದ ಸರಣಿ",
+                video_item3_title: "ಶಾಂತಿ ಮತ್ತು ಸ್ವಸ್ಥತೆ ಸಂದೇಶ",
+                video_item3_desc: "ದೇವರೇ ನಮ್ಮ ಬಲ",
+                video_item4_title: "ಭಾನುವಾರ ಆರಾಧನೆ ಸಂದೇಶ",
+                video_item4_desc: "ಸಿ.ಎಲ್.ಎಂ ಮೈಸೂರು ಸಭೆ",
+                video_channel_sync_note: "ದೈನಂದಿನ 1-ನಿಮಿಷದ ಬೈಬಲ್ ಧ್ಯಾನಗಳು ಮತ್ತು ಭಾನುವಾರದ ಸಂದೇಶಗಳು.",
                 about_tag: "ನಮ್ಮ ಟ್ರಸ್ಟ್ ಬಗ್ಗೆ",
                 about_heading: "ದೈವಿಕ ಕೃಪೆಯಿಂದ ಸಮಾಜದ ಪರಿವರ್ತನೆಗೆ ನಿರಂತರ ಬದ್ಧತೆ",
                 about_desc: "ಮೈಸೂರಿನ ಕ್ರೈಸ್ಟ್ಸ್ ಲವ್ ಮಿನಿಸ್ಟ್ರೀಸ್ ಚಾರಿಟಬಲ್ ಟ್ರಸ್ಟ್ (ರಿ) ಪ್ರೀತಿ, ನಿರೀಕ್ಷೆ ಮತ್ತು ಆತ್ಮಿಕ ಜಾಗೃತಿಯ ಸಂಕೇತವಾಗಿದೆ. ಸಂಸ್ಥಾಪಕ ರೂಬೆನ್ ರಂಜಿತ್ ಮತ್ತು ನಂದಿನಿ ರೂಬೆನ್ ಅವರ ನೇತೃತ್ವದಲ್ಲಿ ಆಧ್ಯಾತ್ಮಿಕ ಮಾರ್ಗದರ್ಶನ, ಸ್ಪೋಕನ್ ಇಂಗ್ಲಿಷ್, ವೃತ್ತಿ ಮಾರ್ಗದರ್ಶನ ಮತ್ತು ಆಪ್ತ ಸಮಾಲೋಚನೆ ನೀಡಲಾಗುತ್ತಿದೆ.",
@@ -2065,21 +2157,23 @@
                 countdown_venue_title: "रविवार आराधना सुबह 10:30 बजे से",
                 countdown_venue_desc: "804, संगम सर्कल, विजयनगर 3rd स्टेज, मैसूरु • आराधना उपरांत दोपहर का भोजन उपलब्ध",
                 countdown_btn_directions: "दिशा-निर्देश",
-                video_section_badge: "वेबसाइट वीडियो प्लेयर",
+                video_section_badge: "आधिकारिक चैनल वीडियो",
                 video_section_title: "दैनिक आराधना और आत्मिक संदेश",
-                video_section_desc: "बिना किसी बाहरी ऐप पर जाए, सीधे हमारी वेबसाइट के अंदर ही दैनिक भक्ति और प्रवचन संदेश देखें।",
+                video_section_desc: "हमारे आधिकारिक यूट्यूब चैनल (@treasureforthedayclmmysuru2720) से सीधे दैनिक भक्ति और प्रवचन संदेश देखें।",
                 video_now_playing: "वेबसाइट पर सीधे प्रसारित",
-                video_default_title: "दैनिक भक्ति एवं आराधना संदेश - क्राइस्ट्स लव मिनिस्ट्रीज",
+                video_default_title: "ट्रेजर फॉर द डे - दैनिक भक्ति एवं प्रभु का वचन",
                 video_theater_mode: "बड़ा पर्दा",
-                video_playlist_title: "देखने के लिए संदेश चुनें:",
-                video_item1_title: "दैनिक भक्ति",
-                video_item1_desc: "प्रातःकालीन आत्मिक आशीष",
-                video_item2_title: "रविवार प्रवचन",
-                video_item2_desc: "आराधना और प्रभु का वचन",
-                video_item3_title: "चंगाई की प्रार्थना",
-                video_item3_desc: "छुटकारे की विशेष प्रार्थना",
-                video_item4_title: "युवा मार्गदर्शन",
-                video_item4_desc: "स्पोकन इंग्लिश और करियर",
+                btn_watch_more_yt: "यूट्यूब पर और देखें",
+                video_playlist_title: "आधिकारिक संदेश एवं भक्ति प्लेलिस्ट:",
+                video_item1_title: "नवीनतम संदेश स्ट्रीम",
+                video_item1_desc: "स्वतः प्रसारित नए संदेश",
+                video_item2_title: "वर्ड ऑफ लाइट",
+                video_item2_desc: "आत्मिक ज्ञान एवं आशीष",
+                video_item3_title: "शांति एवं चंगाई संदेश",
+                video_item3_desc: "प्रभु हमारा सामर्थ्य है",
+                video_item4_title: "रविवार आराधना संदेश",
+                video_item4_desc: "सीएलएम मैसूरु सभाएं",
+                video_channel_sync_note: "दैनिक 1-मिनट बाइबिल मनन, आत्मिक विचार और रविवार संदेश।",
                 about_tag: "हमारे बारे में",
                 about_heading: "ईश्वरीय अनुग्रह द्वारा समाज परिवर्तन के लिए प्रतिबद्ध",
                 about_desc: "मैसूरु में क्राइस्ट्स लव मिनिस्ट्रीज चैरिटेबल ट्रस्ट (रजि.) प्रेम, आशा और आध्यात्मिक पुनरुद्धार का प्रतीक है। संस्थापक रूबेन रणजीत और नंदिनी रूबेन द्वारा स्थापित, हमारा उद्देश्य आध्यात्मिक मार्गदर्शन, स्पोकन इंग्लिश, करियर मार्गदर्शन और परामर्श है।",
@@ -2266,17 +2360,75 @@
         updateCountdown();
 
         // ----------------------------------------------------------------------
-        // 4. IN-WEBSITE VIDEO PLAYER SWITCHER (NO EXTERNAL REDIRECTS)
+        // 4. IN-WEBSITE VIDEO PLAYER SWITCHER (OFFICIAL CHANNEL FEED)
         // ----------------------------------------------------------------------
-        function switchEmbeddedVideo(videoId, title) {
+        function switchChannelStream(streamType, title, btnElement) {
             const player = document.getElementById('embeddedIframePlayer');
             const titleEl = document.getElementById('activeVideoTitle');
+            const theaterTitle = document.getElementById('theaterModalTitle');
+
+            let srcUrl = "https://www.youtube-nocookie.com/embed?listType=user_uploads&list=treasureforthedayclmmysuru2720&rel=0&modestbranding=1&autoplay=1";
+
+            if (streamType === 'latest') {
+                srcUrl = "https://www.youtube-nocookie.com/embed?listType=user_uploads&list=treasureforthedayclmmysuru2720&rel=0&modestbranding=1&autoplay=1";
+            } else if (streamType === 'word_of_light') {
+                srcUrl = "https://www.youtube-nocookie.com/embed?listType=user_uploads&list=treasureforthedayclmmysuru2720&index=1&rel=0&modestbranding=1&autoplay=1";
+            } else if (streamType === 'peace') {
+                srcUrl = "https://www.youtube-nocookie.com/embed?listType=user_uploads&list=treasureforthedayclmmysuru2720&index=2&rel=0&modestbranding=1&autoplay=1";
+            } else if (streamType === 'sunday_worship') {
+                srcUrl = "https://www.youtube-nocookie.com/embed?listType=user_uploads&list=treasureforthedayclmmysuru2720&index=3&rel=0&modestbranding=1&autoplay=1";
+            }
+
+            if (player) {
+                player.src = srcUrl;
+            }
+            if (titleEl && title) {
+                titleEl.textContent = title;
+            }
+            if (theaterTitle && title) {
+                theaterTitle.textContent = title;
+            }
+
+            // Highlight selected button
+            if (btnElement) {
+                document.querySelectorAll('.video-playlist-btn').forEach(btn => {
+                    btn.classList.remove('active-video-btn', 'border-gold-500/60');
+                    btn.classList.add('border-slate-700');
+                });
+                btnElement.classList.add('active-video-btn', 'border-gold-500/60');
+                btnElement.classList.remove('border-slate-700');
+            }
+
+            // Scroll smoothly to player
+            const playerSection = document.getElementById('video-player');
+            if (playerSection) {
+                playerSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function switchEmbeddedVideo(videoId, title, btnElement) {
+            const player = document.getElementById('embeddedIframePlayer');
+            const titleEl = document.getElementById('activeVideoTitle');
+            const theaterTitle = document.getElementById('theaterModalTitle');
 
             if (player && videoId) {
                 player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
             }
             if (titleEl && title) {
                 titleEl.textContent = title;
+            }
+            if (theaterTitle && title) {
+                theaterTitle.textContent = title;
+            }
+
+            // Highlight selected button
+            if (btnElement) {
+                document.querySelectorAll('.video-playlist-btn').forEach(btn => {
+                    btn.classList.remove('active-video-btn', 'border-gold-500/60');
+                    btn.classList.add('border-slate-700');
+                });
+                btnElement.classList.add('active-video-btn', 'border-gold-500/60');
+                btnElement.classList.remove('border-slate-700');
             }
 
             // Scroll smoothly to player
