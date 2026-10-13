@@ -225,6 +225,114 @@
             box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.75), 0 0 20px rgba(212, 175, 55, 0.2);
         }
 
+        /* MINISTRY MOMENTS HORIZONTAL CAROUSEL */
+        .carousel-track-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .carousel-track {
+            display: flex;
+            gap: 1.25rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 0.5rem 0.25rem 1rem 0.25rem;
+            cursor: grab;
+        }
+        .carousel-track:active {
+            cursor: grabbing;
+        }
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+        .carousel-card {
+            flex: 0 0 84vw;
+            scroll-snap-align: start;
+            border-radius: 1.25rem;
+            border: 1px solid rgba(212, 175, 55, 0.22);
+            background: linear-gradient(145deg, rgba(14, 26, 58, 0.92) 0%, rgba(7, 14, 34, 0.96) 100%);
+            backdrop-filter: blur(14px);
+            overflow: hidden;
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+            user-select: none;
+        }
+        @media (min-width: 640px) {
+            .carousel-card {
+                flex: 0 0 330px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .carousel-card {
+                flex: 0 0 360px;
+            }
+        }
+        .carousel-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212, 175, 55, 0.65);
+            box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212, 175, 55, 0.25);
+        }
+        .carousel-card:hover .gallery-card-img {
+            transform: scale(1.07);
+        }
+        .carousel-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 9999px;
+            background-color: rgba(148, 163, 184, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        .carousel-dot.active {
+            width: 28px;
+            background-color: #d4af37;
+            border-color: #fef08a;
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.55);
+        }
+        .carousel-nav-btn {
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(13, 25, 56, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            color: #d4af37;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(8px);
+        }
+        .carousel-nav-btn:hover {
+            background: #d4af37;
+            color: #0b132b;
+            border-color: #fef08a;
+            box-shadow: 0 0 16px rgba(212, 175, 55, 0.6);
+            transform: scale(1.08);
+        }
+        .carousel-nav-btn:active {
+            transform: scale(0.95);
+        }
+        .carousel-edge-fade-left,
+        .carousel-edge-fade-right {
+            position: absolute;
+            top: 0;
+            bottom: 1rem;
+            width: 2.5rem;
+            pointer-events: none;
+            z-index: 5;
+        }
+        .carousel-edge-fade-left {
+            left: 0;
+            background: linear-gradient(to right, rgba(7, 14, 34, 0.95), transparent);
+        }
+        .carousel-edge-fade-right {
+            right: 0;
+            background: linear-gradient(to left, rgba(7, 14, 34, 0.95), transparent);
+        }
+
         /* COUNTDOWN DIGIT CARD */
         .countdown-card {
             background: linear-gradient(145deg, rgba(17, 34, 76, 0.9) 0%, rgba(9, 18, 42, 0.95) 100%);
@@ -1281,121 +1389,345 @@
                 </button>
             </div>
 
-            <!-- 4 Featured Cards Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                
-                <!-- Card 1: Outreach & Community Care -->
-                <div class="featured-photo-card flex flex-col group gallery-item" data-category="outreach">
-                    <div class="gallery-card-img-wrap">
-                        <img 
-                            src="photo22.jpg.jpeg" 
-                            onerror="this.onerror=null; this.src='photo22.jpg';" 
-                            alt="Outreach and Community Care in Mysuru" 
-                            class="gallery-card-img" 
-                            style="object-fit: cover; width: 100%; height: 220px;"
-                            loading="lazy"
-                        >
-                        <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent"></div>
-                        <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment1_badge">
-                            Moment 01
-                        </span>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment1_title">
-                                Outreach &amp; Community Care
-                            </h3>
-                            <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment1_desc">
-                                Spreading Christ's love through compassionate acts, family assistance, and fellowship across Mysuru.
-                            </p>
-                        </div>
-                    </div>
+            <!-- Ministry Moments Horizontal Carousel Controls & Status Bar -->
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-6 px-1">
+                <div class="flex items-center gap-3">
+                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-900/90 border border-gold-500/30 text-xs font-semibold text-gold-400 backdrop-blur-md">
+                        <i class="fa-solid fa-camera-retro"></i>
+                        <span>Moment <span id="carouselCurrentIndex" class="font-bold text-white">1</span> of <span id="carouselTotalCount" class="font-bold text-white">8</span></span>
+                    </span>
+                    <button 
+                        id="carouselPlayPauseBtn"
+                        type="button" 
+                        onclick="toggleCarouselPlayPause()"
+                        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-navy-900/80 border border-slate-700 hover:border-gold-400 text-xs text-slate-300 hover:text-white transition focus:outline-none cursor-pointer"
+                        title="Toggle Auto-Play"
+                    >
+                        <span id="carouselStatusDot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span id="carouselStatusText" data-i18n="carousel_status_playing">Auto-Playing</span>
+                        <i id="carouselPlayPauseIcon" class="fa-solid fa-pause text-[10px] text-slate-400"></i>
+                    </button>
                 </div>
 
-                <!-- Card 2: Divine Worship & Fellowship -->
-                <div class="featured-photo-card flex flex-col group gallery-item" data-category="worship">
-                    <div class="gallery-card-img-wrap">
-                        <img 
-                            src="photo11.jpg.jpeg" 
-                            onerror="this.onerror=null; this.src='photo11.jpg';" 
-                            alt="Divine Worship & Fellowship at Christ's Love Ministries" 
-                            class="gallery-card-img" 
-                            style="object-fit: cover; width: 100%; height: 220px;"
-                            loading="lazy"
-                        >
-                        <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent"></div>
-                        <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment2_badge">
-                            Moment 02
-                        </span>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment2_title">
-                                Divine Worship &amp; Fellowship
-                            </h3>
-                            <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment2_desc">
-                                Uniting believers in heartfelt praise, biblical devotions, and intercessory prayer sessions.
-                            </p>
+                <!-- Prev & Next Controls -->
+                <div class="flex items-center gap-2">
+                    <button 
+                        type="button" 
+                        onclick="advanceCarousel(-1)" 
+                        class="carousel-nav-btn cursor-pointer shadow-md focus:outline-none"
+                        aria-label="Previous Moment"
+                    >
+                        <i class="fa-solid fa-chevron-left text-sm"></i>
+                    </button>
+                    <button 
+                        type="button" 
+                        onclick="advanceCarousel(1)" 
+                        class="carousel-nav-btn cursor-pointer shadow-md focus:outline-none"
+                        aria-label="Next Moment"
+                    >
+                        <i class="fa-solid fa-chevron-right text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Auto-Playing Horizontal Carousel Track -->
+            <div class="carousel-track-wrapper mb-8">
+                <div class="carousel-edge-fade-left hidden sm:block"></div>
+                <div class="carousel-edge-fade-right hidden sm:block"></div>
+
+                <div id="ministryCarouselTrack" class="carousel-track" role="region" aria-label="Ministry Moments Carousel">
+                    
+                    <!-- Moment 1: Outreach & Community Care -->
+                    <div class="carousel-card flex flex-col group gallery-item" data-category="outreach">
+                        <div class="gallery-card-img-wrap cursor-pointer" onclick="openPhotoLightbox('photo22.jpg.jpeg', 'Outreach & Community Care', 'Spreading Christ\'s love through compassionate acts, family assistance, and fellowship across Mysuru.', 'Moment 01')">
+                            <img 
+                                src="photo22.jpg.jpeg" 
+                                onerror="this.onerror=null; this.src='photo22.jpg';" 
+                                alt="Outreach and Community Care in Mysuru" 
+                                class="gallery-card-img" 
+                                style="object-fit: cover; width: 100%; height: 220px;"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent"></div>
+                            <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment1_badge">
+                                Moment 01
+                            </span>
+                            <span class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-navy-950/80 border border-gold-500/40 text-gold-400 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            </span>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30">Community Care</span>
+                                </div>
+                                <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment1_title">
+                                    Outreach &amp; Community Care
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment1_desc">
+                                    Spreading Christ's love through compassionate acts, family assistance, and fellowship across Mysuru.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Card 3: Youth & Biblical Education -->
-                <div class="featured-photo-card flex flex-col group gallery-item" data-category="youth">
-                    <div class="gallery-card-img-wrap">
-                        <img 
-                            src="photo4.jpg.jpeg" 
-                            onerror="this.onerror=null; this.src='photo4.jpg';" 
-                            alt="Youth & Biblical Education Programs" 
-                            class="gallery-card-img" 
-                            style="object-fit: cover; width: 100%; height: 220px;"
-                            loading="lazy"
-                        >
-                        <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent"></div>
-                        <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment3_badge">
-                            Moment 03
-                        </span>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment3_title">
-                                Youth &amp; Biblical Education
-                            </h3>
-                            <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment3_desc">
-                                Empowering youth and children with educational care, biblical guidance, and inspiring mentoring.
-                            </p>
+                    <!-- Moment 2: Divine Worship & Fellowship -->
+                    <div class="carousel-card flex flex-col group gallery-item" data-category="worship">
+                        <div class="gallery-card-img-wrap cursor-pointer" onclick="openPhotoLightbox('photo11.jpg.jpeg', 'Divine Worship & Fellowship', 'Uniting believers in heartfelt praise, biblical devotions, and intercessory prayer sessions.', 'Moment 02')">
+                            <img 
+                                src="photo11.jpg.jpeg" 
+                                onerror="this.onerror=null; this.src='photo11.jpg';" 
+                                alt="Divine Worship & Fellowship at Christ's Love Ministries" 
+                                class="gallery-card-img" 
+                                style="object-fit: cover; width: 100%; height: 220px;"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent"></div>
+                            <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment2_badge">
+                                Moment 02
+                            </span>
+                            <span class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-navy-950/80 border border-gold-500/40 text-gold-400 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            </span>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-semibold text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/30">Sunday Service</span>
+                                </div>
+                                <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment2_title">
+                                    Divine Worship &amp; Fellowship
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment2_desc">
+                                    Uniting believers in heartfelt praise, biblical devotions, and intercessory prayer sessions.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Card 4: Prayer & Spiritual Guidance -->
-                <div class="featured-photo-card flex flex-col group gallery-item" data-category="worship">
-                    <div class="gallery-card-img-wrap">
-                        <img 
-                            src="photo13.jpg.jpeg" 
-                            onerror="this.onerror=null; this.src='photo13.jpg';" 
-                            alt="Prayer & Spiritual Guidance" 
-                            class="gallery-card-img" 
-                            style="object-fit: cover; width: 100%; height: 220px;"
-                            loading="lazy"
-                        >
-                        <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent"></div>
-                        <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment4_badge">
-                            Moment 04
-                        </span>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment4_title">
-                                Prayer &amp; Spiritual Guidance
-                            </h3>
-                            <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment4_desc">
-                                Dedicated intercession led by Ruben Ranjith &amp; Nandini Ruben, bringing comfort and divine guidance to families.
-                            </p>
+                    <!-- Moment 3: Youth & Biblical Education -->
+                    <div class="carousel-card flex flex-col group gallery-item" data-category="youth">
+                        <div class="gallery-card-img-wrap cursor-pointer" onclick="openPhotoLightbox('photo4.jpg.jpeg', 'Youth & Biblical Education', 'Empowering youth and children with educational care, biblical guidance, and inspiring mentoring.', 'Moment 03')">
+                            <img 
+                                src="photo4.jpg.jpeg" 
+                                onerror="this.onerror=null; this.src='photo4.jpg';" 
+                                alt="Youth & Biblical Education Programs" 
+                                class="gallery-card-img" 
+                                style="object-fit: cover; width: 100%; height: 220px;"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent"></div>
+                            <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment3_badge">
+                                Moment 03
+                            </span>
+                            <span class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-navy-950/80 border border-gold-500/40 text-gold-400 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            </span>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-semibold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/30">Youth &amp; Education</span>
+                                </div>
+                                <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment3_title">
+                                    Youth &amp; Biblical Education
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment3_desc">
+                                    Empowering youth and children with educational care, biblical guidance, and inspiring mentoring.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                    <!-- Moment 4: Prayer & Spiritual Guidance -->
+                    <div class="carousel-card flex flex-col group gallery-item" data-category="worship">
+                        <div class="gallery-card-img-wrap cursor-pointer" onclick="openPhotoLightbox('photo13.jpg.jpeg', 'Prayer & Spiritual Guidance', 'Dedicated intercession led by Ruben Ranjith & Nandini Ruben, bringing comfort and divine guidance to families.', 'Moment 04')">
+                            <img 
+                                src="photo13.jpg.jpeg" 
+                                onerror="this.onerror=null; this.src='photo13.jpg';" 
+                                alt="Prayer & Spiritual Guidance" 
+                                class="gallery-card-img" 
+                                style="object-fit: cover; width: 100%; height: 220px;"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent"></div>
+                            <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment4_badge">
+                                Moment 04
+                            </span>
+                            <span class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-navy-950/80 border border-gold-500/40 text-gold-400 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            </span>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-semibold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">Intercession</span>
+                                </div>
+                                <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment4_title">
+                                    Prayer &amp; Spiritual Guidance
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment4_desc">
+                                    Dedicated intercession led by Ruben Ranjith &amp; Nandini Ruben, bringing comfort and divine guidance to families.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Moment 5: Sunday Fellowship Lunch -->
+                    <div class="carousel-card flex flex-col group gallery-item" data-category="outreach">
+                        <div class="gallery-card-img-wrap cursor-pointer" onclick="openPhotoLightbox('https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80', 'Sunday Fellowship Lunch', 'Sharing nourishing fellowship meals together every Sunday after service, welcoming every attendee.', 'Moment 05')">
+                            <img 
+                                src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80" 
+                                onerror="this.onerror=null; this.src='photo22.jpg.jpeg';" 
+                                alt="Sunday Fellowship Lunch at Christ's Love Ministries" 
+                                class="gallery-card-img" 
+                                style="object-fit: cover; width: 100%; height: 220px;"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent"></div>
+                            <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment5_badge">
+                                Moment 05
+                            </span>
+                            <span class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-navy-950/80 border border-gold-500/40 text-gold-400 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            </span>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30">Community Lunch</span>
+                                </div>
+                                <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment5_title">
+                                    Sunday Fellowship Lunch
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment5_desc">
+                                    Sharing nourishing fellowship meals together every Sunday after service, welcoming every attendee.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Moment 6: Praise & Worship Adoration -->
+                    <div class="carousel-card flex flex-col group gallery-item" data-category="worship">
+                        <div class="gallery-card-img-wrap cursor-pointer" onclick="openPhotoLightbox('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=800&q=80', 'Praise & Worship Adoration', 'Heartfelt praise and devotional adoration uplifting spirits and fostering community bonding in Christ.', 'Moment 06')">
+                            <img 
+                                src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=800&q=80" 
+                                onerror="this.onerror=null; this.src='photo11.jpg.jpeg';" 
+                                alt="Praise & Worship Adoration" 
+                                class="gallery-card-img" 
+                                style="object-fit: cover; width: 100%; height: 220px;"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent"></div>
+                            <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment6_badge">
+                                Moment 06
+                            </span>
+                            <span class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-navy-950/80 border border-gold-500/40 text-gold-400 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            </span>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-semibold text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/30">Worship Song</span>
+                                </div>
+                                <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment6_title">
+                                    Praise &amp; Worship Adoration
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment6_desc">
+                                    Heartfelt praise and devotional adoration uplifting spirits and fostering community bonding in Christ.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Moment 7: Spoken English & Career Guidance -->
+                    <div class="carousel-card flex flex-col group gallery-item" data-category="youth">
+                        <div class="gallery-card-img-wrap cursor-pointer" onclick="openPhotoLightbox('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80', 'Spoken English & Career Guidance', 'Free educational counseling, language development, and career mentorship for local youth and students.', 'Moment 07')">
+                            <img 
+                                src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80" 
+                                onerror="this.onerror=null; this.src='photo4.jpg.jpeg';" 
+                                alt="Spoken English and Career Mentorship" 
+                                class="gallery-card-img" 
+                                style="object-fit: cover; width: 100%; height: 220px;"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent"></div>
+                            <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment7_badge">
+                                Moment 07
+                            </span>
+                            <span class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-navy-950/80 border border-gold-500/40 text-gold-400 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            </span>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-semibold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/30">Free Training</span>
+                                </div>
+                                <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment7_title">
+                                    Spoken English &amp; Career Guidance
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment7_desc">
+                                    Free educational counseling, language development, and career mentorship for local youth and students.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Moment 8: Family Counseling & Care -->
+                    <div class="carousel-card flex flex-col group gallery-item" data-category="worship">
+                        <div class="gallery-card-img-wrap cursor-pointer" onclick="openPhotoLightbox('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80', 'Family Counseling & Care', 'Confidential pastoral support, intercession, and encouraging guidance bringing hope to families.', 'Moment 08')">
+                            <img 
+                                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" 
+                                onerror="this.onerror=null; this.src='photo13.jpg.jpeg';" 
+                                alt="Family Pastoral Care and Counseling" 
+                                class="gallery-card-img" 
+                                style="object-fit: cover; width: 100%; height: 220px;"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent"></div>
+                            <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment8_badge">
+                                Moment 08
+                            </span>
+                            <span class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-navy-950/80 border border-gold-500/40 text-gold-400 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            </span>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-semibold text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded border border-rose-500/30">Pastoral Care</span>
+                                </div>
+                                <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment8_title">
+                                    Family Counseling &amp; Care
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment8_desc">
+                                    Confidential pastoral support, intercession, and encouraging guidance bringing hope to families.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Carousel Pagination Dots & Swipe Hint -->
+            <div class="flex flex-col items-center justify-center gap-3 mb-10">
+                <div id="carouselDotsContainer" class="flex items-center justify-center gap-2" role="tablist" aria-label="Carousel pagination">
+                    <button type="button" class="carousel-dot active focus:outline-none" onclick="goToCarouselSlide(0)" aria-label="Go to slide 1"></button>
+                    <button type="button" class="carousel-dot focus:outline-none" onclick="goToCarouselSlide(1)" aria-label="Go to slide 2"></button>
+                    <button type="button" class="carousel-dot focus:outline-none" onclick="goToCarouselSlide(2)" aria-label="Go to slide 3"></button>
+                    <button type="button" class="carousel-dot focus:outline-none" onclick="goToCarouselSlide(3)" aria-label="Go to slide 4"></button>
+                    <button type="button" class="carousel-dot focus:outline-none" onclick="goToCarouselSlide(4)" aria-label="Go to slide 5"></button>
+                    <button type="button" class="carousel-dot focus:outline-none" onclick="goToCarouselSlide(5)" aria-label="Go to slide 6"></button>
+                    <button type="button" class="carousel-dot focus:outline-none" onclick="goToCarouselSlide(6)" aria-label="Go to slide 7"></button>
+                    <button type="button" class="carousel-dot focus:outline-none" onclick="goToCarouselSlide(7)" aria-label="Go to slide 8"></button>
+                </div>
+                <p class="text-xs text-slate-400 flex items-center justify-center gap-2 text-center select-none">
+                    <i class="fa-solid fa-arrows-left-right text-gold-400 text-[11px]"></i>
+                    <span data-i18n="carousel_swipe_hint">Swipe or drag to explore • Auto-pauses on hover</span>
+                </p>
             </div>
 
             <!-- "View Full Photo Gallery" Button (Opens in-website Google Drive modal) -->
@@ -1831,6 +2163,59 @@
     </div>
 
     <!-- ====================================================================== -->
+    <!-- QUICK PHOTO LIGHTBOX PREVIEW MODAL                                     -->
+    <!-- Enlarged view of clicked Ministry Moment photo                          -->
+    <!-- ====================================================================== -->
+    <div 
+        id="photoLightboxModal" 
+        class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-6 bg-navy-950/90 backdrop-blur-md transition-opacity duration-300 opacity-0 pointer-events-none" 
+        role="dialog" 
+        aria-modal="true"
+    >
+        <div class="relative w-full max-w-3xl bg-[#091228] border border-gold-500/40 rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-[#070e20]">
+                <div class="flex items-center gap-3">
+                    <span id="lightboxBadge" class="bg-navy-950 border border-gold-500/40 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg">
+                        Moment
+                    </span>
+                    <h3 id="lightboxTitle" class="text-base sm:text-lg font-serif font-bold text-white">
+                        Ministry Moment
+                    </h3>
+                </div>
+                <button 
+                    type="button" 
+                    onclick="closePhotoLightbox()" 
+                    class="p-2 rounded-xl bg-navy-900 hover:bg-slate-800 text-slate-300 hover:text-white transition focus:outline-none"
+                    aria-label="Close Lightbox"
+                >
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="p-3 sm:p-6 bg-black flex items-center justify-center">
+                <img 
+                    id="lightboxImg" 
+                    src="" 
+                    alt="Ministry Moment" 
+                    class="max-h-[65vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl"
+                >
+            </div>
+
+            <div class="px-6 py-4 bg-[#070e20] border-t border-slate-800 flex items-center justify-between gap-4">
+                <p id="lightboxDesc" class="text-xs sm:text-sm text-slate-300 flex-1 leading-relaxed"></p>
+                <button 
+                    type="button" 
+                    onclick="closePhotoLightbox()" 
+                    class="px-5 py-2 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-xs transition"
+                    data-i18n="lightbox_close"
+                >
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================================== -->
     <!-- COMPREHENSIVE JAVASCRIPT SYSTEM                                        -->
     <!-- Multi-Language i18n Dictionary, Live Countdown, In-Website Video Switch,-->
     <!-- Smooth Ripple Effect & Gallery Filtering                               -->
@@ -1955,6 +2340,24 @@
                 card_moment4_badge: "Moment 04",
                 card_moment4_title: "Prayer & Spiritual Guidance",
                 card_moment4_desc: "Dedicated intercession led by Ruben Ranjith & Nandini Ruben, bringing comfort and divine guidance to families.",
+                card_moment5_badge: "Moment 05",
+                card_moment5_title: "Sunday Fellowship Lunch",
+                card_moment5_desc: "Sharing nourishing fellowship meals together every Sunday after service, welcoming every attendee.",
+                card_moment6_badge: "Moment 06",
+                card_moment6_title: "Praise & Worship Adoration",
+                card_moment6_desc: "Heartfelt praise and devotional adoration uplifting spirits and fostering community bonding in Christ.",
+                card_moment7_badge: "Moment 07",
+                card_moment7_title: "Spoken English & Career Guidance",
+                card_moment7_desc: "Free educational counseling, language development, and career mentorship for local youth and students.",
+                card_moment8_badge: "Moment 08",
+                card_moment8_title: "Family Counseling & Care",
+                card_moment8_desc: "Confidential pastoral support, intercession, and encouraging guidance bringing hope to families.",
+                carousel_swipe_hint: "Swipe or drag to explore • Auto-pauses on hover",
+                carousel_btn_prev: "Previous photo",
+                carousel_btn_next: "Next photo",
+                carousel_status_playing: "Auto-Playing",
+                carousel_status_paused: "Paused",
+                lightbox_close: "Close Lightbox",
                 btn_view_full_gallery: "View Full Photo Gallery",
                 gallery_cloud_note: "Complete archive hosted securely on Google Drive folder",
                 contact_tag: "Connect With Us",
@@ -2096,6 +2499,24 @@
                 card_moment4_badge: "ಕ್ಷಣ 04",
                 card_moment4_title: "ಪ್ರಾರ್ಥನೆ ಮತ್ತು ಆಧ್ಯಾತ್ಮಿಕ ಮಾರ್ಗದರ್ಶನ",
                 card_moment4_desc: "ರೂಬೆನ್ ರಂಜಿತ್ & ನಂದಿನಿ ರೂಬೆನ್ ಅವರ ನೇತೃತ್ವದಲ್ಲಿ ಸಮರ್ಪಿತ ಪ್ರಾರ್ಥನೆ ಮತ್ತು ಕೌಟುಂಬಿಕ ಮಾರ್ಗದರ್ಶನ.",
+                card_moment5_badge: "ಕ್ಷಣ 05",
+                card_moment5_title: "ಭಾನುವಾರ ಪ್ರೀತಿಯ ಸಹಭೋಜನ",
+                card_moment5_desc: "ಪ್ರತಿ ಭಾನುವಾರ ಆರಾಧನೆಯ ನಂತರ ಪ್ರತಿಯೊಬ್ಬರಿಗೂ ಪ್ರೀತಿಯಿಂದ ಊಟದ ವ್ಯವಸ್ಥೆ ಮತ್ತು ಸಹಭಾಗಿತ್ವ.",
+                card_moment6_badge: "ಕ್ಷಣ 06",
+                card_moment6_title: "ಸ್ತುತಿ ಆರಾಧನೆ ಮತ್ತು ಗಾಯನ",
+                card_moment6_desc: "ಹೃತ್ಪೂರ್ವಕ ಸ್ತುತಿ ಮತ್ತು ಭಕ್ತಿ ಗೀತೆಗಳ ಮೂಲಕ ದೈವಿಕ ಆಶೀರ್ವಾದ ಮತ್ತು ಸಮುದಾಯದ ಐಕ್ಯತೆ.",
+                card_moment7_badge: "ಕ್ಷಣ 07",
+                card_moment7_title: "ಸ್ಪೋಕನ್ ಇಂಗ್ಲಿಷ್ ಮತ್ತು ವೃತ್ತಿ ಮಾರ್ಗದರ್ಶನ",
+                card_moment7_desc: "ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಉಚಿತ ಇಂಗ್ಲಿಷ್ ಸಂಭಾಷಣೆ ತರಬೇತಿ ಮತ್ತು ಉದ್ಯೋಗ ಮಾರ್ಗದರ್ಶನ.",
+                card_moment8_badge: "ಕ್ಷಣ 08",
+                card_moment8_title: "ಕೌಟುಂಬಿಕ ಕಾಳಜಿ ಮತ್ತು ಆಪ್ತ ಸಮಾಲೋಚನೆ",
+                card_moment8_desc: "ಕುಟುಂಬಗಳಿಗೆ ಪ್ರೀತಿಯ ಮಾರ್ಗದರ್ಶನ, ಸಾಂತ್ವನ ಮತ್ತು ಆಧ್ಯಾತ್ಮಿಕ ಧೈರ್ಯ ತುಂಬುವ ಸೇವೆ.",
+                carousel_swipe_hint: "ಫೋಟೋಗಳನ್ನು ನೋಡಲು ಎಡ-ಬಲಕ್ಕೆ ಸ್ವೈಪ್ ಮಾಡಿ • ನಿಲ್ಲಿಸಲು ಸ್ಪರ್ಶಿಸಿ",
+                carousel_btn_prev: "ಹಿಂದಿನ ಫೋಟೋ",
+                carousel_btn_next: "ಮುಂದಿನ ಫೋಟೋ",
+                carousel_status_playing: "ಸ್ವಯಂ ಚಾಲಿತ",
+                carousel_status_paused: "ವಿರಾಮ",
+                lightbox_close: "ಮುಚ್ಚಿ",
                 btn_view_full_gallery: "ಸಂಪೂರ್ಣ ಫೋಟೋ ಗ್ಯಾಲರಿ ವೀಕ್ಷಿಸಿ",
                 gallery_cloud_note: "ಗೂಗಲ್ ಡ್ರೈವ್‌ನಲ್ಲಿ ಸುರಕ್ಷಿತವಾಗಿರುವ ಸಂಪೂರ್ಣ ಫೋಟೋ ಸಂಗ್ರಹ",
                 contact_tag: "ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ",
@@ -2237,6 +2658,24 @@
                 card_moment4_badge: "क्षण 04",
                 card_moment4_title: "प्रार्थना एवं आध्यात्मिक मार्गदर्शन",
                 card_moment4_desc: "रूबेन रणजीत एवं नंदिनी रूबेन के नेतृत्व में परिवारों के लिए समर्पित प्रार्थना और मार्गदर्शन।",
+                card_moment5_badge: "क्षण 05",
+                card_moment5_title: "रविवार सहभोज एवं प्रीतिभोज",
+                card_moment5_desc: "प्रत्येक रविवार आराधना के उपरांत सभी आगंतुकों के लिए प्रेमपूर्वक भोजन व्यवस्था और संगति।",
+                card_moment6_badge: "क्षण 06",
+                card_moment6_title: "स्तुति आराधना एवं भक्ति",
+                card_moment6_desc: "हृदयस्पर्शी स्तुति और भक्ति गीतों के साथ प्रभु की महिमा और आत्मिक शांति का अनुभव।",
+                card_moment7_badge: "क्षण 07",
+                card_moment7_title: "स्पोकन इंग्लिश व करियर परामर्श",
+                card_moment7_desc: "युवाओं और विद्यार्थियों के लिए निःशुल्क संवाद कौशल, अंग्रेजी प्रशिक्षण व करियर मार्गदर्शन।",
+                card_moment8_badge: "क्षण 08",
+                card_moment8_title: "पारिवारिक परामर्श एवं आत्मिक देखभाल",
+                card_moment8_desc: "रूबेन रणजीत एवं नंदिनी रूबेन द्वारा परिवारों के लिए गोपनीय परामर्श, प्रार्थना और सांत्वना।",
+                carousel_swipe_hint: "स्वाइप करके सभी फोटो देखें • रोकने के लिए कर्सर रखें",
+                carousel_btn_prev: "पिछला फोटो",
+                carousel_btn_next: "अगला फोटो",
+                carousel_status_playing: "ऑटो-प्ले सक्रिय",
+                carousel_status_paused: "स्थगित",
+                lightbox_close: "बंद करें",
                 btn_view_full_gallery: "पूरी फोटो गैलरी देखें",
                 gallery_cloud_note: "गूगल ड्राइव पर सुरक्षित संपूर्ण फोटो संग्रह",
                 contact_tag: "संपर्क करें",
@@ -2300,6 +2739,11 @@
             try {
                 localStorage.setItem('clm_preferred_lang', lang);
             } catch (e) {}
+
+            // 4. Update carousel auto-play button label for new language
+            if (typeof updatePlayPauseIndicator === 'function') {
+                updatePlayPauseIndicator();
+            }
         }
 
         // ----------------------------------------------------------------------
@@ -2485,7 +2929,241 @@
         }
 
         // ----------------------------------------------------------------------
-        // 6. GALLERY CATEGORY FILTER
+        // 6. QUICK PHOTO LIGHTBOX PREVIEW
+        // ----------------------------------------------------------------------
+        function openPhotoLightbox(src, title, desc, badge) {
+            const modal = document.getElementById('photoLightboxModal');
+            const img = document.getElementById('lightboxImg');
+            const titleEl = document.getElementById('lightboxTitle');
+            const descEl = document.getElementById('lightboxDesc');
+            const badgeEl = document.getElementById('lightboxBadge');
+            if (!modal || !img) return;
+
+            img.src = src;
+            if (titleEl) titleEl.textContent = title;
+            if (descEl) descEl.textContent = desc;
+            if (badgeEl) badgeEl.textContent = badge;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modal.classList.add('modal-active');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePhotoLightbox() {
+            const modal = document.getElementById('photoLightboxModal');
+            if (modal) {
+                modal.classList.remove('modal-active');
+                setTimeout(() => {
+                    modal.classList.remove('flex');
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }, 250);
+            }
+        }
+
+        // ----------------------------------------------------------------------
+        // 7. MINISTRY MOMENTS HORIZONTAL AUTO-PLAYING CAROUSEL
+        // ----------------------------------------------------------------------
+        let carouselTimer = null;
+        let isCarouselPaused = false;
+        let currentCarouselIndex = 0;
+        let isDraggingTrack = false;
+        let dragStartX = 0;
+        let dragStartScrollLeft = 0;
+
+        function getVisibleMomentCards() {
+            const track = document.getElementById('ministryCarouselTrack');
+            if (!track) return [];
+            return Array.from(track.querySelectorAll('.carousel-card')).filter(card => {
+                return card.style.display !== 'none';
+            });
+        }
+
+        function scrollToCard(index) {
+            const track = document.getElementById('ministryCarouselTrack');
+            const cards = getVisibleMomentCards();
+            if (!track || cards.length === 0) return;
+
+            if (index < 0) index = cards.length - 1;
+            if (index >= cards.length) index = 0;
+
+            currentCarouselIndex = index;
+            const targetCard = cards[index];
+            const targetLeft = targetCard.offsetLeft - track.offsetLeft;
+
+            track.scrollTo({
+                left: targetLeft,
+                behavior: 'smooth'
+            });
+
+            updateCarouselIndicators(index, cards.length);
+        }
+
+        function advanceCarousel(step) {
+            const cards = getVisibleMomentCards();
+            if (cards.length === 0) return;
+            scrollToCard(currentCarouselIndex + step);
+        }
+
+        function goToCarouselSlide(index) {
+            scrollToCard(index);
+        }
+
+        function updateCarouselIndicators(activeIndex, totalCount) {
+            const currentIdxEl = document.getElementById('carouselCurrentIndex');
+            const totalCountEl = document.getElementById('carouselTotalCount');
+            if (currentIdxEl) currentIdxEl.textContent = (activeIndex + 1);
+            if (totalCountEl) totalCountEl.textContent = totalCount;
+
+            const dots = document.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, idx) => {
+                if (idx === activeIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+                dot.style.display = idx < totalCount ? 'inline-block' : 'none';
+            });
+        }
+
+        function startCarouselAutoPlay() {
+            stopCarouselAutoPlay();
+            carouselTimer = setInterval(() => {
+                if (!isCarouselPaused) {
+                    advanceCarousel(1);
+                }
+            }, 4500);
+        }
+
+        function stopCarouselAutoPlay() {
+            if (carouselTimer) {
+                clearInterval(carouselTimer);
+                carouselTimer = null;
+            }
+        }
+
+        function toggleCarouselPlayPause() {
+            isCarouselPaused = !isCarouselPaused;
+            updatePlayPauseIndicator();
+        }
+
+        function updatePlayPauseIndicator() {
+            const dot = document.getElementById('carouselStatusDot');
+            const text = document.getElementById('carouselStatusText');
+            const icon = document.getElementById('carouselPlayPauseIcon');
+            if (!dot || !text || !icon) return;
+
+            const dict = (translations && translations[currentLang]) ? translations[currentLang] : (translations ? translations.en : {});
+            if (isCarouselPaused) {
+                dot.className = "w-2 h-2 rounded-full bg-amber-400";
+                text.textContent = (dict && dict.carousel_status_paused) || "Paused";
+                icon.className = "fa-solid fa-play text-[10px] text-slate-400";
+            } else {
+                dot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
+                text.textContent = (dict && dict.carousel_status_playing) || "Auto-Playing";
+                icon.className = "fa-solid fa-pause text-[10px] text-slate-400";
+            }
+        }
+
+        function initCarouselEvents() {
+            const track = document.getElementById('ministryCarouselTrack');
+            if (!track) return;
+
+            // Auto-pause on hover, resume on mouse leave
+            track.addEventListener('mouseenter', () => {
+                isCarouselPaused = true;
+                updatePlayPauseIndicator();
+            });
+            track.addEventListener('mouseleave', () => {
+                isCarouselPaused = false;
+                updatePlayPauseIndicator();
+            });
+
+            // Mobile touch swipe
+            track.addEventListener('touchstart', (e) => {
+                isCarouselPaused = true;
+                updatePlayPauseIndicator();
+                dragStartX = e.touches[0].pageX;
+                dragStartScrollLeft = track.scrollLeft;
+            }, { passive: true });
+
+            track.addEventListener('touchend', () => {
+                setTimeout(() => {
+                    isCarouselPaused = false;
+                    updatePlayPauseIndicator();
+                }, 2500);
+            }, { passive: true });
+
+            // Desktop mouse drag
+            track.addEventListener('mousedown', (e) => {
+                isDraggingTrack = true;
+                isCarouselPaused = true;
+                dragStartX = e.pageX - track.offsetLeft;
+                dragStartScrollLeft = track.scrollLeft;
+            });
+
+            window.addEventListener('mouseup', () => {
+                if (isDraggingTrack) {
+                    isDraggingTrack = false;
+                    setTimeout(() => {
+                        isCarouselPaused = false;
+                        updatePlayPauseIndicator();
+                    }, 2000);
+                }
+            });
+
+            track.addEventListener('mousemove', (e) => {
+                if (!isDraggingTrack) return;
+                e.preventDefault();
+                const x = e.pageX - track.offsetLeft;
+                const walk = (x - dragStartX) * 1.5;
+                track.scrollLeft = dragStartScrollLeft - walk;
+            });
+
+            // Keyboard navigation
+            track.setAttribute('tabindex', '0');
+            track.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    advanceCarousel(-1);
+                } else if (e.key === 'ArrowRight') {
+                    advanceCarousel(1);
+                }
+            });
+
+            // Sync indicators on manual scroll/swipe
+            let scrollSyncTimer = null;
+            track.addEventListener('scroll', () => {
+                if (scrollSyncTimer) clearTimeout(scrollSyncTimer);
+                scrollSyncTimer = setTimeout(() => {
+                    const cards = getVisibleMomentCards();
+                    if (cards.length === 0) return;
+                    const scrollLeft = track.scrollLeft;
+                    let closestIdx = 0;
+                    let minDiff = Infinity;
+
+                    cards.forEach((card, idx) => {
+                        const cardLeft = card.offsetLeft - track.offsetLeft;
+                        const diff = Math.abs(cardLeft - scrollLeft);
+                        if (diff < minDiff) {
+                            minDiff = diff;
+                            closestIdx = idx;
+                        }
+                    });
+
+                    currentCarouselIndex = closestIdx;
+                    updateCarouselIndicators(closestIdx, cards.length);
+                }, 80);
+            });
+
+            startCarouselAutoPlay();
+            updateCarouselIndicators(0, getVisibleMomentCards().length);
+        }
+
+        // ----------------------------------------------------------------------
+        // 8. GALLERY CATEGORY FILTER
         // ----------------------------------------------------------------------
         function filterGallery(category, clickedBtn) {
             const items = document.querySelectorAll('.gallery-item');
@@ -2505,10 +3183,13 @@
                     item.style.display = 'none';
                 }
             });
+
+            // Scroll carousel to the first card of filtered group and update dots
+            scrollToCard(0);
         }
 
         // ----------------------------------------------------------------------
-        // 7. GOOGLE DRIVE MODAL GALLERY
+        // 9. GOOGLE DRIVE MODAL GALLERY
         // ----------------------------------------------------------------------
         function openGalleryModal() {
             const modal = document.getElementById('galleryModal');
@@ -2552,6 +3233,7 @@
             if (e.key === 'Escape') {
                 closeGalleryModal();
                 closeTheaterModal();
+                closePhotoLightbox();
             }
         });
         document.getElementById('galleryModal')?.addEventListener('click', (e) => {
@@ -2560,9 +3242,12 @@
         document.getElementById('videoTheaterModal')?.addEventListener('click', (e) => {
             if (e.target === e.currentTarget) closeTheaterModal();
         });
+        document.getElementById('photoLightboxModal')?.addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closePhotoLightbox();
+        });
 
         // ----------------------------------------------------------------------
-        // 8. MOBILE HAMBURGER MENU TOGGLE
+        // 10. MOBILE HAMBURGER MENU TOGGLE
         // ----------------------------------------------------------------------
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
@@ -2584,7 +3269,7 @@
         }
 
         // ----------------------------------------------------------------------
-        // 9. INITIALIZATION
+        // 11. INITIALIZATION
         // ----------------------------------------------------------------------
         window.addEventListener('DOMContentLoaded', () => {
             try {
@@ -2593,6 +3278,13 @@
                     switchLanguage(savedLang);
                 }
             } catch (e) {}
+
+            // Initialize Ministry Moments Carousel
+            try {
+                initCarouselEvents();
+            } catch (e) {
+                console.error("Carousel init error:", e);
+            }
         });
     </script>
 </body>
