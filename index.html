@@ -674,7 +674,7 @@
                     <iframe 
                         id="embeddedIframePlayer" 
                         class="w-full h-full border-0" 
-                        src="https://www.youtube-nocookie.com/embed?listType=user_uploads&list=treasureforthedayclmmysuru2720&rel=0&modestbranding=1" 
+                        src="https://www.youtube.com/embed/MeIk1dPlPlA" 
                         title="Treasure for the Day - Christ's Love Ministries Official Channel Videos" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         loading="lazy" 
@@ -1737,7 +1737,7 @@
                     <iframe 
                         id="theaterModalIframe" 
                         class="w-full h-full border-0" 
-                        src="" 
+                        src="https://www.youtube.com/embed/MeIk1dPlPlA" 
                         title="Theater Mode Video" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen
@@ -2367,17 +2367,9 @@
             const titleEl = document.getElementById('activeVideoTitle');
             const theaterTitle = document.getElementById('theaterModalTitle');
 
-            let srcUrl = "https://www.youtube-nocookie.com/embed?listType=user_uploads&list=treasureforthedayclmmysuru2720&rel=0&modestbranding=1&autoplay=1";
-
-            if (streamType === 'latest') {
-                srcUrl = "https://www.youtube-nocookie.com/embed?listType=user_uploads&list=treasureforthedayclmmysuru2720&rel=0&modestbranding=1&autoplay=1";
-            } else if (streamType === 'word_of_light') {
-                srcUrl = "https://www.youtube-nocookie.com/embed?listType=user_uploads&list=treasureforthedayclmmysuru2720&index=1&rel=0&modestbranding=1&autoplay=1";
-            } else if (streamType === 'peace') {
-                srcUrl = "https://www.youtube-nocookie.com/embed?listType=user_uploads&list=treasureforthedayclmmysuru2720&index=2&rel=0&modestbranding=1&autoplay=1";
-            } else if (streamType === 'sunday_worship') {
-                srcUrl = "https://www.youtube-nocookie.com/embed?listType=user_uploads&list=treasureforthedayclmmysuru2720&index=3&rel=0&modestbranding=1&autoplay=1";
-            }
+            // Working official video ID from @treasureforthedayclmmysuru2720
+            const videoId = 'MeIk1dPlPlA';
+            const srcUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
 
             if (player) {
                 player.src = srcUrl;
