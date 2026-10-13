@@ -188,21 +188,21 @@
             }
         }
 
-        /* GALLERY CARD IMAGES (Strict 220px Height & Object Cover) */
+        /* GALLERY CARD IMAGES (Strict 260px Height & Object Cover with 12px Border Radius) */
         .gallery-card-img-wrap {
             position: relative;
             width: 100%;
-            height: 220px;
+            height: 260px;
             overflow: hidden;
             background-color: #080f24;
-            border-top-left-radius: 1.25rem;
-            border-top-right-radius: 1.25rem;
+            border-radius: 12px;
         }
 
         .gallery-card-img {
             width: 100%;
-            height: 220px;
+            height: 260px;
             object-fit: cover;
+            border-radius: 12px;
             display: block;
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -1394,7 +1394,7 @@
                 <div class="flex items-center gap-3">
                     <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-900/90 border border-gold-500/30 text-xs font-semibold text-gold-400 backdrop-blur-md">
                         <i class="fa-solid fa-camera-retro"></i>
-                        <span>Moment <span id="carouselCurrentIndex" class="font-bold text-white">1</span> of <span id="carouselTotalCount" class="font-bold text-white">8</span></span>
+                        <span>Moment <span id="carouselCurrentIndex" class="font-bold text-white">1</span> of <span id="carouselTotalCount" class="font-bold text-white">10</span></span>
                     </span>
                     <button 
                         id="carouselPlayPauseBtn"
@@ -1435,20 +1435,20 @@
                 <div class="carousel-edge-fade-left hidden sm:block"></div>
                 <div class="carousel-edge-fade-right hidden sm:block"></div>
 
-                <div id="ministryCarouselTrack" class="carousel-track" role="region" aria-label="Ministry Moments Carousel">
+                                <div id="ministryCarouselTrack" class="carousel-track" role="region" aria-label="Ministry Moments Carousel">
                     
-                    <!-- Moment 1: Outreach & Community Care -->
-                    <div class="carousel-card flex flex-col group gallery-item" data-category="outreach">
-                        <div class="gallery-card-img-wrap cursor-pointer" onclick="openPhotoLightbox('photo22.jpg.jpeg', 'Outreach & Community Care', 'Spreading Christ\'s love through compassionate acts, family assistance, and fellowship across Mysuru.', 'Moment 01')">
+                    <!-- Slide 1: Praise & Worship Adoration -->
+                    <div class="carousel-card flex flex-col group gallery-item" data-category="worship">
+                        <div class="gallery-card-img-wrap cursor-pointer" style="height: 260px; border-radius: 12px;" onclick="openPhotoLightbox('photo1.jpg', 'Praise & Worship Adoration', 'Heartfelt praise, devotional worship, and uplifting adoration honoring the Lord Jesus Christ.', 'Moment 01')">
                             <img 
-                                src="photo22.jpg.jpeg" 
-                                onerror="this.onerror=null; this.src='photo22.jpg';" 
-                                alt="Outreach and Community Care in Mysuru" 
+                                src="photo1.jpg" 
+                                onerror="this.onerror=null; this.src='photo1.jpg.jpeg';" 
+                                alt="Praise & Worship Adoration" 
                                 class="gallery-card-img" 
-                                style="object-fit: cover; width: 100%; height: 220px;"
+                                style="object-fit: cover; width: 100%; height: 260px; border-radius: 12px;"
                                 loading="lazy"
                             >
-                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent pointer-events-none"></div>
                             <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment1_badge">
                                 Moment 01
                             </span>
@@ -1459,17 +1459,327 @@
                         <div class="p-5 flex-1 flex flex-col justify-between">
                             <div>
                                 <div class="flex items-center gap-2 mb-2">
-                                    <span class="text-[10px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30">Community Care</span>
+                                    <span class="text-[10px] font-semibold text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/30">Worship &amp; Praise</span>
                                 </div>
                                 <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment1_title">
-                                    Outreach &amp; Community Care
+                                    Praise &amp; Worship Adoration
                                 </h3>
                                 <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment1_desc">
-                                    Spreading Christ's love through compassionate acts, family assistance, and fellowship across Mysuru.
+                                    Heartfelt praise, devotional worship, and uplifting adoration honoring the Lord Jesus Christ.
                                 </p>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Slide 2: Outreach & Community Service -->
+                    <div class="carousel-card flex flex-col group gallery-item" data-category="outreach">
+                        <div class="gallery-card-img-wrap cursor-pointer" style="height: 260px; border-radius: 12px;" onclick="openPhotoLightbox('photo2.jpg', 'Outreach & Community Service', 'Serving the vulnerable, distributing care, and sharing Christ's unconditional love across Mysuru.', 'Moment 02')">
+                            <img 
+                                src="photo2.jpg" 
+                                onerror="this.onerror=null; this.src='photo2.jpg.jpeg';" 
+                                alt="Outreach & Community Service" 
+                                class="gallery-card-img" 
+                                style="object-fit: cover; width: 100%; height: 260px; border-radius: 12px;"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent pointer-events-none"></div>
+                            <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment2_badge">
+                                Moment 02
+                            </span>
+                            <span class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-navy-950/80 border border-gold-500/40 text-gold-400 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            </span>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30">Community Outreach</span>
+                                </div>
+                                <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment2_title">
+                                    Outreach &amp; Community Service
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment2_desc">
+                                    Serving the vulnerable, distributing care, and sharing Christ's unconditional love across Mysuru.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Sunday Worship Gathering -->
+                    <div class="carousel-card flex flex-col group gallery-item" data-category="worship">
+                        <div class="gallery-card-img-wrap cursor-pointer" style="height: 260px; border-radius: 12px;" onclick="openPhotoLightbox('photo3.jpg', 'Sunday Worship Gathering', 'Uplifting Sunday gatherings uniting believers in heartfelt worship, praise, and biblical encouragement.', 'Moment 03')">
+                            <img 
+                                src="photo3.jpg" 
+                                onerror="this.onerror=null; this.src='photo3.jpg.jpeg';" 
+                                alt="Sunday Worship Gathering" 
+                                class="gallery-card-img" 
+                                style="object-fit: cover; width: 100%; height: 260px; border-radius: 12px;"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent pointer-events-none"></div>
+                            <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment3_badge">
+                                Moment 03
+                            </span>
+                            <span class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-navy-950/80 border border-gold-500/40 text-gold-400 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            </span>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-semibold text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/30">Sunday Service</span>
+                                </div>
+                                <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment3_title">
+                                    Sunday Worship Gathering
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment3_desc">
+                                    Uplifting Sunday gatherings uniting believers in heartfelt worship, praise, and biblical encouragement.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4: Word of Light Meditation -->
+                    <div class="carousel-card flex flex-col group gallery-item" data-category="worship">
+                        <div class="gallery-card-img-wrap cursor-pointer" style="height: 260px; border-radius: 12px;" onclick="openPhotoLightbox('photo4.jpg', 'Word of Light Meditation', 'Deep reflection and life-changing meditation upon the living Word of God led by Ruben Ranjith & Nandini Ruben.', 'Moment 04')">
+                            <img 
+                                src="photo4.jpg" 
+                                onerror="this.onerror=null; this.src='photo4.jpg.jpeg';" 
+                                alt="Word of Light Meditation" 
+                                class="gallery-card-img" 
+                                style="object-fit: cover; width: 100%; height: 260px; border-radius: 12px;"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent pointer-events-none"></div>
+                            <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment4_badge">
+                                Moment 04
+                            </span>
+                            <span class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-navy-950/80 border border-gold-500/40 text-gold-400 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            </span>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-semibold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">Bible &amp; Devotion</span>
+                                </div>
+                                <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment4_title">
+                                    Word of Light Meditation
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment4_desc">
+                                    Deep reflection and life-changing meditation upon the living Word of God led by Ruben Ranjith & Nandini Ruben.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5: Youth Mentorship Program -->
+                    <div class="carousel-card flex flex-col group gallery-item" data-category="youth">
+                        <div class="gallery-card-img-wrap cursor-pointer" style="height: 260px; border-radius: 12px;" onclick="openPhotoLightbox('photo5.jpg', 'Youth Mentorship Program', 'Empowering children and youth with educational encouragement, moral direction, and spiritual guidance.', 'Moment 05')">
+                            <img 
+                                src="photo5.jpg" 
+                                onerror="this.onerror=null; this.src='photo5.jpg.jpeg';" 
+                                alt="Youth Mentorship Program" 
+                                class="gallery-card-img" 
+                                style="object-fit: cover; width: 100%; height: 260px; border-radius: 12px;"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent pointer-events-none"></div>
+                            <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment5_badge">
+                                Moment 05
+                            </span>
+                            <span class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-navy-950/80 border border-gold-500/40 text-gold-400 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            </span>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-semibold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/30">Youth &amp; Education</span>
+                                </div>
+                                <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment5_title">
+                                    Youth Mentorship Program
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment5_desc">
+                                    Empowering children and youth with educational encouragement, moral direction, and spiritual guidance.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 6: Gospel Fellowship Meeting -->
+                    <div class="carousel-card flex flex-col group gallery-item" data-category="worship">
+                        <div class="gallery-card-img-wrap cursor-pointer" style="height: 260px; border-radius: 12px;" onclick="openPhotoLightbox('photo6.jpg', 'Gospel Fellowship Meeting', 'Brethren coming together in true biblical fellowship, building unity, mutual care, and brotherly support.', 'Moment 06')">
+                            <img 
+                                src="photo6.jpg" 
+                                onerror="this.onerror=null; this.src='photo6.jpg.jpeg';" 
+                                alt="Gospel Fellowship Meeting" 
+                                class="gallery-card-img" 
+                                style="object-fit: cover; width: 100%; height: 260px; border-radius: 12px;"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent pointer-events-none"></div>
+                            <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment6_badge">
+                                Moment 06
+                            </span>
+                            <span class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-navy-950/80 border border-gold-500/40 text-gold-400 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            </span>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-semibold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/30">Biblical Fellowship</span>
+                                </div>
+                                <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment6_title">
+                                    Gospel Fellowship Meeting
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment6_desc">
+                                    Brethren coming together in true biblical fellowship, building unity, mutual care, and brotherly support.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 7: Prayer & Blessing Service -->
+                    <div class="carousel-card flex flex-col group gallery-item" data-category="worship">
+                        <div class="gallery-card-img-wrap cursor-pointer" style="height: 260px; border-radius: 12px;" onclick="openPhotoLightbox('photo7.jpg', 'Prayer & Blessing Service', 'Dedicated pastoral intercession and prayer of blessing, speaking peace, health, and grace over every family.', 'Moment 07')">
+                            <img 
+                                src="photo7.jpg" 
+                                onerror="this.onerror=null; this.src='photo7.jpg.jpeg';" 
+                                alt="Prayer & Blessing Service" 
+                                class="gallery-card-img" 
+                                style="object-fit: cover; width: 100%; height: 260px; border-radius: 12px;"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent pointer-events-none"></div>
+                            <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment7_badge">
+                                Moment 07
+                            </span>
+                            <span class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-navy-950/80 border border-gold-500/40 text-gold-400 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            </span>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-semibold text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded border border-rose-500/30">Intercessory Prayer</span>
+                                </div>
+                                <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment7_title">
+                                    Prayer &amp; Blessing Service
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment7_desc">
+                                    Dedicated pastoral intercession and prayer of blessing, speaking peace, health, and grace over every family.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 8: Ministry Moments Special -->
+                    <div class="carousel-card flex flex-col group gallery-item" data-category="outreach">
+                        <div class="gallery-card-img-wrap cursor-pointer" style="height: 260px; border-radius: 12px;" onclick="openPhotoLightbox('photo8.jpg', 'Ministry Moments Special', 'Memorable highlights from our community outreaches, special events, and spiritual milestones in CLM Mysuru.', 'Moment 08')">
+                            <img 
+                                src="photo8.jpg" 
+                                onerror="this.onerror=null; this.src='photo8.jpg.jpeg';" 
+                                alt="Ministry Moments Special" 
+                                class="gallery-card-img" 
+                                style="object-fit: cover; width: 100%; height: 260px; border-radius: 12px;"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent pointer-events-none"></div>
+                            <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment8_badge">
+                                Moment 08
+                            </span>
+                            <span class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-navy-950/80 border border-gold-500/40 text-gold-400 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            </span>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-semibold text-gold-400 bg-gold-500/10 px-2 py-0.5 rounded border border-gold-500/30">Ministry Highlights</span>
+                                </div>
+                                <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment8_title">
+                                    Ministry Moments Special
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment8_desc">
+                                    Memorable highlights from our community outreaches, special events, and spiritual milestones in CLM Mysuru.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 9: Community Support & Outreach -->
+                    <div class="carousel-card flex flex-col group gallery-item" data-category="outreach">
+                        <div class="gallery-card-img-wrap cursor-pointer" style="height: 260px; border-radius: 12px;" onclick="openPhotoLightbox('photo10.jpg', 'Community Support & Outreach', 'Practical care, compassionate outreach, and extending a helping hand to underprivileged local families.', 'Moment 09')">
+                            <img 
+                                src="photo10.jpg" 
+                                onerror="this.onerror=null; this.src='photo10.jpg.jpeg';" 
+                                alt="Community Support & Outreach" 
+                                class="gallery-card-img" 
+                                style="object-fit: cover; width: 100%; height: 260px; border-radius: 12px;"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent pointer-events-none"></div>
+                            <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment9_badge">
+                                Moment 09
+                            </span>
+                            <span class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-navy-950/80 border border-gold-500/40 text-gold-400 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            </span>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30">Community Care</span>
+                                </div>
+                                <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment9_title">
+                                    Community Support &amp; Outreach
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment9_desc">
+                                    Practical care, compassionate outreach, and extending a helping hand to underprivileged local families.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 10: Special Celebration Gathering -->
+                    <div class="carousel-card flex flex-col group gallery-item" data-category="worship">
+                        <div class="gallery-card-img-wrap cursor-pointer" style="height: 260px; border-radius: 12px;" onclick="openPhotoLightbox('photo14.jpg', 'Special Celebration Gathering', 'Festive gatherings, ministry anniversaries, and joyful thanksgiving celebrations honoring God\'s faithfulness.', 'Moment 10')">
+                            <img 
+                                src="photo14.jpg" 
+                                onerror="this.onerror=null; this.src='photo14.jpg.jpeg';" 
+                                alt="Special Celebration Gathering" 
+                                class="gallery-card-img" 
+                                style="object-fit: cover; width: 100%; height: 260px; border-radius: 12px;"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent pointer-events-none"></div>
+                            <span class="absolute top-3 left-3 bg-navy-950/85 border border-slate-700 text-[11px] text-gold-400 font-semibold px-2.5 py-1 rounded-lg backdrop-blur-md" data-i18n="card_moment10_badge">
+                                Moment 10
+                            </span>
+                            <span class="absolute bottom-3 right-3 w-8 h-8 rounded-lg bg-navy-950/80 border border-gold-500/40 text-gold-400 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                            </span>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-[10px] font-semibold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">Celebration &amp; Thanks</span>
+                                </div>
+                                <h3 class="text-base font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition" data-i18n="card_moment10_title">
+                                    Special Celebration Gathering
+                                </h3>
+                                <p class="text-xs text-slate-300 leading-relaxed" data-i18n="card_moment10_desc">
+                                    Festive gatherings, ministry anniversaries, and joyful thanksgiving celebrations honoring God's faithfulness.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
                     <!-- Moment 2: Divine Worship & Fellowship -->
                     <div class="carousel-card flex flex-col group gallery-item" data-category="worship">
@@ -1723,6 +2033,8 @@
                     <button type="button" class="carousel-dot focus:outline-none" onclick="goToCarouselSlide(5)" aria-label="Go to slide 6"></button>
                     <button type="button" class="carousel-dot focus:outline-none" onclick="goToCarouselSlide(6)" aria-label="Go to slide 7"></button>
                     <button type="button" class="carousel-dot focus:outline-none" onclick="goToCarouselSlide(7)" aria-label="Go to slide 8"></button>
+                    <button type="button" class="carousel-dot focus:outline-none" onclick="goToCarouselSlide(8)" aria-label="Go to slide 9"></button>
+                    <button type="button" class="carousel-dot focus:outline-none" onclick="goToCarouselSlide(9)" aria-label="Go to slide 10"></button>
                 </div>
                 <p class="text-xs text-slate-400 flex items-center justify-center gap-2 text-center select-none">
                     <i class="fa-solid fa-arrows-left-right text-gold-400 text-[11px]"></i>
@@ -2329,29 +2641,35 @@
                 filter_outreach: "Outreach & Community",
                 filter_youth: "Youth & Education",
                 card_moment1_badge: "Moment 01",
-                card_moment1_title: "Outreach & Community Care",
-                card_moment1_desc: "Spreading Christ's love through compassionate acts, family assistance, and fellowship across Mysuru.",
+                card_moment1_title: "Praise & Worship Adoration",
+                card_moment1_desc: "Heartfelt praise, devotional worship, and uplifting adoration honoring the Lord Jesus Christ.",
                 card_moment2_badge: "Moment 02",
-                card_moment2_title: "Divine Worship & Fellowship",
-                card_moment2_desc: "Uniting believers in heartfelt praise, biblical devotions, and intercessory prayer sessions.",
+                card_moment2_title: "Outreach & Community Service",
+                card_moment2_desc: "Serving the vulnerable, distributing care, and sharing Christ's unconditional love across Mysuru.",
                 card_moment3_badge: "Moment 03",
-                card_moment3_title: "Youth & Biblical Education",
-                card_moment3_desc: "Empowering youth and children with educational care, biblical guidance, and inspiring mentoring.",
+                card_moment3_title: "Sunday Worship Gathering",
+                card_moment3_desc: "Uplifting Sunday gatherings uniting believers in heartfelt worship, praise, and biblical encouragement.",
                 card_moment4_badge: "Moment 04",
-                card_moment4_title: "Prayer & Spiritual Guidance",
-                card_moment4_desc: "Dedicated intercession led by Ruben Ranjith & Nandini Ruben, bringing comfort and divine guidance to families.",
+                card_moment4_title: "Word of Light Meditation",
+                card_moment4_desc: "Deep reflection and life-changing meditation upon the living Word of God led by Ruben Ranjith & Nandini Ruben.",
                 card_moment5_badge: "Moment 05",
-                card_moment5_title: "Sunday Fellowship Lunch",
-                card_moment5_desc: "Sharing nourishing fellowship meals together every Sunday after service, welcoming every attendee.",
+                card_moment5_title: "Youth Mentorship Program",
+                card_moment5_desc: "Empowering children and youth with educational encouragement, moral direction, and spiritual guidance.",
                 card_moment6_badge: "Moment 06",
-                card_moment6_title: "Praise & Worship Adoration",
-                card_moment6_desc: "Heartfelt praise and devotional adoration uplifting spirits and fostering community bonding in Christ.",
+                card_moment6_title: "Gospel Fellowship Meeting",
+                card_moment6_desc: "Brethren coming together in true biblical fellowship, building unity, mutual care, and brotherly support.",
                 card_moment7_badge: "Moment 07",
-                card_moment7_title: "Spoken English & Career Guidance",
-                card_moment7_desc: "Free educational counseling, language development, and career mentorship for local youth and students.",
+                card_moment7_title: "Prayer & Blessing Service",
+                card_moment7_desc: "Dedicated pastoral intercession and prayer of blessing, speaking peace, health, and grace over every family.",
                 card_moment8_badge: "Moment 08",
-                card_moment8_title: "Family Counseling & Care",
-                card_moment8_desc: "Confidential pastoral support, intercession, and encouraging guidance bringing hope to families.",
+                card_moment8_title: "Ministry Moments Special",
+                card_moment8_desc: "Memorable highlights from our community outreaches, special events, and spiritual milestones in CLM Mysuru.",
+                card_moment9_badge: "Moment 09",
+                card_moment9_title: "Community Support & Outreach",
+                card_moment9_desc: "Practical care, compassionate outreach, and extending a helping hand to underprivileged local families.",
+                card_moment10_badge: "Moment 10",
+                card_moment10_title: "Special Celebration Gathering",
+                card_moment10_desc: "Festive gatherings, ministry anniversaries, and joyful thanksgiving celebrations honoring God's faithfulness.",
                 carousel_swipe_hint: "Swipe or drag to explore • Auto-pauses on hover",
                 carousel_btn_prev: "Previous photo",
                 carousel_btn_next: "Next photo",
@@ -2488,29 +2806,35 @@
                 filter_outreach: "ಸಮಾಜ ಸೇವೆ",
                 filter_youth: "ಯುವಜನ ಮತ್ತು ಶಿಕ್ಷಣ",
                 card_moment1_badge: "ಕ್ಷಣ 01",
-                card_moment1_title: "ಸುವಾರ್ತೆ ಮತ್ತು ಸಮಾಜ ಸೇವೆ",
-                card_moment1_desc: "ಕರುಣೆ ಮತ್ತು ಪ್ರೀತಿಯ ಮೂಲಕ ಸಮುದಾಯಕ್ಕೆ ನಿರಂತರ ನೆರವು ಮತ್ತು ಆಪ್ತ ಸೇವೆ.",
+                card_moment1_title: "ಸ್ತುತಿ ಆರಾಧನೆ ಮತ್ತು ಭಕ್ತಿ",
+                card_moment1_desc: "ಹೃತ್ಪೂರ್ವಕ ಸ್ತುತಿ, ಭಕ್ತಿಪೂರ್ವಕ ಆರಾಧನೆ ಮತ್ತು ಕರ್ತನಾದ ಯೇಸು ಕ್ರಿಸ್ತನನ್ನು ಕೊಂಡಾಡುವ ಆರಾಧನೆ.",
                 card_moment2_badge: "ಕ್ಷಣ 02",
-                card_moment2_title: "ದೈವಿಕ ಆರಾಧನೆ ಮತ್ತು ಒಡನಾಟ",
-                card_moment2_desc: "ಸ್ತುತಿ, ಪ್ರಾರ್ಥನೆ ಮತ್ತು ದೇವವಾಕ್ಯದ ಮೂಲಕ ಆತ್ಮಿಕ ಒಡನಾಟ ಮತ್ತು ಸಹಭಾಗಿತ್ವ.",
+                card_moment2_title: "ಸಮಾಜ ಸೇವೆ ಮತ್ತು ಪ್ರೀತಿಯ ಸಹಾಯ",
+                card_moment2_desc: "ಅಸಹಾಯಕರಿಗೆ ಸೇವೆ, ಆಹಾರ ವಿತರಣೆ ಮತ್ತು ಮೈಸೂರಿನಾದ್ಯಂತ ಕ್ರಿಸ್ತನ ಅಪಾರ ಪ್ರೀತಿಯನ್ನು ಹಂಚುವುದು.",
                 card_moment3_badge: "ಕ್ಷಣ 03",
-                card_moment3_title: "ಯುವಜನ ಮತ್ತು ಶಿಕ್ಷಣ ಮಾರ್ಗದರ್ಶನ",
-                card_moment3_desc: "ಮಕ್ಕಳಿಗೆ ಮತ್ತು ಯುವಜನರಿಗೆ ಶಿಕ್ಷಣದ ನೆರವು ಹಾಗೂ ಬೈಬಲ್ ಆಧಾರಿತ ಮಾರ್ಗದರ್ಶನ.",
+                card_moment3_title: "ಭಾನುವಾರ ಆರಾಧನಾ ಸಂಗಮ",
+                card_moment3_desc: "ವಿಶ್ವಾಸಿಗಳು ಒಟ್ಟಾಗಿ ಸೇರಿ ಮಾಡುವ ಆತ್ಮಿಕ ಭಾನುವಾರ ಆರಾಧನೆ, ಸ್ತುತಿ ಗೀತೆಗಳು ಮತ್ತು ದೇವರ ವಾಕ್ಯ.",
                 card_moment4_badge: "ಕ್ಷಣ 04",
-                card_moment4_title: "ಪ್ರಾರ್ಥನೆ ಮತ್ತು ಆಧ್ಯಾತ್ಮಿಕ ಮಾರ್ಗದರ್ಶನ",
-                card_moment4_desc: "ರೂಬೆನ್ ರಂಜಿತ್ & ನಂದಿನಿ ರೂಬೆನ್ ಅವರ ನೇತೃತ್ವದಲ್ಲಿ ಸಮರ್ಪಿತ ಪ್ರಾರ್ಥನೆ ಮತ್ತು ಕೌಟುಂಬಿಕ ಮಾರ್ಗದರ್ಶನ.",
+                card_moment4_title: "ವಾಕ್ಯ ಧ್ಯಾನ ಮತ್ತು ಬೆಳಕು",
+                card_moment4_desc: "ರೂಬೆನ್ ರಂಜಿತ್ & ನಂದಿನಿ ರೂಬೆನ್ ಅವರ ನೇತೃತ್ವದಲ್ಲಿ ಜೀವಂತ ದೇವರ ವಾಕ್ಯದ ಆಳವಾದ ಧ್ಯಾನ ಮತ್ತು ಅಧ್ಯಯನ.",
                 card_moment5_badge: "ಕ್ಷಣ 05",
-                card_moment5_title: "ಭಾನುವಾರ ಪ್ರೀತಿಯ ಸಹಭೋಜನ",
-                card_moment5_desc: "ಪ್ರತಿ ಭಾನುವಾರ ಆರಾಧನೆಯ ನಂತರ ಪ್ರತಿಯೊಬ್ಬರಿಗೂ ಪ್ರೀತಿಯಿಂದ ಊಟದ ವ್ಯವಸ್ಥೆ ಮತ್ತು ಸಹಭಾಗಿತ್ವ.",
+                card_moment5_title: "ಯುವ ಮಾರ್ಗದರ್ಶನ ಕಾರ್ಯಕ್ರಮ",
+                card_moment5_desc: "ಮಕ್ಕಳು ಮತ್ತು ಯುವಜನರಿಗೆ ಶಿಕ್ಷಣ ಪ್ರೋತ್ಸಾಹ, ನೈತಿಕ ಮೌಲ್ಯಗಳು ಮತ್ತು ಆಧ್ಯಾತ್ಮಿಕ ಮಾರ್ಗದರ್ಶನ.",
                 card_moment6_badge: "ಕ್ಷಣ 06",
-                card_moment6_title: "ಸ್ತುತಿ ಆರಾಧನೆ ಮತ್ತು ಗಾಯನ",
-                card_moment6_desc: "ಹೃತ್ಪೂರ್ವಕ ಸ್ತುತಿ ಮತ್ತು ಭಕ್ತಿ ಗೀತೆಗಳ ಮೂಲಕ ದೈವಿಕ ಆಶೀರ್ವಾದ ಮತ್ತು ಸಮುದಾಯದ ಐಕ್ಯತೆ.",
+                card_moment6_title: "ಸುವಾರ್ತೆ ಸಹಭಾಗಿತ್ವ ಸಭೆ",
+                card_moment6_desc: "ವಿಶ್ವಾಸಿಗಳ ಪರಸ್ಪರ ಪ್ರೀತಿ, ಐಕ್ಯತೆ ಮತ್ತು ಬಾಂಧವ್ಯವನ್ನು ಬೆಳೆಸುವ ಸುವಾರ್ತಾ ಕೂಟ.",
                 card_moment7_badge: "ಕ್ಷಣ 07",
-                card_moment7_title: "ಸ್ಪೋಕನ್ ಇಂಗ್ಲಿಷ್ ಮತ್ತು ವೃತ್ತಿ ಮಾರ್ಗದರ್ಶನ",
-                card_moment7_desc: "ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಉಚಿತ ಇಂಗ್ಲಿಷ್ ಸಂಭಾಷಣೆ ತರಬೇತಿ ಮತ್ತು ಉದ್ಯೋಗ ಮಾರ್ಗದರ್ಶನ.",
+                card_moment7_title: "ಪ್ರಾರ್ಥನೆ ಮತ್ತು ಆಶೀರ್ವಾದದ ಆರಾಧನೆ",
+                card_moment7_desc: "ಪ್ರತಿ ಕುಟುಂಬಕ್ಕೂ ಶಾಂತಿ, ಆರೋಗ್ಯ ಮತ್ತು ಕೃಪೆಗಾಗಿ ಸಮರ್ಪಿತ ಪಾಲಕರ ಮಧ್ಯಸ್ಥಿಕೆ ಪ್ರಾರ್ಥನೆ.",
                 card_moment8_badge: "ಕ್ಷಣ 08",
-                card_moment8_title: "ಕೌಟುಂಬಿಕ ಕಾಳಜಿ ಮತ್ತು ಆಪ್ತ ಸಮಾಲೋಚನೆ",
-                card_moment8_desc: "ಕುಟುಂಬಗಳಿಗೆ ಪ್ರೀತಿಯ ಮಾರ್ಗದರ್ಶನ, ಸಾಂತ್ವನ ಮತ್ತು ಆಧ್ಯಾತ್ಮಿಕ ಧೈರ್ಯ ತುಂಬುವ ಸೇವೆ.",
+                card_moment8_title: "ವಿಶೇಷ ಮಿನಿಸ್ಟ್ರಿ ಕ್ಷಣಗಳು",
+                card_moment8_desc: "ಸಿ.ಎಲ್.ಎಂ ಮೈಸೂರಿನ ಸಮುದಾಯ ಸೇವೆ, ವಿಶೇಷ ಕೂಟಗಳು ಮತ್ತು ಆತ್ಮಿಕ ಮೈಲಿಗಲ್ಲುಗಳ ಸ್ಮರಣೀಯ ಚಿತ್ರಗಳು.",
+                card_moment9_badge: "ಕ್ಷಣ 09",
+                card_moment9_title: "ಸಮುದಾಯ ಬೆಂಬಲ ಮತ್ತು ಸಹಾಯ",
+                card_moment9_desc: "ಅಗತ್ಯವಿರುವ ಕುಟುಂಬಗಳಿಗೆ ಪ್ರಾಯೋಗಿಕ ಬೆಂಬಲ, ಸಾಂತ್ವನ ಮತ್ತು ಪ್ರೀತಿಯ ನೆರವು.",
+                card_moment10_badge: "ಕ್ಷಣ 10",
+                card_moment10_title: "ವಿಶೇಷ ಆಚರಣೆ ಮತ್ತು ಕೃತಜ್ಞತಾ ಸಭೆ",
+                card_moment10_desc: "ದೇವರ ನಂಬಿಗಸ್ತಿಕೆಯನ್ನು ಕೊಂಡಾಡುವ ಸಂಭ್ರಮದ ಕೂಟಗಳು, ವಾರ್ಷಿಕೋತ್ಸವ ಮತ್ತು ಕೃತಜ್ಞತಾ ಸಮಾರಂಭ.",
                 carousel_swipe_hint: "ಫೋಟೋಗಳನ್ನು ನೋಡಲು ಎಡ-ಬಲಕ್ಕೆ ಸ್ವೈಪ್ ಮಾಡಿ • ನಿಲ್ಲಿಸಲು ಸ್ಪರ್ಶಿಸಿ",
                 carousel_btn_prev: "ಹಿಂದಿನ ಫೋಟೋ",
                 carousel_btn_next: "ಮುಂದಿನ ಫೋಟೋ",
@@ -2647,29 +2971,35 @@
                 filter_outreach: "समाज सेवा",
                 filter_youth: "युवा एवं शिक्षा",
                 card_moment1_badge: "क्षण 01",
-                card_moment1_title: "आउटरीच और समाज सेवा",
-                card_moment1_desc: "करुणा और प्रेम के माध्यम से जरूरतमंदों की सहायता और सामुदायिक सेवा।",
+                card_moment1_title: "स्तुति आराधना एवं भक्ति",
+                card_moment1_desc: "हृदयस्पर्शी स्तुति, भक्तिमय आराधना और प्रभु यीशु मसीह के पवित्र नाम का गुणगान।",
                 card_moment2_badge: "क्षण 02",
-                card_moment2_title: "ईश्वरीय आराधना और संगति",
-                card_moment2_desc: "प्रशंसा, प्रार्थना और बाइबिल वचनों में आत्मिक संगति और प्रार्थना।",
+                card_moment2_title: "सामाजिक सेवा एवं जन कल्याण",
+                card_moment2_desc: "जरूरतमंदों की सेवा, सहायता वितरण और मैसूरु में मसीह के असीम प्रेम का प्रचार।",
                 card_moment3_badge: "क्षण 03",
-                card_moment3_title: "युवा और शिक्षा मार्गदर्शन",
-                card_moment3_desc: "बच्चों और युवाओं को आध्यात्मिक ज्ञान और शैक्षणिक सहयोग।",
+                card_moment3_title: "रविवार आराधना सभा",
+                card_moment3_desc: "आस्थावानों का रविवार की सामूहिक आराधना, स्तुति और बाइबिल के वचनों में आत्मिक मिलन।",
                 card_moment4_badge: "क्षण 04",
-                card_moment4_title: "प्रार्थना एवं आध्यात्मिक मार्गदर्शन",
-                card_moment4_desc: "रूबेन रणजीत एवं नंदिनी रूबेन के नेतृत्व में परिवारों के लिए समर्पित प्रार्थना और मार्गदर्शन।",
+                card_moment4_title: "प्रभु के वचन का ध्यान",
+                card_moment4_desc: "रूबेन रणजीत एवं नंदिनी रूबेन के मार्गदर्शन में परमेश्वर के जीवित वचन का गहन अध्ययन व मनन।",
                 card_moment5_badge: "क्षण 05",
-                card_moment5_title: "रविवार सहभोज एवं प्रीतिभोज",
-                card_moment5_desc: "प्रत्येक रविवार आराधना के उपरांत सभी आगंतुकों के लिए प्रेमपूर्वक भोजन व्यवस्था और संगति।",
+                card_moment5_title: "युवा मार्गदर्शन कार्यक्रम",
+                card_moment5_desc: "बच्चों व युवाओं के लिए शैक्षणिक प्रोत्साहन, नैतिक मूल्य और आत्मिक दिशा-निर्देश।",
                 card_moment6_badge: "क्षण 06",
-                card_moment6_title: "स्तुति आराधना एवं भक्ति",
-                card_moment6_desc: "हृदयस्पर्शी स्तुति और भक्ति गीतों के साथ प्रभु की महिमा और आत्मिक शांति का अनुभव।",
+                card_moment6_title: "सुसमाचार संगति सभा",
+                card_moment6_desc: "विश्वास में बंधुत्व, एकता, आपसी सहयोग और आत्मिक संगति का मजबूत निर्माण।",
                 card_moment7_badge: "क्षण 07",
-                card_moment7_title: "स्पोकन इंग्लिश व करियर परामर्श",
-                card_moment7_desc: "युवाओं और विद्यार्थियों के लिए निःशुल्क संवाद कौशल, अंग्रेजी प्रशिक्षण व करियर मार्गदर्शन।",
+                card_moment7_title: "प्रार्थना एवं आशीष सेवा",
+                card_moment7_desc: "हर परिवार के लिए शांति, स्वास्थ्य और अनुग्रह हेतु पास्टोरल मध्यस्थता प्रार्थना।",
                 card_moment8_badge: "क्षण 08",
-                card_moment8_title: "पारिवारिक परामर्श एवं आत्मिक देखभाल",
-                card_moment8_desc: "रूबेन रणजीत एवं नंदिनी रूबेन द्वारा परिवारों के लिए गोपनीय परामर्श, प्रार्थना और सांत्वना।",
+                card_moment8_title: "विशेष सेवकाई के क्षण",
+                card_moment8_desc: "सीएलएम मैसूरु के सेवा कार्यों, विशेष आयोजनों और आत्मिक उपलब्धियों की यादगार झलकियां।",
+                card_moment9_badge: "क्षण 09",
+                card_moment9_title: "सामुदायिक सहयोग एवं सेवा",
+                card_moment9_desc: "वंचित परिवारों को व्यावहारिक सहायता, सांत्वना और मसीही प्रेम का सहारा।",
+                card_moment10_badge: "क्षण 10",
+                card_moment10_title: "विशेष उत्सव एवं धन्यवाद सभा",
+                card_moment10_desc: "परमेश्वर की भलाई और निष्ठा का धन्यवाद करने वाले भव्य व आनंदमय उत्सव।",
                 carousel_swipe_hint: "स्वाइप करके सभी फोटो देखें • रोकने के लिए कर्सर रखें",
                 carousel_btn_prev: "पिछला फोटो",
                 carousel_btn_next: "अगला फोटो",
@@ -2940,6 +3270,7 @@
             if (!modal || !img) return;
 
             img.src = src;
+            img.onerror = function() { this.onerror = null; if (!this.src.endsWith(".jpeg")) { this.src = src + ".jpeg"; } };
             if (titleEl) titleEl.textContent = title;
             if (descEl) descEl.textContent = desc;
             if (badgeEl) badgeEl.textContent = badge;
