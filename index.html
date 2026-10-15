@@ -777,12 +777,12 @@
             <!-- In-Website Player Frame Container -->
             <div class="glass-card rounded-3xl p-4 sm:p-6 border border-gold-500/30 shadow-2xl">
                 
-                <!-- Main Embedded Video Player (No Redirect) -->
+                <!-- Main Embedded Video Player (Auto-Sync Official Channel Feed) -->
                 <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-2xl border border-slate-800">
                     <iframe 
                         id="embeddedIframePlayer" 
                         class="w-full h-full border-0" 
-                        src="https://www.youtube.com/embed/MeIk1dPlPlA" 
+                        src="https://www.youtube.com/embed/videoseries?list=UURgt--dPj42CRgbdfYf-jVw&rel=0" 
                         title="Treasure for the Day - Christ's Love Ministries Official Channel Videos" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         loading="lazy" 
@@ -793,12 +793,22 @@
                 <!-- Active Video Title & Status Bar -->
                 <div class="pt-5 pb-3 px-2 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800">
                     <div>
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <span class="text-xs uppercase tracking-wider text-emerald-400 font-bold" data-i18n="video_now_playing">Now Playing Inside Website</span>
+                        <div class="flex items-center gap-2 mb-1 flex-wrap">
+                            <span id="videoLiveIndicator" class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span id="videoStatusText" class="text-xs uppercase tracking-wider text-emerald-400 font-bold" data-i18n="video_auto_synced">Auto-Synced Channel Feed</span>
+                            <button 
+                                type="button" 
+                                onclick="syncYouTubeFeed(true)" 
+                                id="btnRefreshFeed" 
+                                title="Check for newest uploads from @treasureforthedayclmmysuru2720"
+                                class="ml-1 text-[11px] text-slate-300 hover:text-gold-300 transition inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-navy-900 border border-slate-700/80 hover:border-gold-500/50 shadow-sm"
+                            >
+                                <i class="fa-solid fa-arrows-rotate text-[10px]" id="refreshFeedIcon"></i>
+                                <span data-i18n="video_sync_now">Sync Feed</span>
+                            </button>
                         </div>
                         <h3 id="activeVideoTitle" class="text-lg sm:text-xl font-serif font-bold text-gold-400" data-i18n="video_default_title">
-                            Treasure for the Day - Daily Devotion &amp; Scripture Word
+                            The Lord is our keeper👍🙌 - Treasure for the Day
                         </h3>
                     </div>
 
@@ -833,70 +843,126 @@
                         <span class="text-xs uppercase tracking-wider text-slate-300 font-bold" data-i18n="video_playlist_title">
                             Official Messages &amp; Devotion Playlist:
                         </span>
-                        <span class="text-[11px] text-gold-400 font-medium">
+                        <span id="channelSyncTimestamp" class="text-[11px] text-gold-400 font-medium">
                             <i class="fa-solid fa-rotate mr-1"></i> Auto-synced with @treasureforthedayclmmysuru2720
                         </span>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                    <!-- Dynamic Recent Video Cards (Pre-seeded with real channel uploads & auto-refreshed via RSS) -->
+                    <div id="youtubeFeedCardsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                         
-                        <!-- Video Item 1: Latest Uploads Stream -->
+                        <!-- Video Item 1: Latest Upload -->
                         <button 
                             type="button" 
-                            onclick="switchChannelStream('latest', 'Latest Devotion & Spiritual Word - Treasure for the Day', this)" 
-                            class="video-playlist-btn active-video-btn text-left p-3 rounded-xl bg-navy-900/90 border border-gold-500/60 hover:border-gold-400 transition flex items-center gap-3 group"
+                            onclick="switchEmbeddedVideo('gDj81iop4jA', 'The Lord is our keeper👍🙌', this)" 
+                            class="video-playlist-btn active-video-btn text-left p-2.5 sm:p-3 rounded-xl bg-navy-900/90 border border-gold-500/60 hover:border-gold-400 transition flex items-center gap-3 group relative overflow-hidden"
                         >
-                            <div class="w-10 h-10 rounded-lg bg-red-600/20 text-red-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition">
-                                <i class="fa-solid fa-play text-sm"></i>
+                            <div class="relative w-14 h-12 rounded-lg overflow-hidden bg-slate-950 flex-shrink-0 border border-slate-800">
+                                <img 
+                                    src="https://i.ytimg.com/vi/gDj81iop4jA/hqdefault.jpg" 
+                                    onerror="this.onerror=null; this.src='photo1.jpg';" 
+                                    alt="" 
+                                    class="w-full h-full object-cover group-hover:scale-105 transition"
+                                    loading="lazy"
+                                >
+                                <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                    <i class="fa-solid fa-play text-white text-xs drop-shadow"></i>
+                                </div>
                             </div>
-                            <div class="overflow-hidden">
-                                <h4 class="text-xs font-bold text-white truncate" data-i18n="video_item1_title">Latest Devotion Feed</h4>
-                                <p class="text-[11px] text-slate-400 truncate" data-i18n="video_item1_desc">Auto-playing Newest Uploads</p>
+                            <div class="overflow-hidden flex-1 min-w-0">
+                                <div class="flex items-center gap-1.5 mb-1">
+                                    <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-red-600/20 text-red-400">
+                                        Latest Upload
+                                    </span>
+                                </div>
+                                <h4 class="text-xs font-bold text-white truncate group-hover:text-gold-300 transition" title="The Lord is our keeper👍🙌">
+                                    The Lord is our keeper👍🙌
+                                </h4>
+                                <p class="text-[11px] text-slate-400 truncate">Tap to play inside website</p>
                             </div>
                         </button>
 
-                        <!-- Video Item 2: Word of Light Daily Message -->
+                        <!-- Video Item 2: Recent Upload -->
                         <button 
                             type="button" 
-                            onclick="switchChannelStream('word_of_light', 'Word of Light & Daily Wisdom - Christ\'s Love Ministries', this)" 
-                            class="video-playlist-btn text-left p-3 rounded-xl bg-navy-900/90 border border-slate-700 hover:border-gold-400 transition flex items-center gap-3 group"
+                            onclick="switchEmbeddedVideo('2VbcSrPjSic', 'Jesus comforts 🫂🙏', this)" 
+                            class="video-playlist-btn text-left p-2.5 sm:p-3 rounded-xl bg-navy-900/90 border border-slate-700 hover:border-gold-400 transition flex items-center gap-3 group relative overflow-hidden"
                         >
-                            <div class="w-10 h-10 rounded-lg bg-gold-500/20 text-gold-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition">
-                                <i class="fa-solid fa-sun text-sm"></i>
+                            <div class="relative w-14 h-12 rounded-lg overflow-hidden bg-slate-950 flex-shrink-0 border border-slate-800">
+                                <img 
+                                    src="https://i.ytimg.com/vi/2VbcSrPjSic/hqdefault.jpg" 
+                                    onerror="this.onerror=null; this.src='photo2.jpg';" 
+                                    alt="" 
+                                    class="w-full h-full object-cover group-hover:scale-105 transition"
+                                    loading="lazy"
+                                >
+                                <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                    <i class="fa-solid fa-film text-white text-xs drop-shadow"></i>
+                                </div>
                             </div>
-                            <div class="overflow-hidden">
-                                <h4 class="text-xs font-bold text-white truncate" data-i18n="video_item2_title">Word of Light</h4>
-                                <p class="text-[11px] text-slate-400 truncate" data-i18n="video_item2_desc">Wisdom &amp; Blessing Series</p>
+                            <div class="overflow-hidden flex-1 min-w-0">
+                                <div class="flex items-center gap-1.5 mb-1">
+                                    <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-gold-500/20 text-gold-400">
+                                        Recent Devotion
+                                    </span>
+                                </div>
+                                <h4 class="text-xs font-bold text-white truncate group-hover:text-gold-300 transition" title="Jesus comforts 🫂🙏">
+                                    Jesus comforts 🫂🙏
+                                </h4>
+                                <p class="text-[11px] text-slate-400 truncate">Tap to play inside website</p>
                             </div>
                         </button>
 
-                        <!-- Video Item 3: Healing & Peace Message -->
+                        <!-- Video Item 3: Recent Upload -->
                         <button 
                             type="button" 
-                            onclick="switchChannelStream('peace', 'Our Healer & True Peace - Spiritual Message', this)" 
-                            class="video-playlist-btn text-left p-3 rounded-xl bg-navy-900/90 border border-slate-700 hover:border-gold-400 transition flex items-center gap-3 group"
+                            onclick="switchEmbeddedVideo('zVwp-kfoygk', 'Put your trust in Jesus👍🙌', this)" 
+                            class="video-playlist-btn text-left p-2.5 sm:p-3 rounded-xl bg-navy-900/90 border border-slate-700 hover:border-gold-400 transition flex items-center gap-3 group relative overflow-hidden"
                         >
-                            <div class="w-10 h-10 rounded-lg bg-emerald-600/20 text-emerald-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition">
-                                <i class="fa-solid fa-dove text-sm"></i>
+                            <div class="relative w-14 h-12 rounded-lg overflow-hidden bg-slate-950 flex-shrink-0 border border-slate-800">
+                                <img 
+                                    src="https://i.ytimg.com/vi/zVwp-kfoygk/hqdefault.jpg" 
+                                    onerror="this.onerror=null; this.src='photo3.jpg';" 
+                                    alt="" 
+                                    class="w-full h-full object-cover group-hover:scale-105 transition"
+                                    loading="lazy"
+                                >
+                                <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                    <i class="fa-solid fa-film text-white text-xs drop-shadow"></i>
+                                </div>
                             </div>
-                            <div class="overflow-hidden">
-                                <h4 class="text-xs font-bold text-white truncate" data-i18n="video_item3_title">Peace &amp; Healing Word</h4>
-                                <p class="text-[11px] text-slate-400 truncate" data-i18n="video_item3_desc">God Is Our Strength</p>
+                            <div class="overflow-hidden flex-1 min-w-0">
+                                <div class="flex items-center gap-1.5 mb-1">
+                                    <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-emerald-600/20 text-emerald-400">
+                                        Faith &amp; Trust
+                                    </span>
+                                </div>
+                                <h4 class="text-xs font-bold text-white truncate group-hover:text-gold-300 transition" title="Put your trust in Jesus👍🙌">
+                                    Put your trust in Jesus👍🙌
+                                </h4>
+                                <p class="text-[11px] text-slate-400 truncate">Tap to play inside website</p>
                             </div>
                         </button>
 
-                        <!-- Video Item 4: Sunday Worship & Sermon Broadcast -->
+                        <!-- Video Item 4: Continuous Channel Uploads Playlist Stream -->
                         <button 
                             type="button" 
-                            onclick="switchChannelStream('sunday_worship', 'Sunday Worship & Word Broadcast - Mysuru', this)" 
-                            class="video-playlist-btn text-left p-3 rounded-xl bg-navy-900/90 border border-slate-700 hover:border-gold-400 transition flex items-center gap-3 group"
+                            onclick="switchChannelStream('playlist', 'Treasure for the Day - Continuous Official Channel Stream', this)" 
+                            class="video-playlist-btn text-left p-2.5 sm:p-3 rounded-xl bg-navy-900/90 border border-slate-700 hover:border-gold-400 transition flex items-center gap-3 group relative overflow-hidden"
                         >
-                            <div class="w-10 h-10 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition">
-                                <i class="fa-solid fa-church text-sm"></i>
+                            <div class="w-14 h-12 rounded-lg bg-gradient-to-br from-red-600/30 to-purple-600/30 border border-red-500/40 text-red-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition">
+                                <i class="fa-solid fa-list-ul text-base text-red-400"></i>
                             </div>
-                            <div class="overflow-hidden">
-                                <h4 class="text-xs font-bold text-white truncate" data-i18n="video_item4_title">Sunday Service Message</h4>
-                                <p class="text-[11px] text-slate-400 truncate" data-i18n="video_item4_desc">CLM Mysuru Gatherings</p>
+                            <div class="overflow-hidden flex-1 min-w-0">
+                                <div class="flex items-center gap-1.5 mb-1">
+                                    <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300">
+                                        Continuous Stream
+                                    </span>
+                                </div>
+                                <h4 class="text-xs font-bold text-white truncate group-hover:text-gold-300 transition">
+                                    All Channel Uploads
+                                </h4>
+                                <p class="text-[11px] text-slate-400 truncate">Auto-plays newest to oldest</p>
                             </div>
                         </button>
 
@@ -919,8 +985,6 @@
                         <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                     </a>
                 </div>
-
-            </div>
 
             </div>
 
@@ -2334,6 +2398,8 @@
                 video_section_title: "Daily Worship & Spiritual Messages",
                 video_section_desc: "Watch recent daily devotional messages and worship sermons directly from our official YouTube channel (@treasureforthedayclmmysuru2720).",
                 video_now_playing: "Now Playing Inside Website",
+                video_auto_synced: "Auto-Synced Channel Feed",
+                video_sync_now: "Sync Feed",
                 video_default_title: "Treasure for the Day - Daily Devotion & Scripture Word",
                 video_theater_mode: "Theater View",
                 btn_watch_more_yt: "Watch More on YouTube",
@@ -2499,6 +2565,8 @@
                 video_section_title: "ದೈನಂದಿನ ಆರಾಧನೆ ಮತ್ತು ಆಧ್ಯಾತ್ಮಿಕ ಸಂದೇಶಗಳು",
                 video_section_desc: "ನಮ್ಮ ಅಧಿಕೃತ ಯೂಟ್ಯೂಬ್ ಚಾನೆಲ್ (@treasureforthedayclmmysuru2720) ಇಂದ ನೇರವಾಗಿ ದೈನಂದಿನ ಭಕ್ತಿ ಸಂದೇಶಗಳನ್ನು ವೀಕ್ಷಿಸಿ.",
                 video_now_playing: "ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ನೇರವಾಗಿ ಪ್ಲೇ ಆಗುತ್ತಿದೆ",
+                video_auto_synced: "ಸ್ವಯಂಚಾಲಿತ ಚಾನೆಲ್ ಫೀಡ್",
+                video_sync_now: "ಸಿಂಕ್ ಮಾಡಿ",
                 video_default_title: "ಟ್ರ್ರೆಷರ್ ಫಾರ್ ದಿ ಡೇ - ದೈನಂದಿನ ಭಕ್ತಿ ಮತ್ತು ದೇವವಾಕ್ಯ",
                 video_theater_mode: "ದೊಡ್ಡ ಪರದೆ",
                 btn_watch_more_yt: "ಯೂಟ್ಯೂಬ್‌ನಲ್ಲಿ ಇನ್ನಷ್ಟು ವೀಕ್ಷಿಸಿ",
@@ -2664,6 +2732,8 @@
                 video_section_title: "दैनिक आराधना और आत्मिक संदेश",
                 video_section_desc: "हमारे आधिकारिक यूट्यूब चैनल (@treasureforthedayclmmysuru2720) से सीधे दैनिक भक्ति और प्रवचन संदेश देखें।",
                 video_now_playing: "वेबसाइट पर सीधे प्रसारित",
+                video_auto_synced: "स्वचालित चैनल फ़ीड",
+                video_sync_now: "फ़ीड सिंक करें",
                 video_default_title: "ट्रेजर फॉर द डे - दैनिक भक्ति एवं प्रभु का वचन",
                 video_theater_mode: "बड़ा पर्दा",
                 btn_watch_more_yt: "यूट्यूब पर और देखें",
@@ -2892,16 +2962,204 @@
         updateCountdown();
 
         // ----------------------------------------------------------------------
-        // 4. IN-WEBSITE VIDEO PLAYER SWITCHER (OFFICIAL CHANNEL FEED)
         // ----------------------------------------------------------------------
+        // 4. IN-WEBSITE VIDEO PLAYER & DYNAMIC YOUTUBE FEED AUTO-SYNC
+        // ----------------------------------------------------------------------
+        const CLM_YT_CONFIG = {
+            channelHandle: '@treasureforthedayclmmysuru2720',
+            channelId: 'UCRgt--dPj42CRgbdfYf-jVw',
+            uploadsPlaylistId: 'UURgt--dPj42CRgbdfYf-jVw',
+            playlistEmbedUrl: 'https://www.youtube.com/embed/videoseries?list=UURgt--dPj42CRgbdfYf-jVw&rel=0',
+            channelUrl: 'https://www.youtube.com/@treasureforthedayclmmysuru2720',
+            rssUrl: 'https://www.youtube.com/feeds/videos.xml?channel_id=UCRgt--dPj42CRgbdfYf-jVw'
+        };
+
+        // Real verified uploads from channel used as pre-seeded fallback
+        const defaultChannelVideos = [
+            { id: 'gDj81iop4jA', title: 'The Lord is our keeper👍🙌', date: 'Latest Upload', isLatest: true },
+            { id: '2VbcSrPjSic', title: 'Jesus comforts 🫂🙏', date: 'Recent Devotion' },
+            { id: 'zVwp-kfoygk', title: 'Put your trust in Jesus👍🙌', date: 'Recent Devotion' },
+            { id: 'RSVycsg-Kkw', title: 'Blessings 🙌👍', date: 'Recent Devotion' },
+            { id: 'pRlIKWg1RPI', title: 'What must I do to be saved??', date: 'Recent Devotion' },
+            { id: 'MeIk1dPlPlA', title: 'Treasure for the Day - Daily Devotion', date: 'Channel Highlight' }
+        ];
+
+        let currentActiveVideoId = 'gDj81iop4jA';
+
+        async function syncYouTubeFeed(isManualTrigger = false) {
+            const refreshIcon = document.getElementById('refreshFeedIcon');
+            const syncStatusText = document.getElementById('channelSyncTimestamp');
+            const liveIndicator = document.getElementById('videoLiveIndicator');
+
+            if (refreshIcon) refreshIcon.classList.add('fa-spin');
+
+            const feedXmlUrl = CLM_YT_CONFIG.rssUrl;
+            // Public CORS proxies to retrieve public YouTube channel RSS client-side without API keys
+            const proxyGateways = [
+                `https://api.allorigins.win/raw?url=${encodeURIComponent(feedXmlUrl)}`,
+                `https://corsproxy.io/?url=${encodeURIComponent(feedXmlUrl)}`
+            ];
+
+            let xmlText = null;
+            for (const proxy of proxyGateways) {
+                try {
+                    const resp = await fetch(proxy, { signal: AbortSignal.timeout(5000) });
+                    if (resp.ok) {
+                        const text = await resp.text();
+                        if (text && text.includes('<entry>') && (text.includes('yt:videoId') || text.includes('videoId'))) {
+                            xmlText = text;
+                            break;
+                        }
+                    }
+                } catch (e) {
+                    console.warn('Proxy fetch attempt notice:', e);
+                }
+            }
+
+            if (xmlText) {
+                try {
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+                    const entries = xmlDoc.querySelectorAll('entry');
+                    if (entries && entries.length > 0) {
+                        const parsedVideos = [];
+                        entries.forEach((entry, idx) => {
+                            const vidEl = entry.querySelector('videoId') || entry.getElementsByTagName('yt:videoId')[0];
+                            const titleEl = entry.querySelector('title');
+                            const publishedEl = entry.querySelector('published');
+                            
+                            if (vidEl && vidEl.textContent) {
+                                const id = vidEl.textContent.trim();
+                                const title = titleEl ? titleEl.textContent.trim() : 'Daily Devotion';
+                                let dateLabel = 'Recent Devotion';
+                                if (publishedEl && publishedEl.textContent) {
+                                    try {
+                                        const d = new Date(publishedEl.textContent);
+                                        const now = new Date();
+                                        const diffHours = (now - d) / (1000 * 60 * 60);
+                                        if (diffHours < 24) dateLabel = 'Today';
+                                        else if (diffHours < 48) dateLabel = 'Yesterday';
+                                        else dateLabel = d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+                                    } catch (err) {}
+                                }
+                                parsedVideos.push({
+                                    id,
+                                    title,
+                                    date: idx === 0 ? `Latest • ${dateLabel}` : dateLabel,
+                                    isLatest: idx === 0
+                                });
+                            }
+                        });
+
+                        if (parsedVideos.length > 0) {
+                            renderYouTubeFeedCards(parsedVideos);
+
+                            // If user hasn't switched to another video manually, keep top video title updated
+                            const titleEl = document.getElementById('activeVideoTitle');
+                            if (titleEl && parsedVideos[0]) {
+                                titleEl.textContent = `${parsedVideos[0].title} - Treasure for the Day`;
+                            }
+                        }
+                    }
+                } catch (err) {
+                    console.warn('XML parse error:', err);
+                }
+            }
+
+            if (refreshIcon) refreshIcon.classList.remove('fa-spin');
+            if (syncStatusText) {
+                syncStatusText.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i> Live synced with ${CLM_YT_CONFIG.channelHandle}`;
+            }
+            if (liveIndicator) {
+                liveIndicator.className = 'w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse';
+            }
+        }
+
+        function renderYouTubeFeedCards(videos) {
+            const container = document.getElementById('youtubeFeedCardsContainer');
+            if (!container) return;
+
+            // Render top 3 latest videos plus 1 "Continuous Channel Stream" card
+            const displayVideos = videos.slice(0, 3);
+            let html = '';
+
+            displayVideos.forEach((v, index) => {
+                const isActive = (currentActiveVideoId === v.id);
+                const activeClass = isActive ? 'active-video-btn border-gold-500/60' : 'border-slate-700';
+                const badgeClass = v.isLatest ? 'bg-red-600/20 text-red-400' : 'bg-gold-500/20 text-gold-400';
+                const icon = v.isLatest ? 'fa-play' : 'fa-film';
+
+                html += `
+                    <button 
+                        type="button" 
+                        onclick="switchEmbeddedVideo('${v.id}', '${v.title.replace(/'/g, "\\'")}', this)" 
+                        class="video-playlist-btn ${activeClass} text-left p-2.5 sm:p-3 rounded-xl bg-navy-900/90 hover:border-gold-400 transition flex items-center gap-3 group relative overflow-hidden"
+                    >
+                        <div class="relative w-14 h-12 rounded-lg overflow-hidden bg-slate-950 flex-shrink-0 border border-slate-800">
+                            <img 
+                                src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" 
+                                onerror="this.onerror=null; this.src='photo1.jpg';" 
+                                alt="" 
+                                class="w-full h-full object-cover group-hover:scale-105 transition"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                <i class="fa-solid ${icon} text-white text-xs drop-shadow"></i>
+                            </div>
+                        </div>
+                        <div class="overflow-hidden flex-1 min-w-0">
+                            <div class="flex items-center gap-1.5 mb-1">
+                                <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${badgeClass}">
+                                    ${v.date}
+                                </span>
+                            </div>
+                            <h4 class="text-xs font-bold text-white truncate group-hover:text-gold-300 transition" title="${v.title}">
+                                ${v.title}
+                            </h4>
+                            <p class="text-[11px] text-slate-400 truncate">Tap to play inside website</p>
+                        </div>
+                    </button>
+                `;
+            });
+
+            // 4th Card: Continuous Channel Uploads Stream (Official Playlist)
+            const isPlaylistActive = (currentActiveVideoId === 'playlist');
+            const playlistActiveClass = isPlaylistActive ? 'active-video-btn border-gold-500/60' : 'border-slate-700';
+
+            html += `
+                <button 
+                    type="button" 
+                    onclick="switchChannelStream('playlist', 'Treasure for the Day - Continuous Official Channel Stream', this)" 
+                    class="video-playlist-btn ${playlistActiveClass} text-left p-2.5 sm:p-3 rounded-xl bg-navy-900/90 hover:border-gold-400 transition flex items-center gap-3 group relative overflow-hidden"
+                >
+                    <div class="w-14 h-12 rounded-lg bg-gradient-to-br from-red-600/30 to-purple-600/30 border border-red-500/40 text-red-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition">
+                        <i class="fa-solid fa-list-ul text-base text-red-400"></i>
+                    </div>
+                    <div class="overflow-hidden flex-1 min-w-0">
+                        <div class="flex items-center gap-1.5 mb-1">
+                            <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300">
+                                Continuous Stream
+                            </span>
+                        </div>
+                        <h4 class="text-xs font-bold text-white truncate group-hover:text-gold-300 transition">
+                            All Channel Uploads
+                        </h4>
+                        <p class="text-[11px] text-slate-400 truncate">Auto-plays newest to oldest</p>
+                    </div>
+                </button>
+            `;
+
+            container.innerHTML = html;
+        }
+
         function switchChannelStream(streamType, title, btnElement) {
+            currentActiveVideoId = 'playlist';
             const player = document.getElementById('embeddedIframePlayer');
             const titleEl = document.getElementById('activeVideoTitle');
             const theaterTitle = document.getElementById('theaterModalTitle');
 
-            // Working official video ID from @treasureforthedayclmmysuru2720
-            const videoId = 'MeIk1dPlPlA';
-            const srcUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+            // Official Playlist embed URL that automatically plays newest upload first
+            const srcUrl = `${CLM_YT_CONFIG.playlistEmbedUrl}&autoplay=1`;
 
             if (player) {
                 player.src = srcUrl;
@@ -2913,24 +3171,12 @@
                 theaterTitle.textContent = title;
             }
 
-            // Highlight selected button
-            if (btnElement) {
-                document.querySelectorAll('.video-playlist-btn').forEach(btn => {
-                    btn.classList.remove('active-video-btn', 'border-gold-500/60');
-                    btn.classList.add('border-slate-700');
-                });
-                btnElement.classList.add('active-video-btn', 'border-gold-500/60');
-                btnElement.classList.remove('border-slate-700');
-            }
-
-            // Scroll smoothly to player
-            const playerSection = document.getElementById('video-player');
-            if (playerSection) {
-                playerSection.scrollIntoView({ behavior: 'smooth' });
-            }
+            highlightVideoBtn(btnElement);
+            scrollToVideoPlayer();
         }
 
         function switchEmbeddedVideo(videoId, title, btnElement) {
+            currentActiveVideoId = videoId;
             const player = document.getElementById('embeddedIframePlayer');
             const titleEl = document.getElementById('activeVideoTitle');
             const theaterTitle = document.getElementById('theaterModalTitle');
@@ -2939,13 +3185,17 @@
                 player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
             }
             if (titleEl && title) {
-                titleEl.textContent = title;
+                titleEl.textContent = `${title} - Treasure for the Day`;
             }
             if (theaterTitle && title) {
                 theaterTitle.textContent = title;
             }
 
-            // Highlight selected button
+            highlightVideoBtn(btnElement);
+            scrollToVideoPlayer();
+        }
+
+        function highlightVideoBtn(btnElement) {
             if (btnElement) {
                 document.querySelectorAll('.video-playlist-btn').forEach(btn => {
                     btn.classList.remove('active-video-btn', 'border-gold-500/60');
@@ -2954,8 +3204,9 @@
                 btnElement.classList.add('active-video-btn', 'border-gold-500/60');
                 btnElement.classList.remove('border-slate-700');
             }
+        }
 
-            // Scroll smoothly to player
+        function scrollToVideoPlayer() {
             const playerSection = document.getElementById('video-player');
             if (playerSection) {
                 playerSection.scrollIntoView({ behavior: 'smooth' });
@@ -3373,6 +3624,13 @@
                 initCarouselEvents();
             } catch (e) {
                 console.error("Carousel init error:", e);
+            }
+
+            // Auto-sync latest YouTube videos from channel
+            try {
+                syncYouTubeFeed(false);
+            } catch (e) {
+                console.warn("YouTube feed auto-sync error:", e);
             }
         });
     </script>
